@@ -40,7 +40,6 @@ class DeviceListItem extends StatelessWidget {
         min: 0.9,
         max: 255.1,
         value: device.brightness,
-        activeColor: device.color,
         onChanged: (value) => bloc.add(DeviceSlider(device, value)),
       ),
     );

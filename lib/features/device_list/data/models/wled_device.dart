@@ -24,6 +24,6 @@ class WledDevice with _$WledDevice {
     // API responses from slider updates
     @Default(0.9) double brightness,
     // the currently active device color
-    @Default(Color.fromRGBO(0, 0, 0, 1)) Color color,
+    @Default(Color.fromRGBO(255, 255, 255, 0.2)) Color color,
   }) = _WledDevice;
 }

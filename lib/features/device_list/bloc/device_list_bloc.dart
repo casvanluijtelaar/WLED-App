@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
@@ -18,22 +20,39 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     on<DevicePressed>(_onDevicePressed);
     on<DevicePower>(_onDevicePower, transformer: BlocTransformers.debounce);
     on<DeviceSlider>(_onDeviceSlider, transformer: BlocTransformers.debounce);
+    on<DeviceDiscovered>(_onDiscovered);
   }
 
   final DeviceListRepository _repository;
+
+  StreamSubscription<WledDevice>? _deviceStream;
 
   Future<void> _onUpdate(
     DeviceListUpdate event,
     Emitter<DeviceListState> emit,
   ) async {
-
     emit(DeviceListLoading());
 
-    final devices = await _repository.getWledDevicesAsync(
-      const Duration(seconds: 2),
-    );
+    await _deviceStream?.cancel();
 
-    emit(devices.isEmpty ? DeviceListEmpty() : DeviceListSucces(devices));
+    _deviceStream = _repository
+        .getWledDeviceStream()
+        .listen((d) => add(DeviceDiscovered(d)));
+  }
+
+  void _onDiscovered(
+    DeviceDiscovered event,
+    Emitter<DeviceListState> emit,
+  ) {
+    if (state is DeviceListLoading) {
+      emit(DeviceListSucces([event.device]));
+    }
+
+    if (state is DeviceListSucces) {
+      final devices = List<WledDevice>.from((state as DeviceListSucces).devices)
+        ..add(event.device);
+      emit(DeviceListSucces(devices));
+    }
   }
 
   void _onDeviceAdd(
@@ -82,5 +101,11 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     items[index] = device;
 
     emit(DeviceListSucces(items));
+  }
+
+  @override
+  Future<void> close() async {
+    await _deviceStream?.cancel();
+    return super.close();
   }
 }

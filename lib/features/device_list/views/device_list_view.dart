@@ -19,17 +19,19 @@ class DeviceListView extends StatelessWidget {
       );
 }
 
-
-
-
 /// main DeviceListView state builder
 class DeviceList extends StatelessWidget {
   const DeviceList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: const DeviceListAppbar(),
-        body: Center(
+  Widget build(BuildContext context) {
+    final bloc = context.read<DeviceListBloc>();
+
+    return Scaffold(
+      appBar: const DeviceListAppbar(),
+      body: Center(
+        child: RefreshIndicator(
+          onRefresh: () async => bloc.add(DeviceListUpdate()),
           child: BlocBuilder<DeviceListBloc, DeviceListState>(
             builder: (context, state) {
               // if something went wrong show the error to the user
@@ -41,11 +43,10 @@ class DeviceList extends StatelessWidget {
             },
           ),
         ),
-      );
+      ),
+    );
+  }
 }
-
-
-
 
 /// No devices, show info and option to add one
 class Empty extends StatelessWidget {
@@ -53,22 +54,9 @@ class Empty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<DeviceListBloc>();
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Text('No Devices'),
-        OutlinedButton(
-          onPressed: () => bloc.add(DeviceListUpdate()),
-          child: const Text('Refresh'),
-        ),
-      ],
-    );
+    return const Text('No Devices');
   }
 }
-
-
 
 /// displays a list with a [DeviceListItem] for every [WledDevice]
 class Succes extends StatelessWidget {
@@ -80,17 +68,10 @@ class Succes extends StatelessWidget {
   final List<WledDevice> devices;
 
   @override
-  Widget build(BuildContext context) {
-    final bloc = context.read<DeviceListBloc>();
-
-    return RefreshIndicator(
-      onRefresh: () async => bloc.add(DeviceListUpdate()),
-      child: ListView.builder(
+  Widget build(BuildContext context) => ListView.builder(
         itemCount: devices.length,
         itemBuilder: (context, index) => DeviceListItem(
           device: devices[index],
         ),
-      ),
-    );
-  }
+      );
 }

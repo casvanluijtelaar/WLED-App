@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
 import 'package:wled_app/core/core.dart';
-import 'package:wled_app/features/device_list/data/src/mdns_device_discovery.dart';
-import 'package:wled_app/features/device_list/data/src/xml_parser.dart';
 
 import '../models/wled_device.dart';
+import '../src/mdns_device_discovery.dart';
+import '../src/xml_parser.dart';
 
 @injectable
 class DeviceListRepository {
@@ -27,8 +27,12 @@ class DeviceListRepository {
 
   /// fetches a list of discoverable and updated wled devices
   Future<List<WledDevice>> getWledDevicesAsync(Duration delay) async {
-    /// look for mDNS devices for a specific delay
+
+    /// reset mDNS
+    _discovery.stop();
     await _discovery.start();
+    
+    /// look for mDNS devices for a specific delay
     Future.delayed(delay, _discovery.stop);
 
     /// convert the results to WledDevices
@@ -40,7 +44,10 @@ class DeviceListRepository {
 
     /// get complete data for every device
     final futures = devices.map((wled) => updateWledDevice(wled, ''));
-    return Future.wait(futures);
+    final updated = await Future.wait(futures);
+
+    /// only return valid WLED devices
+    return updated.where((d) => d.status == DeviceStatus.standard).toList();
   }
 
   /// sends the call to the wled api and returns a Wled device with updated

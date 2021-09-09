@@ -33,7 +33,7 @@ class MdnsDeviceDiscovery {
       final srvQuery = ResourceRecordQuery.service(ptr.domainName);
       final srvRecord = _client.lookup<SrvResourceRecord>(srvQuery);
 
-      await srvRecord.first;
+      yield await srvRecord.first; // only use the first service record
     }
   }
 }

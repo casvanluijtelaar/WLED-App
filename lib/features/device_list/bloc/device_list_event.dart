@@ -5,6 +5,13 @@ class DeviceListEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class DeviceDiscovered extends DeviceListEvent {
+  DeviceDiscovered(this.device);
+  final WledDevice device;
+
+  @override
+  List<Object?> get props => [device];
+}
 
 /// when the user wants to fetch the list of devices
 class DeviceListUpdate extends DeviceListEvent {}
