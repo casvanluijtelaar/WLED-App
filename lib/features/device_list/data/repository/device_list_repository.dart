@@ -12,6 +12,7 @@ class DeviceListRepository {
   final XmlParser _parser;
   final MdnsDeviceDiscovery _discovery;
 
+  /// returns a stream that returns new wled devices when they are discovered
   Stream<WledDevice> getWledDeviceStream() async* {
     _discovery.stop();
     await _discovery.start();
@@ -26,7 +27,7 @@ class DeviceListRepository {
 
   /// fetches a list of discoverable and updated wled devices
   Future<List<WledDevice>> getWledDevicesAsync(Duration delay) async {
-    /// look for mDNS devices for 2 seconds
+    /// look for mDNS devices for a specific delay
     await _discovery.start();
     Future.delayed(delay, _discovery.stop);
 

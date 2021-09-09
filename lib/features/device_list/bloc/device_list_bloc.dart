@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import 'package:rxdart/rxdart.dart';
+
+import 'package:wled_app/core/core.dart';
 
 import '../data/models/wled_device.dart';
 import '../data/repository/device_list_repository.dart';
@@ -15,17 +16,17 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     on<DeviceListUpdate>(_onUpdate);
     on<DeviceAdd>(_onDeviceAdd);
     on<DevicePressed>(_onDevicePressed);
-    on<DevicePower>(_onDevicePower, transformer: debounce);
-    on<DeviceSlider>(_onDeviceSlider, transformer: debounce);
+    on<DevicePower>(_onDevicePower, transformer: BlocTransformers.debounce);
+    on<DeviceSlider>(_onDeviceSlider, transformer: BlocTransformers.debounce);
   }
 
   final DeviceListRepository _repository;
 
   Future<void> _onUpdate(
     DeviceListUpdate event,
-    Emitter<DeviceListState> emit
+    Emitter<DeviceListState> emit,
   ) async {
-    
+
     emit(DeviceListLoading());
 
     final devices = await _repository.getWledDevicesAsync(
@@ -81,15 +82,5 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     items[index] = device;
 
     emit(DeviceListSucces(items));
-  }
-
-  /// transformer that debounces every interaction with api to prevent spam
-  Stream<DeviceListEvent> debounce(
-    Stream<DeviceListEvent> events,
-    Stream<DeviceListEvent> Function(DeviceListEvent) transitionFn,
-  ) {
-    return events
-        .debounceTime(const Duration(milliseconds: 250))
-        .switchMap(transitionFn);
   }
 }

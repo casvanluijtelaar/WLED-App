@@ -6,6 +6,7 @@ import 'package:multicast_dns/multicast_dns.dart';
 /// class handling listening for multi_dns devices
 @injectable
 class MdnsDeviceDiscovery {
+  /// mDNS default address
   static const _name = '_http._tcp';
 
   /// creates the MDnsClient, we have to overwrite the reusePort because it's
@@ -32,7 +33,7 @@ class MdnsDeviceDiscovery {
       final srvQuery = ResourceRecordQuery.service(ptr.domainName);
       final srvRecord = _client.lookup<SrvResourceRecord>(srvQuery);
 
-      yield await srvRecord.first;
+      await srvRecord.first;
     }
   }
 }

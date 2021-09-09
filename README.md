@@ -1,16 +1,11 @@
-# wled_app
+# WLED App
 
-A new Flutter project.
+this project aims to build a cross platform version of the well known  [WLED Android & IOS app](https://github.com/Aircoookie/WLED-App) made by Aircookie.
 
-## Getting Started
+This application is build from the ground up to natively support Android, IOS, Windows, MacOS, Linux and eventually the web. 
 
-This project is a starting point for a Flutter application.
+## Roadmap
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Efforts are currently focussed on implementing all of the existing WLED App functionality
+* create a native implementation for the WLED [web](https://github.com/Aircoookie/WLED) interface
+* Add native support for the [LedFx](https://github.com/LedFx/LedFx0) application
