@@ -1,0 +1,18 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+linter:
+  rules:
+    public_member_api_docs: false
+    always_use_package_imports: false
+    sort_constructors_first: false
+    implicit_dynamic_type: false
+
+analyzer:
+  exclude:
+    - lib/core/app/app_injector.config.dart
+    - lib/generated_plugin_registrant.dart
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "**/*.freezed.dart"
+  errors:
+    invalid_annotation_target: ignore

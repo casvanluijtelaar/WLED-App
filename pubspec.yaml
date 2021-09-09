@@ -1,0 +1,39 @@
+name: wled_app
+description: A cross-platform application for interacting with WLED devices
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  auto_route: ^2.3.0
+  bloc: ^7.2.0-dev.1
+  equatable: ^2.0.3
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^7.2.0
+  flutter_feather_icons: ^2.0.0+1
+  freezed_annotation: ^0.14.3
+  get_it: ^7.2.0
+  http: ^0.13.3
+  injectable: ^1.5.0
+  multicast_dns: ^0.3.1
+  permission_handler: ^8.1.4+2
+  rxdart: ^0.27.2
+  shared_preferences: ^2.0.7
+  xml: ^5.1.0
+
+dev_dependencies:
+  auto_route_generator: ^2.3.0
+  build_runner: ^2.1.2
+  freezed: ^0.14.5
+  injectable_generator: ^1.5.1
+  very_good_analysis: ^2.3.0
+
+dependency_overrides:
+  meta: ^1.7.0
+
+flutter:
+  uses-material-design: true
