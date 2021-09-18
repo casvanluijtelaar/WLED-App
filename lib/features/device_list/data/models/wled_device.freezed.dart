@@ -24,7 +24,7 @@ class _$WledDeviceTearOff {
       bool nameIsCustom = false,
       bool isEnabled = true,
       double brightness = 0.9,
-      Color color = const Color.fromRGBO(0, 0, 0, 1)}) {
+      Color color = const Color.fromRGBO(255, 255, 255, 0.2)}) {
     return _WledDevice(
       networkAddress: networkAddress,
       name: name,
@@ -209,7 +209,7 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
       this.nameIsCustom = false,
       this.isEnabled = true,
       this.brightness = 0.9,
-      this.color = const Color.fromRGBO(0, 0, 0, 1)});
+      this.color = const Color.fromRGBO(255, 255, 255, 0.2)});
 
   @override // device IP (can also be hostname if applicable)
   final String networkAddress;
@@ -229,7 +229,7 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
   @override // There are two vars for brightness to discern
 // API responses from slider updates
   final double brightness;
-  @JsonKey(defaultValue: const Color.fromRGBO(0, 0, 0, 1))
+  @JsonKey(defaultValue: const Color.fromRGBO(255, 255, 255, 0.2))
   @override // the currently active device color
   final Color color;
 

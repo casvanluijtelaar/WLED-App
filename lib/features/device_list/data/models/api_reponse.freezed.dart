@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'xml_api_reponse.dart';
+part of 'api_reponse.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,55 +13,63 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-/// @nodoc
-class _$XmlApiResponseTearOff {
-  const _$XmlApiResponseTearOff();
+ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) {
+  return _ApiResponse.fromJson(json);
+}
 
-  _XmlApiResponse call(
+/// @nodoc
+class _$ApiResponseTearOff {
+  const _$ApiResponseTearOff();
+
+  _ApiResponse call(
       {required double brightness,
       required bool isOn,
       required Color color,
       required String name}) {
-    return _XmlApiResponse(
+    return _ApiResponse(
       brightness: brightness,
       isOn: isOn,
       color: color,
       name: name,
     );
   }
+
+  ApiResponse fromJson(Map<String, Object> json) {
+    return ApiResponse.fromJson(json);
+  }
 }
 
 /// @nodoc
-const $XmlApiResponse = _$XmlApiResponseTearOff();
+const $ApiResponse = _$ApiResponseTearOff();
 
 /// @nodoc
-mixin _$XmlApiResponse {
+mixin _$ApiResponse {
   double get brightness => throw _privateConstructorUsedError;
   bool get isOn => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $XmlApiResponseCopyWith<XmlApiResponse> get copyWith =>
+  $ApiResponseCopyWith<ApiResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $XmlApiResponseCopyWith<$Res> {
-  factory $XmlApiResponseCopyWith(
-          XmlApiResponse value, $Res Function(XmlApiResponse) then) =
-      _$XmlApiResponseCopyWithImpl<$Res>;
+abstract class $ApiResponseCopyWith<$Res> {
+  factory $ApiResponseCopyWith(
+          ApiResponse value, $Res Function(ApiResponse) then) =
+      _$ApiResponseCopyWithImpl<$Res>;
   $Res call({double brightness, bool isOn, Color color, String name});
 }
 
 /// @nodoc
-class _$XmlApiResponseCopyWithImpl<$Res>
-    implements $XmlApiResponseCopyWith<$Res> {
-  _$XmlApiResponseCopyWithImpl(this._value, this._then);
+class _$ApiResponseCopyWithImpl<$Res> implements $ApiResponseCopyWith<$Res> {
+  _$ApiResponseCopyWithImpl(this._value, this._then);
 
-  final XmlApiResponse _value;
+  final ApiResponse _value;
   // ignore: unused_field
-  final $Res Function(XmlApiResponse) _then;
+  final $Res Function(ApiResponse) _then;
 
   @override
   $Res call({
@@ -92,25 +100,24 @@ class _$XmlApiResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$XmlApiResponseCopyWith<$Res>
-    implements $XmlApiResponseCopyWith<$Res> {
-  factory _$XmlApiResponseCopyWith(
-          _XmlApiResponse value, $Res Function(_XmlApiResponse) then) =
-      __$XmlApiResponseCopyWithImpl<$Res>;
+abstract class _$ApiResponseCopyWith<$Res>
+    implements $ApiResponseCopyWith<$Res> {
+  factory _$ApiResponseCopyWith(
+          _ApiResponse value, $Res Function(_ApiResponse) then) =
+      __$ApiResponseCopyWithImpl<$Res>;
   @override
   $Res call({double brightness, bool isOn, Color color, String name});
 }
 
 /// @nodoc
-class __$XmlApiResponseCopyWithImpl<$Res>
-    extends _$XmlApiResponseCopyWithImpl<$Res>
-    implements _$XmlApiResponseCopyWith<$Res> {
-  __$XmlApiResponseCopyWithImpl(
-      _XmlApiResponse _value, $Res Function(_XmlApiResponse) _then)
-      : super(_value, (v) => _then(v as _XmlApiResponse));
+class __$ApiResponseCopyWithImpl<$Res> extends _$ApiResponseCopyWithImpl<$Res>
+    implements _$ApiResponseCopyWith<$Res> {
+  __$ApiResponseCopyWithImpl(
+      _ApiResponse _value, $Res Function(_ApiResponse) _then)
+      : super(_value, (v) => _then(v as _ApiResponse));
 
   @override
-  _XmlApiResponse get _value => super._value as _XmlApiResponse;
+  _ApiResponse get _value => super._value as _ApiResponse;
 
   @override
   $Res call({
@@ -119,7 +126,7 @@ class __$XmlApiResponseCopyWithImpl<$Res>
     Object? color = freezed,
     Object? name = freezed,
   }) {
-    return _then(_XmlApiResponse(
+    return _then(_ApiResponse(
       brightness: brightness == freezed
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
@@ -141,15 +148,17 @@ class __$XmlApiResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$_XmlApiResponse
-    with DiagnosticableTreeMixin
-    implements _XmlApiResponse {
-  const _$_XmlApiResponse(
+@JsonSerializable()
+@ColorConverter()
+class _$_ApiResponse with DiagnosticableTreeMixin implements _ApiResponse {
+  const _$_ApiResponse(
       {required this.brightness,
       required this.isOn,
       required this.color,
       required this.name});
+
+  factory _$_ApiResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_ApiResponseFromJson(json);
 
   @override
   final double brightness;
@@ -162,14 +171,14 @@ class _$_XmlApiResponse
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'XmlApiResponse(brightness: $brightness, isOn: $isOn, color: $color, name: $name)';
+    return 'ApiResponse(brightness: $brightness, isOn: $isOn, color: $color, name: $name)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'XmlApiResponse'))
+      ..add(DiagnosticsProperty('type', 'ApiResponse'))
       ..add(DiagnosticsProperty('brightness', brightness))
       ..add(DiagnosticsProperty('isOn', isOn))
       ..add(DiagnosticsProperty('color', color))
@@ -179,7 +188,7 @@ class _$_XmlApiResponse
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _XmlApiResponse &&
+        (other is _ApiResponse &&
             (identical(other.brightness, brightness) ||
                 const DeepCollectionEquality()
                     .equals(other.brightness, brightness)) &&
@@ -201,16 +210,24 @@ class _$_XmlApiResponse
 
   @JsonKey(ignore: true)
   @override
-  _$XmlApiResponseCopyWith<_XmlApiResponse> get copyWith =>
-      __$XmlApiResponseCopyWithImpl<_XmlApiResponse>(this, _$identity);
+  _$ApiResponseCopyWith<_ApiResponse> get copyWith =>
+      __$ApiResponseCopyWithImpl<_ApiResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ApiResponseToJson(this);
+  }
 }
 
-abstract class _XmlApiResponse implements XmlApiResponse {
-  const factory _XmlApiResponse(
+abstract class _ApiResponse implements ApiResponse {
+  const factory _ApiResponse(
       {required double brightness,
       required bool isOn,
       required Color color,
-      required String name}) = _$_XmlApiResponse;
+      required String name}) = _$_ApiResponse;
+
+  factory _ApiResponse.fromJson(Map<String, dynamic> json) =
+      _$_ApiResponse.fromJson;
 
   @override
   double get brightness => throw _privateConstructorUsedError;
@@ -222,6 +239,6 @@ abstract class _XmlApiResponse implements XmlApiResponse {
   String get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$XmlApiResponseCopyWith<_XmlApiResponse> get copyWith =>
+  _$ApiResponseCopyWith<_ApiResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:injectable/injectable.dart';
 import 'package:wled_app/core/core.dart';
 
@@ -7,47 +9,22 @@ import '../src/xml_parser.dart';
 
 @injectable
 class DeviceListRepository {
-  DeviceListRepository(this._parser, this._discovery);
+  DeviceListRepository(this._discovery, this._parser);
 
-  final XmlParser _parser;
   final MdnsDeviceDiscovery _discovery;
+  final XmlParser _parser;
 
   /// returns a stream that returns new wled devices when they are discovered
   Stream<WledDevice> getWledDeviceStream() async* {
     _discovery.stop();
     await _discovery.start();
 
-    yield* _discovery.stream.asyncMap((srv) async {
-      final address = '${srv.target}:${srv.port}';
-      final device = WledDevice(networkAddress: address, name: srv.name);
+    yield* _discovery.stream.asyncMap<WledDevice>((mdns) async {
+      final address = '${mdns.ip.address.address}:${mdns.srv.port}';
+      final device = WledDevice(networkAddress: address, name: mdns.srv.name);
 
       return updateWledDevice(device, '');
-    });
-  }
-
-  /// fetches a list of discoverable and updated wled devices
-  Future<List<WledDevice>> getWledDevicesAsync(Duration delay) async {
-
-    /// reset mDNS
-    _discovery.stop();
-    await _discovery.start();
-    
-    /// look for mDNS devices for a specific delay
-    Future.delayed(delay, _discovery.stop);
-
-    /// convert the results to WledDevices
-    final results = await _discovery.stream.toList();
-    final devices = results.map((srv) => WledDevice(
-          networkAddress: '${srv.target}:${srv.port}',
-          name: srv.name,
-        ));
-
-    /// get complete data for every device
-    final futures = devices.map((wled) => updateWledDevice(wled, ''));
-    final updated = await Future.wait(futures);
-
-    /// only return valid WLED devices
-    return updated.where((d) => d.status == DeviceStatus.standard).toList();
+    }).where((d) => d.status == DeviceStatus.standard);
   }
 
   /// sends the call to the wled api and returns a Wled device with updated
@@ -58,15 +35,15 @@ class DeviceListRepository {
         : 'http://${device.networkAddress}';
 
     try {
-      final response = await DeviceHttpConnection.sendApiCall(url, call);
-      final xmlApiResponse = _parser.parseXml(response);
+      final response = await HttpConnection.sendApiCall(url, call);
+      final apiResponse = _parser.parseXml(response);
 
       return device.copyWith(
         status: DeviceStatus.standard,
-        name: device.nameIsCustom ? device.name : xmlApiResponse.name,
-        brightness: xmlApiResponse.brightness,
-        isEnabled: xmlApiResponse.isOn,
-        color: xmlApiResponse.color,
+        name: device.nameIsCustom ? device.name : apiResponse.name,
+        brightness: apiResponse.brightness,
+        isEnabled: apiResponse.isOn,
+        color: apiResponse.color,
       );
     } on HttpConnectionException {
       return device.copyWith(status: DeviceStatus.unreachable);

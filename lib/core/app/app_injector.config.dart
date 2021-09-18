@@ -22,7 +22,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i3.MdnsDeviceDiscovery>(() => _i3.MdnsDeviceDiscovery());
   gh.factory<_i4.XmlParser>(() => _i4.XmlParser());
   gh.factory<_i5.DeviceListRepository>(() => _i5.DeviceListRepository(
-      get<_i4.XmlParser>(), get<_i3.MdnsDeviceDiscovery>()));
+      get<_i3.MdnsDeviceDiscovery>(), get<_i4.XmlParser>()));
   gh.factory<_i6.DeviceListBloc>(
       () => _i6.DeviceListBloc(get<_i5.DeviceListRepository>()));
   return get;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wled_app/features/device_list/data/models/wled_device.dart';
 import '../bloc/device_list_bloc.dart';
+import '../data/models/wled_device.dart';
 
 class DeviceListItem extends StatelessWidget {
   const DeviceListItem({
@@ -37,7 +37,6 @@ class DeviceListItem extends StatelessWidget {
       ),
       title: Text(device.name),
       subtitle: Slider(
-        min: 0.9,
         max: 255.1,
         value: device.brightness,
         onChanged: (value) => bloc.add(DeviceSlider(device, value)),

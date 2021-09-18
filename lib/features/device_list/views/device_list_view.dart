@@ -34,10 +34,8 @@ class DeviceList extends StatelessWidget {
           onRefresh: () async => bloc.add(DeviceListUpdate()),
           child: BlocBuilder<DeviceListBloc, DeviceListState>(
             builder: (context, state) {
-              // if something went wrong show the error to the user
-              if (state is DeviceListEmpty) return const Empty();
               // if the it succeeded, display the results
-              if (state is DeviceListSucces) return Succes(state.devices);
+              if (state is DeviceListFound) return Succes(state.devices);
               // show loading widget whilst waiting
               return const CircularProgressIndicator();
             },

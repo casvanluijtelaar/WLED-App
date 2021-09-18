@@ -3,7 +3,8 @@ export 'app/app.dart';
 export 'app/app_bloc_observer.dart';
 export 'app/app_injector.dart';
 /// data
-export 'data/device_http_connection.dart';
+export 'data/http_connection.dart';
 /// utils
 export 'utils/bloc_transformers.dart';
+export 'utils/color_converter.dart';
 export 'utils/extensions.dart';

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:injectable/injectable.dart';
@@ -25,7 +26,7 @@ class MdnsDeviceDiscovery {
 
   /// receive an instance of the stream containing the service records for
   /// listening to.
-  Stream<SrvResourceRecord> get stream async* {
+  Stream<MDNSrecord> get stream async* {
     final ptrQuery = ResourceRecordQuery.serverPointer(_name);
     final ptrRecord = _client.lookup<PtrResourceRecord>(ptrQuery);
 
@@ -33,7 +34,23 @@ class MdnsDeviceDiscovery {
       final srvQuery = ResourceRecordQuery.service(ptr.domainName);
       final srvRecord = _client.lookup<SrvResourceRecord>(srvQuery);
 
-      yield await srvRecord.first; // only use the first service record
+      final srv = await srvRecord.first; // only use the first service record
+
+      final ipQuery = ResourceRecordQuery.addressIPv4(srv.target);
+      final ipRecord = _client.lookup<IPAddressResourceRecord>(ipQuery);
+
+      final ip = await ipRecord.first;
+      log(ip.toString());
+
+      yield MDNSrecord(ptr, srv, ip);
     }
   }
+}
+
+class MDNSrecord {
+  MDNSrecord(this.ptr, this.srv, this.ip);
+
+  final PtrResourceRecord ptr;
+  final SrvResourceRecord srv;
+  final IPAddressResourceRecord ip;
 }

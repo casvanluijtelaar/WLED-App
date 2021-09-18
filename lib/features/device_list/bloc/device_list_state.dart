@@ -5,12 +5,10 @@ class DeviceListState extends Equatable {
   List<Object?> get props => [];
 }
 
-class DeviceListEmpty extends DeviceListState {}
-
 class DeviceListLoading extends DeviceListState {}
 
-class DeviceListSucces extends DeviceListState {
-  DeviceListSucces(this.devices);
+class DeviceListFound extends DeviceListState {
+  DeviceListFound(this.devices);
   final List<WledDevice> devices;
 
   @override

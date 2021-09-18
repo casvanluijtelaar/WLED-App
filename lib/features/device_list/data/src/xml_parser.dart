@@ -1,14 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/rendering.dart';
 import 'package:injectable/injectable.dart';
-import 'package:wled_app/features/device_list/data/models/xml_api_reponse.dart';
 import 'package:xml/xml.dart';
+
+import '../models/api_reponse.dart';
 
 class ParseException implements Exception {}
 
 @injectable
 class XmlParser {
-
-  XmlApiResponse parseXml(String xml) {
+  ApiResponse parseXml(String xml) {
     try {
       final document = XmlDocument.parse(xml);
 
@@ -34,15 +36,15 @@ class XmlParser {
         1,
       );
 
-      return XmlApiResponse(
+      return ApiResponse(
         brightness: brightness,
         isOn: brightness > 0,
         color: color,
         name: name,
       );
-    } catch (e) {
+    } catch (e, s) {
+      log(e.toString(), stackTrace: s);
       throw ParseException();
     }
   }
-  
 }

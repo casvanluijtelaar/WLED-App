@@ -1,6 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
 
 part 'wled_device.freezed.dart';
 
@@ -26,4 +26,6 @@ class WledDevice with _$WledDevice {
     // the currently active device color
     @Default(Color.fromRGBO(255, 255, 255, 0.2)) Color color,
   }) = _WledDevice;
+
+  
 }
