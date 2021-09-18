@@ -5,6 +5,8 @@ export 'app/app_injector.dart';
 export 'app/app_theme.dart';
 /// data
 export 'data/http_connection.dart';
+/// l10n
+export 'l10n/generated/l10n.dart';
 /// utils
 export 'utils/bloc_transformers.dart';
 export 'utils/color_converter.dart';

@@ -41,7 +41,6 @@ class DeviceListItem extends StatelessWidget {
         size: 112,
         animationEnabled: false,
         infoProperties: InfoProperties(
-
           /// when the device is enabled, change the percentage color to the
           /// active led color
           mainLabelStyle: theme.textTheme.headline4!.copyWith(
@@ -70,7 +69,9 @@ class DeviceListItem extends StatelessWidget {
           child: GestureDetector(
             onTap: () => bloc.add(DevicePower(device)),
             child: Text(
-              roundedValue != 0 ? '$roundedValue %' : 'off',
+              roundedValue != 0
+                  ? '$roundedValue%'
+                  : context.locale.deviceListPowerOff,
               style: theme.textTheme.headline4!.copyWith(
                 color: device.isEnabled ? device.color : theme.dividerColor,
               ),

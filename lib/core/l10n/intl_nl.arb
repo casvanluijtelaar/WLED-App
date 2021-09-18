@@ -1,0 +1,6 @@
+{
+    "deviceListTitle": "Apparaten",
+    "deviceListAction": "Voeg een nieuw apparaat toe",
+    "deviceListPowerOff": "uit",
+    "deviceListLoading": "Zoeken naar WLED apparaten op dit netwerk"
+}

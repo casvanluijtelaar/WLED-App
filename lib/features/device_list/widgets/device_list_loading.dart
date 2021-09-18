@@ -1,16 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:rive/rive.dart';
+
+import 'package:wled_app/core/core.dart';
 
 class DeviceListLoadingWidget extends StatelessWidget {
   const DeviceListLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const SliverToBoxAdapter(
-      child: SizedBox(
-        height: 160,
-        child: Center(
-          child: CircularProgressIndicator(),
+    final theme = context.theme;
+
+    return SliverToBoxAdapter(
+      child: LayoutBuilder(
+        builder: (context, constraints) => SizedBox(
+          height: context.height * 0.5,
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: RiveAnimation.asset(
+                    Consts.assetLoading,
+                    antialiasing: false,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(Consts.paddingSmall),
+                  child: Text(
+                    context.locale.deviceListLoading,
+                    style: theme.textTheme.bodyText1,
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

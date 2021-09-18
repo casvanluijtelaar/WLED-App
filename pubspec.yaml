@@ -16,14 +16,16 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^7.2.0
   flutter_feather_icons: ^2.0.0+1
+  flutter_localizations:
+    sdk: flutter
   freezed_annotation: ^0.14.3
   get_it: ^7.2.0
   http: ^0.13.3
   injectable: ^1.5.0
   json_annotation: ^4.1.0
   multicast_dns: ^0.3.1
+  rive: ^0.7.28
   rxdart: ^0.27.2
-  shared_preferences: ^2.0.7
   sleek_circular_slider: ^2.0.1
   xml: ^5.1.0
 
@@ -40,6 +42,8 @@ dependency_overrides:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/rive/
   fonts:
     - family: Nunito
       fonts:
@@ -47,3 +51,10 @@ flutter:
           weight: 700
         - asset: fonts/Nunito-Regular.ttf
           weight: 400
+
+          
+flutter_intl:
+  enabled: true 
+  class_name: Localization 
+  arb_dir: lib/core/l10n 
+  output_dir: lib/core/l10n/generated 

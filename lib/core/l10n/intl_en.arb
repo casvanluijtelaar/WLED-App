@@ -1,0 +1,6 @@
+{
+    "deviceListTitle": "Devices",
+    "deviceListAction": "Add a new device",
+    "deviceListPowerOff": "off",
+    "deviceListLoading": "Looking for WLED devices on this network"
+}

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
-import 'package:wled_app/core/app/app_theme.dart';
 import 'package:wled_app/core/core.dart';
 
 import '../bloc/device_list_bloc.dart';
@@ -28,6 +27,7 @@ class DeviceList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<DeviceListBloc>();
+    final theme = context.theme;
 
     return Scaffold(
       body: BlocBuilder<DeviceListBloc, DeviceListState>(
@@ -42,19 +42,38 @@ class DeviceList extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: false,
-                  title: const Text('Devices'),
+                  title: Text(context.locale.deviceListTitle),
                   titlePadding: EdgeInsets.all(
                     context.isPhone
                         ? Consts.paddingMedium
                         : Consts.paddingLarge,
                   ),
                 ),
-                expandedHeight: 160,
+                expandedHeight:
+                    context.isPhone && context.isLandscape ? 56 : 160,
                 onStretchTrigger: () async => bloc.add(DeviceListUpdate()),
                 actions: [
-                  IconButton(
-                    onPressed: () => bloc.add(DeviceAdd()),
-                    icon: const Icon(FeatherIcons.plus),
+                  InkWell(
+                    onTap: () => bloc.add(DeviceAdd()),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: Consts.paddingExtraSmall,
+                        horizontal: Consts.paddingSmall,
+                      ),
+                      child: Row(
+                        children: [
+                          if (!context.isPhone)
+                            Text(
+                              context.locale.deviceListAction,
+                              style: theme.textTheme.button,
+                            ),
+                          const Padding(
+                            padding: EdgeInsets.all(Consts.paddingSmall),
+                            child: Icon(FeatherIcons.plus),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),

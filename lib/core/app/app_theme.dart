@@ -46,7 +46,7 @@ abstract class AppTheme {
   static const _buttonStyle = TextStyle(
     color: titleColor,
     fontSize: 20,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w400,
   );
 
   static final theme = ThemeData(
