@@ -20,8 +20,8 @@ class DeviceListRepository {
     await _discovery.start();
 
     yield* _discovery.stream.asyncMap<WledDevice>((mdns) async {
-      final address = '${mdns.ip.address.address}:${mdns.srv.port}';
-      final device = WledDevice(networkAddress: address, name: mdns.srv.name);
+      final address = mdns.ip.address.address;
+      final device = WledDevice(address: address, name: mdns.srv.name);
 
       return updateWledDevice(device, '');
     }).where((d) => d.status == DeviceStatus.standard);
@@ -30,9 +30,9 @@ class DeviceListRepository {
   /// sends the call to the wled api and returns a Wled device with updated
   /// data the api call returns
   Future<WledDevice> updateWledDevice(WledDevice device, String call) async {
-    final url = device.networkAddress.startsWith('https://')
-        ? device.networkAddress
-        : 'http://${device.networkAddress}';
+    final url = device.address.startsWith('https://')
+        ? device.address
+        : 'http://${device.address}';
 
     try {
       final response = await HttpConnection.sendApiCall(url, call);
@@ -40,7 +40,7 @@ class DeviceListRepository {
 
       return device.copyWith(
         status: DeviceStatus.standard,
-        name: device.nameIsCustom ? device.name : apiResponse.name,
+        name: apiResponse.name,
         brightness: apiResponse.brightness,
         isEnabled: apiResponse.isOn,
         color: apiResponse.color,

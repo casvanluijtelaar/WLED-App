@@ -13,18 +13,19 @@ class XmlParser {
   ApiResponse parseXml(String xml) {
     try {
       final document = XmlDocument.parse(xml);
-
-      final name = document.getElement('ds')?.text ??
-          document.getElement('desc')?.text ??
+      final data = document.getElement('vs')!;
+     
+      final name = data.getElement('ds')?.text ??
+          data.getElement('desc')?.text ??
           '';
 
-      final brightnessText = document.getElement('ac')?.text ??
-          document.getElement('act')?.text ??
+      final brightnessText = data.getElement('ac')?.text ??
+          data.getElement('act')?.text ??
           '';
 
       final brightness = double.tryParse(brightnessText) ?? 0;
 
-      final colorList = document
+      final colorList = data
           .findAllElements('cl')
           .map((c) => (int.tryParse(c.text) ?? 0 / 255).round())
           .toList();

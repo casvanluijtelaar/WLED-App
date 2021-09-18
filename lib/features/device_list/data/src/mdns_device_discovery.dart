@@ -40,8 +40,6 @@ class MdnsDeviceDiscovery {
       final ipRecord = _client.lookup<IPAddressResourceRecord>(ipQuery);
 
       final ip = await ipRecord.first;
-      log(ip.toString());
-
       yield MDNSrecord(ptr, srv, ip);
     }
   }

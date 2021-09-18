@@ -2,9 +2,13 @@
 export 'app/app.dart';
 export 'app/app_bloc_observer.dart';
 export 'app/app_injector.dart';
+export 'app/app_theme.dart';
 /// data
 export 'data/http_connection.dart';
 /// utils
 export 'utils/bloc_transformers.dart';
 export 'utils/color_converter.dart';
+export 'utils/consts.dart';
+export 'utils/context_extensions.dart';
 export 'utils/extensions.dart';
+export 'utils/num_extensions.dart';

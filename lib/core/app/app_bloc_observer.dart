@@ -2,18 +2,21 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 
+// ignore_for_file: avoid_dynamic_calls
 class AppBlocObserver extends BlocObserver {
-/*   @override
+  @override
   void onTransition(Bloc bloc, Transition transition) {
+    log(
+      '${bloc.runtimeType} '
+      'from ${transition.currentState.runtimeType} '
+      'to ${transition.nextState.runtimeType}',
+    );
     super.onTransition(bloc, transition);
-    log('onTransition(${bloc.runtimeType}, $transition)');
-  } */
+  }
 
   @override
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
-    // ignore: avoid_print
-    print('onError(${bloc.runtimeType}, $error, $stackTrace)');
+    log(error.toString(), stackTrace: stackTrace);
     super.onError(bloc, error, stackTrace);
   }
 }

@@ -10,7 +10,7 @@ enum DeviceStatus { standard, unreachable, error }
 class WledDevice with _$WledDevice {
   const factory WledDevice({
     // device IP (can also be hostname if applicable)
-    required String networkAddress,
+    required String address,
     // device display name ("Server Description")
     required String name,
     // Current connection status

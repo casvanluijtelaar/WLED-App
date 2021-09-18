@@ -18,7 +18,7 @@ class _$WledDeviceTearOff {
   const _$WledDeviceTearOff();
 
   _WledDevice call(
-      {required String networkAddress,
+      {required String address,
       required String name,
       DeviceStatus status = DeviceStatus.standard,
       bool nameIsCustom = false,
@@ -26,7 +26,7 @@ class _$WledDeviceTearOff {
       double brightness = 0.9,
       Color color = const Color.fromRGBO(255, 255, 255, 0.2)}) {
     return _WledDevice(
-      networkAddress: networkAddress,
+      address: address,
       name: name,
       status: status,
       nameIsCustom: nameIsCustom,
@@ -43,7 +43,7 @@ const $WledDevice = _$WledDeviceTearOff();
 /// @nodoc
 mixin _$WledDevice {
 // device IP (can also be hostname if applicable)
-  String get networkAddress =>
+  String get address =>
       throw _privateConstructorUsedError; // device display name ("Server Description")
   String get name =>
       throw _privateConstructorUsedError; // Current connection status
@@ -70,7 +70,7 @@ abstract class $WledDeviceCopyWith<$Res> {
           WledDevice value, $Res Function(WledDevice) then) =
       _$WledDeviceCopyWithImpl<$Res>;
   $Res call(
-      {String networkAddress,
+      {String address,
       String name,
       DeviceStatus status,
       bool nameIsCustom,
@@ -89,7 +89,7 @@ class _$WledDeviceCopyWithImpl<$Res> implements $WledDeviceCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? networkAddress = freezed,
+    Object? address = freezed,
     Object? name = freezed,
     Object? status = freezed,
     Object? nameIsCustom = freezed,
@@ -98,9 +98,9 @@ class _$WledDeviceCopyWithImpl<$Res> implements $WledDeviceCopyWith<$Res> {
     Object? color = freezed,
   }) {
     return _then(_value.copyWith(
-      networkAddress: networkAddress == freezed
-          ? _value.networkAddress
-          : networkAddress // ignore: cast_nullable_to_non_nullable
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
       name: name == freezed
           ? _value.name
@@ -137,7 +137,7 @@ abstract class _$WledDeviceCopyWith<$Res> implements $WledDeviceCopyWith<$Res> {
       __$WledDeviceCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String networkAddress,
+      {String address,
       String name,
       DeviceStatus status,
       bool nameIsCustom,
@@ -158,7 +158,7 @@ class __$WledDeviceCopyWithImpl<$Res> extends _$WledDeviceCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? networkAddress = freezed,
+    Object? address = freezed,
     Object? name = freezed,
     Object? status = freezed,
     Object? nameIsCustom = freezed,
@@ -167,9 +167,9 @@ class __$WledDeviceCopyWithImpl<$Res> extends _$WledDeviceCopyWithImpl<$Res>
     Object? color = freezed,
   }) {
     return _then(_WledDevice(
-      networkAddress: networkAddress == freezed
-          ? _value.networkAddress
-          : networkAddress // ignore: cast_nullable_to_non_nullable
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
       name: name == freezed
           ? _value.name
@@ -203,7 +203,7 @@ class __$WledDeviceCopyWithImpl<$Res> extends _$WledDeviceCopyWithImpl<$Res>
 
 class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
   const _$_WledDevice(
-      {required this.networkAddress,
+      {required this.address,
       required this.name,
       this.status = DeviceStatus.standard,
       this.nameIsCustom = false,
@@ -212,7 +212,7 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
       this.color = const Color.fromRGBO(255, 255, 255, 0.2)});
 
   @override // device IP (can also be hostname if applicable)
-  final String networkAddress;
+  final String address;
   @override // device display name ("Server Description")
   final String name;
   @JsonKey(defaultValue: DeviceStatus.standard)
@@ -235,7 +235,7 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WledDevice(networkAddress: $networkAddress, name: $name, status: $status, nameIsCustom: $nameIsCustom, isEnabled: $isEnabled, brightness: $brightness, color: $color)';
+    return 'WledDevice(address: $address, name: $name, status: $status, nameIsCustom: $nameIsCustom, isEnabled: $isEnabled, brightness: $brightness, color: $color)';
   }
 
   @override
@@ -243,7 +243,7 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'WledDevice'))
-      ..add(DiagnosticsProperty('networkAddress', networkAddress))
+      ..add(DiagnosticsProperty('address', address))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('nameIsCustom', nameIsCustom))
@@ -256,9 +256,9 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _WledDevice &&
-            (identical(other.networkAddress, networkAddress) ||
+            (identical(other.address, address) ||
                 const DeepCollectionEquality()
-                    .equals(other.networkAddress, networkAddress)) &&
+                    .equals(other.address, address)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.status, status) ||
@@ -279,7 +279,7 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(networkAddress) ^
+      const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(nameIsCustom) ^
@@ -295,7 +295,7 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
 
 abstract class _WledDevice implements WledDevice {
   const factory _WledDevice(
-      {required String networkAddress,
+      {required String address,
       required String name,
       DeviceStatus status,
       bool nameIsCustom,
@@ -304,7 +304,7 @@ abstract class _WledDevice implements WledDevice {
       Color color}) = _$_WledDevice;
 
   @override // device IP (can also be hostname if applicable)
-  String get networkAddress => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
   @override // device display name ("Server Description")
   String get name => throw _privateConstructorUsedError;
   @override // Current connection status

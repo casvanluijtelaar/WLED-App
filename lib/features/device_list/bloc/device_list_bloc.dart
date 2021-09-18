@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,9 +15,8 @@ part 'device_list_state.dart';
 
 @injectable
 class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
-  
   DeviceListBloc(this._repository) : super(DeviceListLoading()) {
-    on<DeviceListUpdate>(_onUpdate);
+    on<DeviceListUpdate>(_onUpdate, transformer: droppable());
     on<DeviceAdd>(_onDeviceAdd);
     on<DevicePressed>(_onDevicePressed);
     on<DevicePower>(_onDevicePower, transformer: BlocTransformers.debounce);
@@ -39,7 +38,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     emit(DeviceListLoading());
     // cancel a potentially started stream
     await _deviceStream?.cancel();
-    // start the device discovery stream and add the bloc event callback 
+    // start the device discovery stream and add the bloc event callback
     _deviceStream = _repository.getWledDeviceStream().listen((d) {
       add(DeviceDiscovered(d));
     });
@@ -88,8 +87,8 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     final device = await _repository.updateWledDevice(event.device, 'T=2');
 
     // replace the device with it's updated version
-    final items = (state as DeviceListFound).devices;
-    final index = items.indexOf(event.device);
+    final items =  List<WledDevice>.from((state as DeviceListFound).devices);
+    final index = items.indexWhere((e) => e.address == device.address);
     items[index] = device;
 
     // update the device list
@@ -102,13 +101,13 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     DeviceSlider event,
     Emitter<DeviceListState> emit,
   ) async {
-    // send update brightness command to device and wait for updated data 
+    // send update brightness command to device and wait for updated data
     final data = 'A=${event.value}';
     final device = await _repository.updateWledDevice(event.device, data);
 
     // replace the device with it's updated version
-    final items = (state as DeviceListFound).devices;
-    final index = items.indexOf(event.device);
+    final items = List<WledDevice>.from((state as DeviceListFound).devices);
+    final index = items.indexWhere((e) => e.address == device.address);
     items[index] = device;
 
     // update the device list

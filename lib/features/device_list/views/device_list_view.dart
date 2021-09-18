@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+
+import 'package:wled_app/core/app/app_theme.dart';
 import 'package:wled_app/core/core.dart';
-import 'package:wled_app/features/device_list/data/models/wled_device.dart';
 
 import '../bloc/device_list_bloc.dart';
-import '../widgets/device_list_appbar.dart';
 import '../widgets/device_list_item.dart';
+import '../widgets/device_list_loading.dart';
 
 /// DeviceListView entry point
 class DeviceListView extends StatelessWidget {
@@ -28,48 +30,63 @@ class DeviceList extends StatelessWidget {
     final bloc = context.read<DeviceListBloc>();
 
     return Scaffold(
-      appBar: const DeviceListAppbar(),
-      body: Center(
-        child: RefreshIndicator(
-          onRefresh: () async => bloc.add(DeviceListUpdate()),
-          child: BlocBuilder<DeviceListBloc, DeviceListState>(
-            builder: (context, state) {
-              // if the it succeeded, display the results
-              if (state is DeviceListFound) return Succes(state.devices);
-              // show loading widget whilst waiting
-              return const CircularProgressIndicator();
-            },
-          ),
-        ),
+      body: BlocBuilder<DeviceListBloc, DeviceListState>(
+        builder: (context, state) {
+          return CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverAppBar(
+                pinned: true,
+                stretch: true,
+                backgroundColor: AppTheme.backgroundColor,
+                automaticallyImplyLeading: false,
+                flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: false,
+                  title: const Text('Devices'),
+                  titlePadding: EdgeInsets.all(
+                     context.isPhone
+                        ? Consts.paddingMedium
+                        : Consts.paddingLarge,
+                  ),
+                ),
+                expandedHeight: 160,
+                onStretchTrigger: () async => bloc.add(DeviceListUpdate()),
+                actions: [
+                  IconButton(
+                    onPressed: () => bloc.add(DeviceAdd()),
+                    icon: const Icon(FeatherIcons.plus),
+                  ),
+                ],
+              ),
+              if (state is DeviceListLoading) const DeviceListLoadingWidget(),
+              if (state is DeviceListFound)
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.isPhone
+                        ? Consts.paddingMedium
+                        : Consts.paddingLarge,
+                  ),
+                  sliver: context.isPhone
+                      ? SliverList(
+                          delegate: SliverChildListDelegate(
+                            state.devices
+                                .map((e) => DeviceListItem(device: e))
+                                .toList(),
+                          ),
+                        )
+                      : SliverGrid.extent(
+                          mainAxisSpacing: Consts.paddingMedium,
+                          crossAxisSpacing: Consts.paddingMedium,
+                          maxCrossAxisExtent: 260,
+                          children: state.devices
+                              .map((e) => DeviceListItem(device: e))
+                              .toList(),
+                        ),
+                ),
+            ],
+          );
+        },
       ),
     );
   }
-}
-
-/// No devices, show info and option to add one
-class Empty extends StatelessWidget {
-  const Empty({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('No Devices');
-  }
-}
-
-/// displays a list with a [DeviceListItem] for every [WledDevice]
-class Succes extends StatelessWidget {
-  const Succes(
-    this.devices, {
-    Key? key,
-  }) : super(key: key);
-
-  final List<WledDevice> devices;
-
-  @override
-  Widget build(BuildContext context) => ListView.builder(
-        itemCount: devices.length,
-        itemBuilder: (context, index) => DeviceListItem(
-          device: devices[index],
-        ),
-      );
 }
