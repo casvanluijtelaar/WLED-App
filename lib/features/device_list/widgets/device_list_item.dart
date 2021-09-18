@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
@@ -8,6 +6,8 @@ import 'package:wled_app/core/core.dart';
 import '../bloc/device_list_bloc.dart';
 import '../data/models/wled_device.dart';
 
+/// card that displays the Wled device in the main device list and has a couple
+/// controls like brightness and power
 class DeviceListItem extends StatelessWidget {
   const DeviceListItem({
     Key? key,
@@ -21,8 +21,6 @@ class DeviceListItem extends StatelessWidget {
     final theme = context.theme;
     final bloc = context.read<DeviceListBloc>();
 
-    log(device.toString());
-
     /// main device information, displays name and address
     final text = Column(
       mainAxisSize: MainAxisSize.min,
@@ -35,7 +33,7 @@ class DeviceListItem extends StatelessWidget {
       ],
     );
 
-    /// device brightness slider / enable color
+    /// device brightness slider / enable button
     final slider = SleekCircularSlider(
       max: 255,
       initialValue: device.brightness,
@@ -43,6 +41,9 @@ class DeviceListItem extends StatelessWidget {
         size: 112,
         animationEnabled: false,
         infoProperties: InfoProperties(
+
+          /// when the device is enabled, change the percentage color to the
+          /// active led color
           mainLabelStyle: theme.textTheme.headline4!.copyWith(
             color: device.isEnabled ? device.color : theme.dividerColor,
           ),
@@ -54,13 +55,16 @@ class DeviceListItem extends StatelessWidget {
           dotColor: Colors.transparent,
           hideShadow: true,
           trackColor: theme.dividerColor,
+
+          /// when the device is enabled, change the bar color to the
+          /// active led color
           progressBarColor:
               device.isEnabled ? device.color : Colors.transparent,
         ),
       ),
       onChangeEnd: (v) => bloc.add(DeviceSlider(device, v)),
       innerWidget: (percentage) {
-        /// mapp from 0 - 255 to a percentage
+        /// map brightness from 0 - 255 to a percentage to display
         final roundedValue = percentage.map(0, 255, 0, 100).ceil().toInt();
         return Center(
           child: GestureDetector(

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:injectable/injectable.dart';
 import 'package:wled_app/core/core.dart';
 

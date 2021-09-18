@@ -44,7 +44,7 @@ class DeviceList extends StatelessWidget {
                   centerTitle: false,
                   title: const Text('Devices'),
                   titlePadding: EdgeInsets.all(
-                     context.isPhone
+                    context.isPhone
                         ? Consts.paddingMedium
                         : Consts.paddingLarge,
                   ),
@@ -66,6 +66,9 @@ class DeviceList extends StatelessWidget {
                         ? Consts.paddingMedium
                         : Consts.paddingLarge,
                   ),
+
+                  /// on mobile phones display all the devices in a list, on
+                  /// larger displays display a grid
                   sliver: context.isPhone
                       ? SliverList(
                           delegate: SliverChildListDelegate(
