@@ -1,12 +1,17 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:wled_app/features/device_list/device_list.dart';
+import 'package:wled_app/features/features.dart';
 
 @MaterialAutoRouter(
+  replaceInRouteName: 'View,Route',
   routes: <AutoRoute>[
     AutoRoute<DeviceListView>(
       page: DeviceListView,
+      path: 'devices',
       initial: true,
-      name: 'device_list',
+    ),
+    AutoRoute<DeviceControlView>(
+      page: DeviceControlView,
+      path: 'controls',
     ),
   ],
 )

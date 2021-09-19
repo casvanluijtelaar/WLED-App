@@ -11,7 +11,6 @@ dependencies:
   auto_route: ^2.3.0
   bloc: ^7.2.0-dev.3
   bloc_concurrency: ^0.1.0-dev.2
-  equatable: ^2.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^7.2.0

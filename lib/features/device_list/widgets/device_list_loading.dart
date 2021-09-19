@@ -11,32 +11,27 @@ class DeviceListLoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme;
 
-    return SliverToBoxAdapter(
-      child: LayoutBuilder(
-        builder: (context, constraints) => SizedBox(
-          height: context.height * 0.5,
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: RiveAnimation.asset(
-                    Consts.assetLoading,
-                    antialiasing: false,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(Consts.paddingSmall),
-                  child: Text(
-                    context.locale.deviceListLoading,
-                    style: theme.textTheme.bodyText1,
-                  ),
-                )
-              ],
+    return SizedBox.expand(
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(
+              width: 50,
+              height: 50,
+              child: RiveAnimation.asset(
+                Consts.assetLoading,
+                antialiasing: false,
+              ),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.all(Consts.paddingSmall),
+              child: Text(
+                context.locale.deviceListLoading,
+                style: theme.textTheme.bodyText1,
+              ),
+            )
+          ],
         ),
       ),
     );

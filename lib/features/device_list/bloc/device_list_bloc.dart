@@ -2,26 +2,26 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
 import 'package:wled_app/core/core.dart';
 
 import '../data/models/wled_device.dart';
 import '../data/repository/device_list_repository.dart';
 
+part 'device_list_bloc.freezed.dart';
 part 'device_list_event.dart';
 part 'device_list_state.dart';
 
 @injectable
 class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
-  DeviceListBloc(this._repository) : super(DeviceListLoading()) {
-    on<DeviceListUpdate>(_onUpdate, transformer: droppable());
-    on<DeviceAdd>(_onDeviceAdd);
+  DeviceListBloc(this._repository) : super(const Loading()) {
+    on<Discovered>(_onDiscovered);
+    on<Add>(_onAdd);
     on<DevicePressed>(_onDevicePressed);
+    on<Update>(_onUpdate, transformer: droppable());
     on<DevicePower>(_onDevicePower, transformer: BlocTransformers.debounce);
     on<DeviceSlider>(_onDeviceSlider, transformer: BlocTransformers.debounce);
-    on<DeviceDiscovered>(_onDiscovered);
   }
 
   final DeviceListRepository _repository;
@@ -31,40 +31,40 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   /// when a user refreshes the page, reset the device discovery stream and
   /// state machine
   Future<void> _onUpdate(
-    DeviceListUpdate event,
+    Update event,
     Emitter<DeviceListState> emit,
   ) async {
     // reset to the loading view
-    emit(DeviceListLoading());
+    emit(const Loading());
     // cancel a potentially started stream
     await _deviceStream?.cancel();
     // start the device discovery stream and add the bloc event callback
     _deviceStream = _repository.getWledDeviceStream().listen((d) {
-      add(DeviceDiscovered(d));
+      add(Discovered(d));
     });
   }
 
   /// when a new deviceDiscovered event is fired, integrate the discovered
   /// device in the current device list
   void _onDiscovered(
-    DeviceDiscovered event,
+    Discovered event,
     Emitter<DeviceListState> emit,
   ) {
     // the discovered device
     final device = event.device;
     // if there are no devices yet simply add this first found one
-    if (state is DeviceListLoading) return emit(DeviceListFound([device]));
+    if (state is Loading) return emit(Found([device]));
     // get the currently dicovered device list
-    final devices = List<WledDevice>.from((state as DeviceListFound).devices);
+    final devices = List<WledDevice>.from((state as Found).devices);
     // add the device to the list if it's not a duplicate
     if (!devices.contains(device)) devices.add(device);
     // emit the new device list
-    emit(DeviceListFound(devices));
+    emit(Found(devices));
   }
 
   /// navigate to the DeviceAdd route
-  void _onDeviceAdd(
-    DeviceAdd event,
+  void _onAdd(
+    Add event,
     Emitter<DeviceListState> emit,
   ) {
     /// TODO: navigator to device add
@@ -87,12 +87,12 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     final device = await _repository.updateWledDevice(event.device, 'T=2');
 
     // replace the device with it's updated version
-    final items =  List<WledDevice>.from((state as DeviceListFound).devices);
+    final items = List<WledDevice>.from((state as Found).devices);
     final index = items.indexWhere((e) => e.address == device.address);
     items[index] = device;
 
     // update the device list
-    emit(DeviceListFound(items));
+    emit(Found(items));
   }
 
   /// sends an update to the device with the specified brightness value and
@@ -106,12 +106,12 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     final device = await _repository.updateWledDevice(event.device, data);
 
     // replace the device with it's updated version
-    final items = List<WledDevice>.from((state as DeviceListFound).devices);
+    final items = List<WledDevice>.from((state as Found).devices);
     final index = items.indexWhere((e) => e.address == device.address);
     items[index] = device;
 
     // update the device list
-    emit(DeviceListFound(items));
+    emit(Found(items));
   }
 
   @override

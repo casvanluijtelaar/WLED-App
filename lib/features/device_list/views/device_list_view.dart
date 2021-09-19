@@ -15,7 +15,7 @@ class DeviceListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider<DeviceListBloc>(
         create: (BuildContext context) =>
-            getIt<DeviceListBloc>()..add(DeviceListUpdate()),
+            getIt<DeviceListBloc>()..add(const Update()),
         child: const DeviceList(),
       );
 }
@@ -32,53 +32,54 @@ class DeviceList extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<DeviceListBloc, DeviceListState>(
         builder: (context, state) {
-          return CustomScrollView(
-            physics: const BouncingScrollPhysics(),
-            slivers: [
-              SliverAppBar(
-                pinned: true,
-                stretch: true,
-                backgroundColor: AppTheme.backgroundColor,
-                automaticallyImplyLeading: false,
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: false,
-                  title: Text(context.locale.deviceListTitle),
-                  titlePadding: EdgeInsets.all(
-                    context.isPhone
-                        ? Consts.paddingMedium
-                        : Consts.paddingLarge,
-                  ),
-                ),
-                expandedHeight:
-                    context.isPhone && context.isLandscape ? 56 : 160,
-                onStretchTrigger: () async => bloc.add(DeviceListUpdate()),
-                actions: [
-                  InkWell(
-                    onTap: () => bloc.add(DeviceAdd()),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Consts.paddingExtraSmall,
-                        horizontal: Consts.paddingSmall,
-                      ),
-                      child: Row(
-                        children: [
-                          if (!context.isPhone)
-                            Text(
-                              context.locale.deviceListAction,
-                              style: theme.textTheme.button,
-                            ),
-                          const Padding(
-                            padding: EdgeInsets.all(Consts.paddingSmall),
-                            child: Icon(FeatherIcons.plus),
-                          ),
-                        ],
-                      ),
+          if (state is Loading) {
+            return const DeviceListLoadingWidget();
+          } else if (state is Found) {
+            return CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                SliverAppBar(
+                  pinned: true,
+                  stretch: true,
+                  backgroundColor: AppTheme.backgroundColor,
+                  automaticallyImplyLeading: false,
+                  flexibleSpace: FlexibleSpaceBar(
+                    centerTitle: false,
+                    title: Text(context.locale.deviceListTitle),
+                    titlePadding: EdgeInsets.all(
+                      context.isPhone
+                          ? Consts.paddingMedium
+                          : Consts.paddingLarge,
                     ),
                   ),
-                ],
-              ),
-              if (state is DeviceListLoading) const DeviceListLoadingWidget(),
-              if (state is DeviceListFound)
+                  expandedHeight:
+                      context.isPhone && context.isLandscape ? 56 : 160,
+                  onStretchTrigger: () async => bloc.add(const Update()),
+                  actions: [
+                    InkWell(
+                      onTap: () => bloc.add(const Add()),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Consts.paddingExtraSmall,
+                          horizontal: Consts.paddingSmall,
+                        ),
+                        child: Row(
+                          children: [
+                            if (!context.isPhone)
+                              Text(
+                                context.locale.deviceListAction,
+                                style: theme.textTheme.button,
+                              ),
+                            const Padding(
+                              padding: EdgeInsets.all(Consts.paddingSmall),
+                              child: Icon(FeatherIcons.plus),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(
                     horizontal: context.isPhone
@@ -105,8 +106,10 @@ class DeviceList extends StatelessWidget {
                               .toList(),
                         ),
                 ),
-            ],
-          );
+              ],
+            );
+          }
+          return const SizedBox.shrink();
         },
       ),
     );

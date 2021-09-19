@@ -1,48 +1,18 @@
 part of 'device_list_bloc.dart';
 
-class DeviceListEvent extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
+@freezed
+class DeviceListEvent with _$DeviceListEvent {
+  const factory DeviceListEvent.discovered(WledDevice device) = Discovered;
 
-class DeviceDiscovered extends DeviceListEvent {
-  DeviceDiscovered(this.device);
-  final WledDevice device;
+  const factory DeviceListEvent.update() = Update;
 
-  @override
-  List<Object?> get props => [device];
-}
+  const factory DeviceListEvent.add() = Add;
 
-/// when the user wants to fetch the list of devices
-class DeviceListUpdate extends DeviceListEvent {}
+  const factory DeviceListEvent.devicePressed(WledDevice device) =
+      DevicePressed;
 
-/// when the user presses the "add new device" button
-class DeviceAdd extends DeviceListEvent {}
+  const factory DeviceListEvent.devicePower(WledDevice device) = DevicePower;
 
-/// when the user presses a specific device widget
-class DevicePressed extends DeviceListEvent {
-  DevicePressed(this.device);
-  final WledDevice device;
-
-  @override
-  List<Object?> get props => [device];
-}
-
-/// when the user presses the power button on a device widget
-class DevicePower extends DeviceListEvent {
-  DevicePower(this.device);
-  final WledDevice device;
-
-  @override
-  List<Object?> get props => [device];
-}
-
-/// when the user changed the slider on a device widget
-class DeviceSlider extends DeviceListEvent {
-  DeviceSlider(this.device, this.value);
-  final WledDevice device;
-  final double value;
-
-  @override
-  List<Object?> get props => [device, value];
+  const factory DeviceListEvent.deviceSlider(WledDevice device, double value) =
+      DeviceSlider;
 }

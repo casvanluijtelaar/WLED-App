@@ -1,16 +1,8 @@
 part of 'device_list_bloc.dart';
 
-class DeviceListState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
+@freezed
+class DeviceListState with _$DeviceListState {
+  const factory DeviceListState.loading() = Loading;
 
-class DeviceListLoading extends DeviceListState {}
-
-class DeviceListFound extends DeviceListState {
-  DeviceListFound(this.devices);
-  final List<WledDevice> devices;
-
-  @override
-  List<Object?> get props => devices;
+  const factory DeviceListState.found(List<WledDevice> devices) = Found;
 }

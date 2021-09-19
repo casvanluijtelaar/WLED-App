@@ -12,6 +12,8 @@ void main() {
   Bloc.observer = AppBlocObserver();
   configureDependencies();
 
+  getIt.registerLazySingleton<AppRouter>(() => AppRouter());
+
   runZonedGuarded(() => runApp(const App()), (error, stackTrace) {
     log(error.toString(), stackTrace: stackTrace);
   });

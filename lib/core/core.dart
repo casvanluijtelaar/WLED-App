@@ -2,6 +2,7 @@
 export 'app/app.dart';
 export 'app/app_bloc_observer.dart';
 export 'app/app_injector.dart';
+export 'app/app_router.gr.dart';
 export 'app/app_theme.dart';
 /// data
 export 'data/http_connection.dart';
