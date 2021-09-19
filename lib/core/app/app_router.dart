@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:wled_app/features/features.dart';
+import 'package:wled/features/features.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'View,Route',

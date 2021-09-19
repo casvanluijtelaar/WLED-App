@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-import 'package:wled_app/core/core.dart';
+import 'package:wled/core/core.dart';
 
 import '../bloc/device_list_bloc.dart';
 
@@ -38,6 +38,8 @@ class DeviceListItem extends StatelessWidget {
       initialValue: device.brightness,
       appearance: CircularSliderAppearance(
         size: 112,
+       startAngle: 180,
+       angleRange: 270,
         animationEnabled: false,
         infoProperties: InfoProperties(
           /// when the device is enabled, change the percentage color to the

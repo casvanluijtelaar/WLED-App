@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:wled_app/core/core.dart';
+import 'package:wled/core/core.dart';
 
 part 'device_control_event.dart';
 part 'device_control_state.dart';

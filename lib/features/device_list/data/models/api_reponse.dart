@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wled_app/core/core.dart';
+import 'package:wled/core/core.dart';
 
 part 'api_reponse.freezed.dart';
 

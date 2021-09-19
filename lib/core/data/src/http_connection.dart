@@ -10,7 +10,7 @@ class HttpStatusException implements Exception {}
 abstract class HttpConnection {
   /// sends [data] to the provided [url], can throw
   /// [HttpConnectionException] or [HttpStatusException]
-  static Future<String> sendApiCall(String url, String data) async {
+  static Future<String> sendApiCall(String url, [String data = '']) async {
     var uri = '$url/win';
     if (data.isNotEmpty) uri += '&$data';
 

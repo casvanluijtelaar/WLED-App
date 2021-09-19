@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:wled_app/core/core.dart';
+import 'package:wled/core/core.dart';
 
 import '../src/mdns_device_discovery.dart';
 import '../src/xml_parser.dart';
@@ -20,13 +20,16 @@ class DeviceListRepository {
       final address = mdns.ip.address.address;
       final device = WledDevice(address: address, name: mdns.srv.name);
 
-      return updateWledDevice(device, '');
+      return updateWledDevice(device);
     }).where((d) => d.status == DeviceStatus.standard);
   }
 
   /// sends the call to the wled api and returns a Wled device with updated
   /// data the api call returns
-  Future<WledDevice> updateWledDevice(WledDevice device, String call) async {
+  Future<WledDevice> updateWledDevice(
+    WledDevice device, [
+    String call = '',
+  ]) async {
     final url = device.address.startsWith('https://')
         ? device.address
         : 'http://${device.address}';

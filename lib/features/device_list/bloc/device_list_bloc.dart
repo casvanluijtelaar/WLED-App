@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:wled_app/core/core.dart';
+import 'package:wled/core/core.dart';
 
 import '../data/repository/device_list_repository.dart';
 
@@ -30,10 +32,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
 
   /// when a user refreshes the page, reset the device discovery stream and
   /// state machine
-  Future<void> _onUpdate(
-    Update event,
-    Emitter<DeviceListState> emit,
-  ) async {
+  Future<void> _onUpdate(Update _, Emitter<DeviceListState> emit) async {
     // reset to the loading view
     emit(const Loading());
     // cancel a potentially started stream
@@ -46,10 +45,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
 
   /// when a new deviceDiscovered event is fired, integrate the discovered
   /// device in the current device list
-  void _onDiscovered(
-    Discovered event,
-    Emitter<DeviceListState> emit,
-  ) {
+  void _onDiscovered(Discovered event, Emitter<DeviceListState> emit) {
     // the discovered device
     final device = event.device;
     // if there are no devices yet simply add this first found one
@@ -68,52 +64,40 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   }
 
   /// navigate to the DeviceControls route
-  void _onDevicePressed(DevicePressed event, Emitter<DeviceListState> emit) {
-    _router.push(DeviceControlRoute(
-      deviceName: event.device.name,
-      deviceAddress: 'http://${event.device.address}/'
-    ));
+  Future<void> _onDevicePressed(DevicePressed event, Emitter _) async {
+    await _router.push(DeviceControlRoute(
+        deviceName: event.device.name,
+        deviceAddress: 'http://${event.device.address}/'));
+
+    return _updateStateDevice(event.device);
   }
 
   /// sends an updates the device and emits the updated list
-  Future<void> _onDevicePower(
-    DevicePower event,
-    Emitter<DeviceListState> emit,
-  ) async {
-    // send power command to device and wait for updated data response
-    final device = await _repository.updateWledDevice(event.device, 'T=2');
-
-    // replace the device with it's updated version
-    final items = List<WledDevice>.from((state as Found).devices);
-    final index = items.indexWhere((e) => e.address == device.address);
-    items[index] = device;
-
-    // update the device list
-    emit(Found(items));
+  Future<void> _onDevicePower(DevicePower event, Emitter _) {
+    return _updateStateDevice(event.device, 'T=2');
   }
 
   /// sends an update to the device with the specified brightness value and
   /// updates the devices list
-  Future<void> _onDeviceSlider(
-    DeviceSlider event,
-    Emitter<DeviceListState> emit,
-  ) async {
-    // send update brightness command to device and wait for updated data
-    final data = 'A=${event.value}';
-    final device = await _repository.updateWledDevice(event.device, data);
+  Future<void> _onDeviceSlider(DeviceSlider event, Emitter _) {
+    return _updateStateDevice(event.device, 'A=${event.value}');
+  }
+
+  /// updates a wled device and updates the same device in the current state
+  Future<void> _updateStateDevice(WledDevice device, [String data = '']) async {
+    final update = await _repository.updateWledDevice(device, data);
 
     // replace the device with it's updated version
     final items = List<WledDevice>.from((state as Found).devices);
-    final index = items.indexWhere((e) => e.address == device.address);
-    items[index] = device;
+    final index = items.indexWhere((e) => e.address == update.address);
+    items[index] = update;
 
     // update the device list
     emit(Found(items));
   }
 
-  @override
-
   /// close the device discovery stream when the bloc is unloaded
+  @override
   Future<void> close() async {
     await _deviceStream?.cancel();
     return super.close();

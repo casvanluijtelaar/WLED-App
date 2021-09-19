@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:wled_app/core/core.dart';
+import 'package:wled/core/core.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

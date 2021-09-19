@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rive/rive.dart';
 
-import 'package:wled_app/core/core.dart';
+import 'package:wled/core/core.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({Key? key, this.text}) : super(key: key);

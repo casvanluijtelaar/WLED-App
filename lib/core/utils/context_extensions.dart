@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:wled_app/core/core.dart';
+import 'package:wled/core/core.dart';
 
 /// usefull extension on [BuildContext], like sizing and orientation
 /// mostly taken from https://github.com/jonataslaw/getx/blob/master/lib/get_utils/src/extensions/context_extensions.dart
 extension ContextExtension on BuildContext {
-  
   /// get the currently active locale
   Localization get locale => Localization.of(this);
 

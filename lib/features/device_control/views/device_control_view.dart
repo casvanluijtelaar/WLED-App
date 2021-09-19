@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:wled_app/core/core.dart';
+import 'package:wled/core/core.dart';
 
 import '../bloc/device_control_bloc.dart';
 
