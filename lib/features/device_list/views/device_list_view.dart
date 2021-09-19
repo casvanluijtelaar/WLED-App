@@ -6,7 +6,6 @@ import 'package:wled_app/core/core.dart';
 
 import '../bloc/device_list_bloc.dart';
 import '../widgets/device_list_item.dart';
-import '../widgets/device_list_loading.dart';
 
 /// DeviceListView entry point
 class DeviceListView extends StatelessWidget {
@@ -33,7 +32,7 @@ class DeviceList extends StatelessWidget {
       body: BlocBuilder<DeviceListBloc, DeviceListState>(
         builder: (context, state) {
           if (state is Loading) {
-            return const DeviceListLoadingWidget();
+            return LoadingWidget(text: context.locale.deviceListLoading);
           } else if (state is Found) {
             return CustomScrollView(
               physics: const BouncingScrollPhysics(),

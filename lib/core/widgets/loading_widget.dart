@@ -4,8 +4,10 @@ import 'package:rive/rive.dart';
 
 import 'package:wled_app/core/core.dart';
 
-class DeviceListLoadingWidget extends StatelessWidget {
-  const DeviceListLoadingWidget({Key? key}) : super(key: key);
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({Key? key, this.text}) : super(key: key);
+
+  final String? text;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +26,14 @@ class DeviceListLoadingWidget extends StatelessWidget {
                 antialiasing: false,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(Consts.paddingSmall),
-              child: Text(
-                context.locale.deviceListLoading,
-                style: theme.textTheme.bodyText1,
-              ),
-            )
+            if (text != null)
+              Padding(
+                padding: const EdgeInsets.all(Consts.paddingSmall),
+                child: Text(
+                  text!, //context.locale.deviceListLoading,
+                  style: theme.textTheme.bodyText1,
+                ),
+              )
           ],
         ),
       ),

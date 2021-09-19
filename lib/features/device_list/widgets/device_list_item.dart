@@ -4,7 +4,6 @@ import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:wled_app/core/core.dart';
 
 import '../bloc/device_list_bloc.dart';
-import '../data/models/wled_device.dart';
 
 /// card that displays the Wled device in the main device list and has a couple
 /// controls like brightness and power

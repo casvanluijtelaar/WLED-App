@@ -11,7 +11,7 @@ import 'package:wled_app/features/features.dart';
     ),
     AutoRoute<DeviceControlView>(
       page: DeviceControlView,
-      path: 'controls',
+      path: 'controls/:deviceAddress',
     ),
   ],
 )

@@ -1,7 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:wled_app/core/core.dart';
 
-import '../models/wled_device.dart';
 import '../src/mdns_device_discovery.dart';
 import '../src/xml_parser.dart';
 

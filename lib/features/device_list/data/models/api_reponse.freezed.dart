@@ -13,10 +13,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) {
-  return _ApiResponse.fromJson(json);
-}
-
 /// @nodoc
 class _$ApiResponseTearOff {
   const _$ApiResponseTearOff();
@@ -33,10 +29,6 @@ class _$ApiResponseTearOff {
       name: name,
     );
   }
-
-  ApiResponse fromJson(Map<String, Object> json) {
-    return ApiResponse.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -49,7 +41,6 @@ mixin _$ApiResponse {
   Color get color => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ApiResponseCopyWith<ApiResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -148,7 +139,7 @@ class __$ApiResponseCopyWithImpl<$Res> extends _$ApiResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 @ColorConverter()
 class _$_ApiResponse with DiagnosticableTreeMixin implements _ApiResponse {
   const _$_ApiResponse(
@@ -156,9 +147,6 @@ class _$_ApiResponse with DiagnosticableTreeMixin implements _ApiResponse {
       required this.isOn,
       required this.color,
       required this.name});
-
-  factory _$_ApiResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ApiResponseFromJson(json);
 
   @override
   final double brightness;
@@ -212,11 +200,6 @@ class _$_ApiResponse with DiagnosticableTreeMixin implements _ApiResponse {
   @override
   _$ApiResponseCopyWith<_ApiResponse> get copyWith =>
       __$ApiResponseCopyWithImpl<_ApiResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ApiResponseToJson(this);
-  }
 }
 
 abstract class _ApiResponse implements ApiResponse {
@@ -225,9 +208,6 @@ abstract class _ApiResponse implements ApiResponse {
       required bool isOn,
       required Color color,
       required String name}) = _$_ApiResponse;
-
-  factory _ApiResponse.fromJson(Map<String, dynamic> json) =
-      _$_ApiResponse.fromJson;
 
   @override
   double get brightness => throw _privateConstructorUsedError;

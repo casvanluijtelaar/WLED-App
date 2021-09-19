@@ -20,6 +20,10 @@ class _$DeviceControlEventTearOff {
   Started started() {
     return const Started();
   }
+
+  Back back() {
+    return const Back();
+  }
 }
 
 /// @nodoc
@@ -30,32 +34,38 @@ mixin _$DeviceControlEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function() back,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? back,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? back,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
+    required TResult Function(Back value) back,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Back value)? back,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Back value)? back,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -116,6 +126,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function() back,
   }) {
     return started();
   }
@@ -124,6 +135,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? back,
   }) {
     return started?.call();
   }
@@ -132,6 +144,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function()? back,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -144,6 +157,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
+    required TResult Function(Back value) back,
   }) {
     return started(this);
   }
@@ -152,6 +166,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Back value)? back,
   }) {
     return started?.call(this);
   }
@@ -160,6 +175,7 @@ class _$Started implements Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
+    TResult Function(Back value)? back,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -174,11 +190,119 @@ abstract class Started implements DeviceControlEvent {
 }
 
 /// @nodoc
+abstract class $BackCopyWith<$Res> {
+  factory $BackCopyWith(Back value, $Res Function(Back) then) =
+      _$BackCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$BackCopyWithImpl<$Res> extends _$DeviceControlEventCopyWithImpl<$Res>
+    implements $BackCopyWith<$Res> {
+  _$BackCopyWithImpl(Back _value, $Res Function(Back) _then)
+      : super(_value, (v) => _then(v as Back));
+
+  @override
+  Back get _value => super._value as Back;
+}
+
+/// @nodoc
+
+class _$Back implements Back {
+  const _$Back();
+
+  @override
+  String toString() {
+    return 'DeviceControlEvent.back()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Back);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() back,
+  }) {
+    return back();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? back,
+  }) {
+    return back?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? back,
+    required TResult orElse(),
+  }) {
+    if (back != null) {
+      return back();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(Back value) back,
+  }) {
+    return back(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(Back value)? back,
+  }) {
+    return back?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(Back value)? back,
+    required TResult orElse(),
+  }) {
+    if (back != null) {
+      return back(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Back implements DeviceControlEvent {
+  const factory Back() = _$Back;
+}
+
+/// @nodoc
 class _$DeviceControlStateTearOff {
   const _$DeviceControlStateTearOff();
 
   Initial initial() {
     return const Initial();
+  }
+
+  Loaded loaded({required String name, required String address}) {
+    return Loaded(
+      name: name,
+      address: address,
+    );
   }
 }
 
@@ -190,32 +314,38 @@ mixin _$DeviceControlState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(String name, String address) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(String name, String address)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(String name, String address)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+    required TResult Function(Loaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -276,6 +406,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(String name, String address) loaded,
   }) {
     return initial();
   }
@@ -284,6 +415,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(String name, String address)? loaded,
   }) {
     return initial?.call();
   }
@@ -292,6 +424,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(String name, String address)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -304,6 +437,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+    required TResult Function(Loaded value) loaded,
   }) {
     return initial(this);
   }
@@ -312,6 +446,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
   }) {
     return initial?.call(this);
   }
@@ -320,6 +455,7 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -331,4 +467,147 @@ class _$Initial implements Initial {
 
 abstract class Initial implements DeviceControlState {
   const factory Initial() = _$Initial;
+}
+
+/// @nodoc
+abstract class $LoadedCopyWith<$Res> {
+  factory $LoadedCopyWith(Loaded value, $Res Function(Loaded) then) =
+      _$LoadedCopyWithImpl<$Res>;
+  $Res call({String name, String address});
+}
+
+/// @nodoc
+class _$LoadedCopyWithImpl<$Res> extends _$DeviceControlStateCopyWithImpl<$Res>
+    implements $LoadedCopyWith<$Res> {
+  _$LoadedCopyWithImpl(Loaded _value, $Res Function(Loaded) _then)
+      : super(_value, (v) => _then(v as Loaded));
+
+  @override
+  Loaded get _value => super._value as Loaded;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? address = freezed,
+  }) {
+    return _then(Loaded(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Loaded implements Loaded {
+  const _$Loaded({required this.name, required this.address});
+
+  @override
+  final String name;
+  @override
+  final String address;
+
+  @override
+  String toString() {
+    return 'DeviceControlState.loaded(name: $name, address: $address)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Loaded &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality().equals(other.address, address)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(address);
+
+  @JsonKey(ignore: true)
+  @override
+  $LoadedCopyWith<Loaded> get copyWith =>
+      _$LoadedCopyWithImpl<Loaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String name, String address) loaded,
+  }) {
+    return loaded(name, address);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String name, String address)? loaded,
+  }) {
+    return loaded?.call(name, address);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String name, String address)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(name, address);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Loaded value) loaded,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Loaded implements DeviceControlState {
+  const factory Loaded({required String name, required String address}) =
+      _$Loaded;
+
+  String get name => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LoadedCopyWith<Loaded> get copyWith => throw _privateConstructorUsedError;
 }

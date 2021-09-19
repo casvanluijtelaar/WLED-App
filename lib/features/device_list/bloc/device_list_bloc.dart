@@ -6,7 +6,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wled_app/core/core.dart';
 
-import '../data/models/wled_device.dart';
 import '../data/repository/device_list_repository.dart';
 
 part 'device_list_bloc.freezed.dart';
@@ -15,7 +14,7 @@ part 'device_list_state.dart';
 
 @injectable
 class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
-  DeviceListBloc(this._repository) : super(const Loading()) {
+  DeviceListBloc(this._repository, this._router) : super(const Loading()) {
     on<Discovered>(_onDiscovered);
     on<Add>(_onAdd);
     on<DevicePressed>(_onDevicePressed);
@@ -25,6 +24,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   }
 
   final DeviceListRepository _repository;
+  final AppRouter _router;
 
   StreamSubscription<WledDevice>? _deviceStream;
 
@@ -63,19 +63,16 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   }
 
   /// navigate to the DeviceAdd route
-  void _onAdd(
-    Add event,
-    Emitter<DeviceListState> emit,
-  ) {
+  void _onAdd(Add event, Emitter<DeviceListState> emit) {
     /// TODO: navigator to device add
   }
 
   /// navigate to the DeviceControls route
-  void _onDevicePressed(
-    DevicePressed event,
-    Emitter<DeviceListState> emit,
-  ) {
-    /// TODO: navigator to deviceControls
+  void _onDevicePressed(DevicePressed event, Emitter<DeviceListState> emit) {
+    _router.push(DeviceControlRoute(
+      deviceName: event.device.name,
+      deviceAddress: 'http://${event.device.address}/'
+    ));
   }
 
   /// sends an updates the device and emits the updated list

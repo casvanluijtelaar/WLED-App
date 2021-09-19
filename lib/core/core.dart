@@ -5,7 +5,8 @@ export 'app/app_injector.dart';
 export 'app/app_router.gr.dart';
 export 'app/app_theme.dart';
 /// data
-export 'data/http_connection.dart';
+export 'data/models/wled_device.dart';
+export 'data/src/http_connection.dart';
 /// l10n
 export 'l10n/generated/l10n.dart';
 /// utils
@@ -15,3 +16,5 @@ export 'utils/consts.dart';
 export 'utils/context_extensions.dart';
 export 'utils/num_extensions.dart';
 export 'utils/string_extensions.dart';
+// widgets
+export 'widgets/loading_widget.dart';

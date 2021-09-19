@@ -4,7 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:wled_app/core/core.dart';
 
 part 'api_reponse.freezed.dart';
-part 'api_reponse.g.dart';
 
 @freezed
 class ApiResponse with _$ApiResponse {
@@ -16,7 +15,4 @@ class ApiResponse with _$ApiResponse {
     required Color color,
     required String name,
   }) = _ApiResponse;
-
-  factory ApiResponse.fromJson(Map<String, dynamic> json) =>
-      _$ApiResponseFromJson(json);
 }
