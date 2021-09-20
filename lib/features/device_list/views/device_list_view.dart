@@ -54,6 +54,9 @@ class DeviceList extends StatelessWidget {
               onStretchTrigger: () async => bloc.add(const Update()),
               actions: [
                 InkWell(
+                  customBorder: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                   onTap: () => bloc.add(const Add()),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(

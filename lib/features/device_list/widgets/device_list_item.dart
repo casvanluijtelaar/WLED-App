@@ -41,9 +41,11 @@ class DeviceListItem extends StatelessWidget {
       onPressed: () => bloc.add(DevicePower(device)),
     );
 
-
     /// on mobile display items as a row, on tablet or bigger make it a column
     return InkWell(
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       onTap: () => bloc.add(DevicePressed(device)),
       child: Card(
         child: Padding(

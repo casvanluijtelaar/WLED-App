@@ -27,7 +27,6 @@ class DeviceListSlider extends StatefulWidget {
 
 class _DeviceListSliderState extends State<DeviceListSlider>
     with SingleTickerProviderStateMixin {
-
   late Animation<double> _animation;
   late final AnimationController _controller;
 
@@ -63,7 +62,7 @@ class _DeviceListSliderState extends State<DeviceListSlider>
         ),
         customWidths: CustomSliderWidths(
           trackWidth: context.isPhone ? 5 : 8,
-          handlerSize: 4,
+          handlerSize: context.isPhone ? 5 : 8,
           shadowWidth: _animation.value,
         ),
         customColors: CustomSliderColors(
@@ -72,36 +71,36 @@ class _DeviceListSliderState extends State<DeviceListSlider>
           shadowColor: widget.color,
           shadowStep: 5,
           shadowMaxOpacity: 0.05,
-
-          /// when the device is enabled, change the bar color to the
-          /// active led color
-          progressBarColor: widget.enabled ? widget.color : Colors.transparent,
+          progressBarColor: widget.color,
         ),
       ),
+      onChange: widget.onChanged,
       onChangeEnd: (value) {
-        widget.onChanged?.call(value);
+        //widget.onChanged?.call(value);
         _controller.reverse();
- 
       },
       onChangeStart: (_) {
         _controller.forward();
-      
       },
       innerWidget: (percentage) {
         /// map brightness from 0 - 255 to a percentage to display
         final roundedValue = percentage.map(0, 255, 0, 100).ceil().toInt();
-        return Center(
-          child: IconButton(
-            iconSize: 40,
-            padding: EdgeInsets.zero,
-            onPressed: widget.onPressed,
-            icon: Text(
+        return InkWell(
+          onTap: widget.onPressed,
+          customBorder: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(99999),
+          ),
+          child: SizedBox.square(
+            dimension: 42,
+            child: Center(
+              child: Text(
               roundedValue != 0
                   ? '$roundedValue%'
                   : context.locale.deviceListPowerOff,
               style: theme.textTheme.headline4!.copyWith(
                 color: widget.enabled ? widget.color : theme.dividerColor,
               ),
+            ),
             ),
           ),
         );
