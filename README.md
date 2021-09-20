@@ -10,4 +10,7 @@ This application is build from the ground up to natively support Android, IOS, W
 * create a native implementation for the WLED [web](https://github.com/Aircoookie/WLED) interface
 * Add native support for the [LedFx](https://github.com/LedFx/LedFx0) application
 
+<div>
 <img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/Screenshot_20210918-142800.jpg?raw=true" alt="Example" width="300"/>
+<img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/Screenshot_20210920-105517.jpg?raw=true" alt="Example" width="300"/>
+<div/>
