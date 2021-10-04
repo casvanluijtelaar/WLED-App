@@ -1,4 +1,5 @@
-import 'package:auto_route/auto_route.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -8,7 +9,7 @@ import '../bloc/device_control_bloc.dart';
 
 class DeviceControlView extends StatelessWidget {
   const DeviceControlView(
-    @pathParam this.deviceAddress,
+    this.deviceAddress,
     this.deviceName, {
     Key? key,
   }) : super(key: key);
@@ -46,10 +47,12 @@ class DeviceControl extends StatelessWidget {
               centerTitle: context.isPhone,
               title: Text(state.name),
             ),
-            body: WebView(
-              initialUrl: state.address,
-              javascriptMode: JavascriptMode.unrestricted,
-            ),
+            body: Platform.isAndroid || Platform.isIOS
+                ? WebView(
+                    initialUrl: state.address,
+                    javascriptMode: JavascriptMode.unrestricted,
+                  )
+                : const SizedBox.shrink(),
           );
         }
         return const SizedBox();

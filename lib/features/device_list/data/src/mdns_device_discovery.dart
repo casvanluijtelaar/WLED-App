@@ -9,13 +9,21 @@ class MdnsDeviceDiscovery {
   /// mDNS default address
   static const _name = '_http._tcp';
 
-  /// creates the MDnsClient, we have to overwrite the reusePort because it's
+  /// creates the MDnsClient
+  final _client = MDnsClient(rawDatagramSocketFactory: _socketFactory);
+
+  /// we have to overwrite the reusePort because it's
   /// currently not supported on windows
   /// https://github.com/flutter/flutter/issues/55173
-  final _client = MDnsClient(
-      rawDatagramSocketFactory: (dynamic host, int port,
-              {bool? reuseAddress, bool? reusePort, int? ttl}) =>
-          RawDatagramSocket.bind(host, port, ttl: ttl!));
+  static Future<RawDatagramSocket> _socketFactory(
+    dynamic host,
+    int port, {
+    bool? reuseAddress,
+    bool? reusePort,
+    int? ttl,
+  }) {
+    return RawDatagramSocket.bind(InternetAddress.anyIPv4, port, ttl: ttl!);
+  }
 
   /// start the MdnsDeviceDiscovery client
   Future<void> start() => _client.start();
@@ -38,7 +46,7 @@ class MdnsDeviceDiscovery {
       final ipQuery = ResourceRecordQuery.addressIPv4(srv.target);
       final ipRecord = _client.lookup<IPAddressResourceRecord>(ipQuery);
 
-      final ip = await ipRecord.first;
+      final ip = await ipRecord.first; // only use the first ip record
       yield MDNSrecord(ptr, srv, ip);
     }
   }

@@ -2,7 +2,7 @@
 
 this project aims to build a cross platform version of the well known  [WLED Android & IOS app](https://github.com/Aircoookie/WLED-App) made by Aircookie.
 
-This application is build from the ground up to natively support Android, IOS, Windows, MacOS, Linux and eventually the web. 
+This application is build from the ground up to natively support Android, IOS, Windows, MacOS and Linux. 
 
 ## Roadmap
 

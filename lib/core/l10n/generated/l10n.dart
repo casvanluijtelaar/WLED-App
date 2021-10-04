@@ -80,11 +80,111 @@ class Localization {
     );
   }
 
-  /// `Looking for WLED devices on this network`
+  /// `automatic discovery not supported on windows, add it manually`
   String get deviceListLoading {
     return Intl.message(
-      'Looking for WLED devices on this network',
+      'automatic discovery not supported on windows, add it manually',
       name: 'deviceListLoading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add new device`
+  String get deviceAddTitle {
+    return Intl.message(
+      'Add new device',
+      name: 'deviceAddTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ip address`
+  String get deviceAddIpTitle {
+    return Intl.message(
+      'Ip address',
+      name: 'deviceAddIpTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `192.168.0.191`
+  String get deviceAddIpHint {
+    return Intl.message(
+      '192.168.0.191',
+      name: 'deviceAddIpHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ip cannot be Empty`
+  String get deviceAddIpErrorEmpty {
+    return Intl.message(
+      'Ip cannot be Empty',
+      name: 'deviceAddIpErrorEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ip is not valid`
+  String get deviceAddIpErrorInvalid {
+    return Intl.message(
+      'Ip is not valid',
+      name: 'deviceAddIpErrorInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Custom name*`
+  String get deviceAddNameTitle {
+    return Intl.message(
+      'Custom name*',
+      name: 'deviceAddNameTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bedroom`
+  String get deviceAddNameHint {
+    return Intl.message(
+      'Bedroom',
+      name: 'deviceAddNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is to long. Max 40 characters`
+  String get deviceAddNameErrorToLong {
+    return Intl.message(
+      'Name is to long. Max 40 characters',
+      name: 'deviceAddNameErrorToLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Optional. This name will overwrite the WLED device name`
+  String get deviceAddNameHelper {
+    return Intl.message(
+      'Optional. This name will overwrite the WLED device name',
+      name: 'deviceAddNameHelper',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add device`
+  String get deviceAddSubmit {
+    return Intl.message(
+      'Add device',
+      name: 'deviceAddSubmit',
       desc: '',
       args: [],
     );

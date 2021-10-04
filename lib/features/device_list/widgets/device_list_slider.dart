@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:wled/core/core.dart';
 
@@ -7,104 +7,149 @@ class DeviceListSlider extends StatefulWidget {
   const DeviceListSlider({
     Key? key,
     this.value = 0,
-    this.size = 112,
     this.enabled = false,
-    this.color,
+    required this.color,
     this.onChanged,
-    this.onPressed,
   }) : super(key: key);
 
-  final double value;
-  final double size;
+  final int value;
   final bool enabled;
-  final Color? color;
-  final ValueChanged<double>? onChanged;
-  final VoidCallback? onPressed;
+  final Color color;
+  final ValueChanged<int>? onChanged;
 
   @override
   _DeviceListSliderState createState() => _DeviceListSliderState();
 }
 
-class _DeviceListSliderState extends State<DeviceListSlider>
-    with SingleTickerProviderStateMixin {
-  late Animation<double> _animation;
-  late final AnimationController _controller;
+class _DeviceListSliderState extends State<DeviceListSlider> {
+  int _sliderValue = 0;
+
+  static const double _kTrackWidth = double.maxFinite;
+  static const double _kTrackHeight = 30;
+  static const double _kTrackRadius = _kTrackHeight / 2.0;
+
+  static const double _kSwitchWidth = 30;
+  static const double _kSwitchHeight = 30;
+  static const Color _kSwitchColor = Color.fromRGBO(255, 255, 255, 1);
+  static const BoxShadow _kSwitchShadow = BoxShadow(
+    blurRadius: 3,
+    color: Color.fromRGBO(0, 0, 0, 0.2179),
+    offset: Offset(0, 2),
+  );
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: Consts.durationMedium,
-      vsync: this,
-    );
-    _animation = Tween<double>(begin: 0, end: 100).animate(_controller)
-      ..addListener(() => setState(() {}));
+    _sliderValue = widget.value;
   }
 
   @override
-  Widget build(BuildContext context) {
-    final theme = context.theme;
+  void didUpdateWidget(DeviceListSlider oldWidget) {
+    super.didUpdateWidget(oldWidget);
 
-    return SleekCircularSlider(
-      max: 255,
-      initialValue: widget.value,
-      appearance: CircularSliderAppearance(
-        size: widget.size,
-        startAngle: 180,
-        angleRange: 270,
-        animationEnabled: false,
-        infoProperties: InfoProperties(
-          /// when the device is enabled, change the percentage color to the
-          /// active led color
-          mainLabelStyle: theme.textTheme.headline4!.copyWith(
-            color: widget.enabled ? widget.color : theme.dividerColor,
+    if (oldWidget.enabled != widget.enabled) {
+      setState(() => _sliderValue = widget.enabled ? widget.value : 0);
+    }
+  }
+
+  void _onChange(double pos, double width) {
+    if (!widget.enabled) return;
+    final newValue = pos.map(0, width, 0, 255).toInt().clamp(0, 255);
+    widget.onChanged?.call(newValue);
+    setState(() => _sliderValue = newValue);
+  }
+
+  Widget _buildTrack(BuildContext context) => SizedBox(
+        width: _kTrackWidth,
+        height: _kTrackHeight,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: widget.enabled
+                ? widget.color.withOpacity(0.1475)
+                : context.theme.cardColor,
           ),
         ),
-        customWidths: CustomSliderWidths(
-          trackWidth: context.isPhone ? 5 : 8,
-          handlerSize: context.isPhone ? 5 : 8,
-          shadowWidth: _animation.value,
-        ),
-        customColors: CustomSliderColors(
-          dotColor: Colors.white,
-          trackColor: theme.dividerColor,
-          shadowColor: widget.color,
-          shadowStep: 5,
-          shadowMaxOpacity: 0.05,
-          progressBarColor: widget.color,
-        ),
-      ),
-      onChange: widget.onChanged,
-      onChangeEnd: (value) {
-        //widget.onChanged?.call(value);
-        _controller.reverse();
-      },
-      onChangeStart: (_) {
-        _controller.forward();
-      },
-      innerWidget: (percentage) {
-        /// map brightness from 0 - 255 to a percentage to display
-        final roundedValue = percentage.map(0, 255, 0, 100).ceil().toInt();
-        return InkWell(
-          onTap: widget.onPressed,
-          customBorder: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(99999),
-          ),
-          child: SizedBox.square(
-            dimension: 42,
-            child: Center(
-              child: Text(
-              roundedValue != 0
-                  ? '$roundedValue%'
-                  : context.locale.deviceListPowerOff,
-              style: theme.textTheme.headline4!.copyWith(
-                color: widget.enabled ? widget.color : theme.dividerColor,
+      );
+
+  Widget _buildBar(BuildContext context, double width) => ClipPath(
+        clipper: BoxClipper(width),
+        clipBehavior: Clip.hardEdge,
+        child: SizedBox(
+          width: _kTrackWidth,
+          height: _kTrackHeight,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  _kSwitchColor.withOpacity(0.1),
+                  _kSwitchColor.withOpacity(0.9),
+                ],
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(_kTrackRadius),
               ),
             ),
+          ),
+        ),
+      );
+
+  Widget _buildThumb(BuildContext context, double position) => Positioned(
+        left: position,
+        child: SizedBox(
+          width: _kSwitchWidth,
+          height: _kSwitchHeight,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(_kTrackRadius),
+              boxShadow: const [_kSwitchShadow],
+              color: _kSwitchColor,
             ),
           ),
-        );
-      },
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(12)),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth - _kSwitchWidth;
+          final position = _sliderValue.map(0, 255, 0, width);
+
+          return GestureDetector(
+            onTapDown: (d) =>
+                _onChange(d.localPosition.dx, constraints.maxWidth),
+            onPanUpdate: (d) =>
+                _onChange(d.localPosition.dx, constraints.maxWidth),
+            onPanDown: (d) =>
+                _onChange(d.localPosition.dx, constraints.maxWidth),
+            child: Stack(
+              children: [
+                _buildTrack(context),
+                _buildBar(context, position),
+                _buildThumb(context, position),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
+}
+
+class BoxClipper extends CustomClipper<Path> {
+  final double clipX;
+  BoxClipper(this.clipX);
+
+  @override
+  Path getClip(Size size) => Path()
+    ..lineTo(0, size.height)
+    ..lineTo(clipX + 12, size.height)
+    ..lineTo(clipX + 12, 0)
+    ..close();
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 }

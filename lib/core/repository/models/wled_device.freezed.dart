@@ -13,27 +13,37 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+WledDevice _$WledDeviceFromJson(Map<String, dynamic> json) {
+  return _WledDevice.fromJson(json);
+}
+
 /// @nodoc
 class _$WledDeviceTearOff {
   const _$WledDeviceTearOff();
 
   _WledDevice call(
-      {required String address,
-      required String name,
-      DeviceStatus status = DeviceStatus.standard,
-      bool nameIsCustom = false,
-      bool isEnabled = true,
-      double brightness = 0.9,
-      Color color = const Color.fromRGBO(255, 255, 255, 0.2)}) {
+      {@HiveField(0) required String address,
+      @HiveField(1) required String name,
+      @HiveField(2) DeviceStatus status = DeviceStatus.functional,
+      @HiveField(3) bool nameIsCustom = false,
+      @HiveField(4) bool isSaved = false,
+      @HiveField(5) bool isEnabled = true,
+      @HiveField(6) int brightness = 255,
+      @HiveField(7) @JsonKey() Color color = ColorConverter.defaultColor}) {
     return _WledDevice(
       address: address,
       name: name,
       status: status,
       nameIsCustom: nameIsCustom,
+      isSaved: isSaved,
       isEnabled: isEnabled,
       brightness: brightness,
       color: color,
     );
+  }
+
+  WledDevice fromJson(Map<String, Object> json) {
+    return WledDevice.fromJson(json);
   }
 }
 
@@ -43,22 +53,34 @@ const $WledDevice = _$WledDeviceTearOff();
 /// @nodoc
 mixin _$WledDevice {
 // device IP (can also be hostname if applicable)
+  @HiveField(0)
   String get address =>
       throw _privateConstructorUsedError; // device display name ("Server Description")
+  @HiveField(1)
   String get name =>
       throw _privateConstructorUsedError; // Current connection status
+  @HiveField(2)
   DeviceStatus get status =>
       throw _privateConstructorUsedError; // If the light name is custom, the name returned
 // by the API response will be ignored
+  @HiveField(3)
   bool get nameIsCustom =>
+      throw _privateConstructorUsedError; // if the wled device is saved to the local device
+  @HiveField(4)
+  bool get isSaved =>
       throw _privateConstructorUsedError; // Disabled devices don't get polled or show up in the list
+  @HiveField(5)
   bool get isEnabled =>
       throw _privateConstructorUsedError; // There are two vars for brightness to discern
 // API responses from slider updates
-  double get brightness =>
+  @HiveField(6)
+  int get brightness =>
       throw _privateConstructorUsedError; // the currently active device color
+  @HiveField(7)
+  @JsonKey()
   Color get color => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $WledDeviceCopyWith<WledDevice> get copyWith =>
       throw _privateConstructorUsedError;
@@ -70,13 +92,14 @@ abstract class $WledDeviceCopyWith<$Res> {
           WledDevice value, $Res Function(WledDevice) then) =
       _$WledDeviceCopyWithImpl<$Res>;
   $Res call(
-      {String address,
-      String name,
-      DeviceStatus status,
-      bool nameIsCustom,
-      bool isEnabled,
-      double brightness,
-      Color color});
+      {@HiveField(0) String address,
+      @HiveField(1) String name,
+      @HiveField(2) DeviceStatus status,
+      @HiveField(3) bool nameIsCustom,
+      @HiveField(4) bool isSaved,
+      @HiveField(5) bool isEnabled,
+      @HiveField(6) int brightness,
+      @HiveField(7) @JsonKey() Color color});
 }
 
 /// @nodoc
@@ -93,6 +116,7 @@ class _$WledDeviceCopyWithImpl<$Res> implements $WledDeviceCopyWith<$Res> {
     Object? name = freezed,
     Object? status = freezed,
     Object? nameIsCustom = freezed,
+    Object? isSaved = freezed,
     Object? isEnabled = freezed,
     Object? brightness = freezed,
     Object? color = freezed,
@@ -114,6 +138,10 @@ class _$WledDeviceCopyWithImpl<$Res> implements $WledDeviceCopyWith<$Res> {
           ? _value.nameIsCustom
           : nameIsCustom // ignore: cast_nullable_to_non_nullable
               as bool,
+      isSaved: isSaved == freezed
+          ? _value.isSaved
+          : isSaved // ignore: cast_nullable_to_non_nullable
+              as bool,
       isEnabled: isEnabled == freezed
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
@@ -121,7 +149,7 @@ class _$WledDeviceCopyWithImpl<$Res> implements $WledDeviceCopyWith<$Res> {
       brightness: brightness == freezed
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -137,13 +165,14 @@ abstract class _$WledDeviceCopyWith<$Res> implements $WledDeviceCopyWith<$Res> {
       __$WledDeviceCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String address,
-      String name,
-      DeviceStatus status,
-      bool nameIsCustom,
-      bool isEnabled,
-      double brightness,
-      Color color});
+      {@HiveField(0) String address,
+      @HiveField(1) String name,
+      @HiveField(2) DeviceStatus status,
+      @HiveField(3) bool nameIsCustom,
+      @HiveField(4) bool isSaved,
+      @HiveField(5) bool isEnabled,
+      @HiveField(6) int brightness,
+      @HiveField(7) @JsonKey() Color color});
 }
 
 /// @nodoc
@@ -162,6 +191,7 @@ class __$WledDeviceCopyWithImpl<$Res> extends _$WledDeviceCopyWithImpl<$Res>
     Object? name = freezed,
     Object? status = freezed,
     Object? nameIsCustom = freezed,
+    Object? isSaved = freezed,
     Object? isEnabled = freezed,
     Object? brightness = freezed,
     Object? color = freezed,
@@ -183,6 +213,10 @@ class __$WledDeviceCopyWithImpl<$Res> extends _$WledDeviceCopyWithImpl<$Res>
           ? _value.nameIsCustom
           : nameIsCustom // ignore: cast_nullable_to_non_nullable
               as bool,
+      isSaved: isSaved == freezed
+          ? _value.isSaved
+          : isSaved // ignore: cast_nullable_to_non_nullable
+              as bool,
       isEnabled: isEnabled == freezed
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
@@ -190,7 +224,7 @@ class __$WledDeviceCopyWithImpl<$Res> extends _$WledDeviceCopyWithImpl<$Res>
       brightness: brightness == freezed
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -200,56 +234,59 @@ class __$WledDeviceCopyWithImpl<$Res> extends _$WledDeviceCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
+@JsonSerializable()
+@ColorConverter()
+@HiveType(typeId: 1)
+class _$_WledDevice implements _WledDevice {
   const _$_WledDevice(
-      {required this.address,
-      required this.name,
-      this.status = DeviceStatus.standard,
-      this.nameIsCustom = false,
-      this.isEnabled = true,
-      this.brightness = 0.9,
-      this.color = const Color.fromRGBO(255, 255, 255, 0.2)});
+      {@HiveField(0) required this.address,
+      @HiveField(1) required this.name,
+      @HiveField(2) this.status = DeviceStatus.functional,
+      @HiveField(3) this.nameIsCustom = false,
+      @HiveField(4) this.isSaved = false,
+      @HiveField(5) this.isEnabled = true,
+      @HiveField(6) this.brightness = 255,
+      @HiveField(7) @JsonKey() this.color = ColorConverter.defaultColor});
+
+  factory _$_WledDevice.fromJson(Map<String, dynamic> json) =>
+      _$$_WledDeviceFromJson(json);
 
   @override // device IP (can also be hostname if applicable)
+  @HiveField(0)
   final String address;
   @override // device display name ("Server Description")
+  @HiveField(1)
   final String name;
-  @JsonKey(defaultValue: DeviceStatus.standard)
+  @JsonKey(defaultValue: DeviceStatus.functional)
   @override // Current connection status
+  @HiveField(2)
   final DeviceStatus status;
   @JsonKey(defaultValue: false)
   @override // If the light name is custom, the name returned
 // by the API response will be ignored
+  @HiveField(3)
   final bool nameIsCustom;
+  @JsonKey(defaultValue: false)
+  @override // if the wled device is saved to the local device
+  @HiveField(4)
+  final bool isSaved;
   @JsonKey(defaultValue: true)
   @override // Disabled devices don't get polled or show up in the list
+  @HiveField(5)
   final bool isEnabled;
-  @JsonKey(defaultValue: 0.9)
+  @JsonKey(defaultValue: 255)
   @override // There are two vars for brightness to discern
 // API responses from slider updates
-  final double brightness;
-  @JsonKey(defaultValue: const Color.fromRGBO(255, 255, 255, 0.2))
+  @HiveField(6)
+  final int brightness;
   @override // the currently active device color
+  @HiveField(7)
+  @JsonKey()
   final Color color;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WledDevice(address: $address, name: $name, status: $status, nameIsCustom: $nameIsCustom, isEnabled: $isEnabled, brightness: $brightness, color: $color)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'WledDevice'))
-      ..add(DiagnosticsProperty('address', address))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('status', status))
-      ..add(DiagnosticsProperty('nameIsCustom', nameIsCustom))
-      ..add(DiagnosticsProperty('isEnabled', isEnabled))
-      ..add(DiagnosticsProperty('brightness', brightness))
-      ..add(DiagnosticsProperty('color', color));
+  String toString() {
+    return 'WledDevice(address: $address, name: $name, status: $status, nameIsCustom: $nameIsCustom, isSaved: $isSaved, isEnabled: $isEnabled, brightness: $brightness, color: $color)';
   }
 
   @override
@@ -266,6 +303,9 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
             (identical(other.nameIsCustom, nameIsCustom) ||
                 const DeepCollectionEquality()
                     .equals(other.nameIsCustom, nameIsCustom)) &&
+            (identical(other.isSaved, isSaved) ||
+                const DeepCollectionEquality()
+                    .equals(other.isSaved, isSaved)) &&
             (identical(other.isEnabled, isEnabled) ||
                 const DeepCollectionEquality()
                     .equals(other.isEnabled, isEnabled)) &&
@@ -283,6 +323,7 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(nameIsCustom) ^
+      const DeepCollectionEquality().hash(isSaved) ^
       const DeepCollectionEquality().hash(isEnabled) ^
       const DeepCollectionEquality().hash(brightness) ^
       const DeepCollectionEquality().hash(color);
@@ -291,33 +332,53 @@ class _$_WledDevice with DiagnosticableTreeMixin implements _WledDevice {
   @override
   _$WledDeviceCopyWith<_WledDevice> get copyWith =>
       __$WledDeviceCopyWithImpl<_WledDevice>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WledDeviceToJson(this);
+  }
 }
 
 abstract class _WledDevice implements WledDevice {
   const factory _WledDevice(
-      {required String address,
-      required String name,
-      DeviceStatus status,
-      bool nameIsCustom,
-      bool isEnabled,
-      double brightness,
-      Color color}) = _$_WledDevice;
+      {@HiveField(0) required String address,
+      @HiveField(1) required String name,
+      @HiveField(2) DeviceStatus status,
+      @HiveField(3) bool nameIsCustom,
+      @HiveField(4) bool isSaved,
+      @HiveField(5) bool isEnabled,
+      @HiveField(6) int brightness,
+      @HiveField(7) @JsonKey() Color color}) = _$_WledDevice;
+
+  factory _WledDevice.fromJson(Map<String, dynamic> json) =
+      _$_WledDevice.fromJson;
 
   @override // device IP (can also be hostname if applicable)
+  @HiveField(0)
   String get address => throw _privateConstructorUsedError;
   @override // device display name ("Server Description")
+  @HiveField(1)
   String get name => throw _privateConstructorUsedError;
   @override // Current connection status
+  @HiveField(2)
   DeviceStatus get status => throw _privateConstructorUsedError;
   @override // If the light name is custom, the name returned
 // by the API response will be ignored
+  @HiveField(3)
   bool get nameIsCustom => throw _privateConstructorUsedError;
+  @override // if the wled device is saved to the local device
+  @HiveField(4)
+  bool get isSaved => throw _privateConstructorUsedError;
   @override // Disabled devices don't get polled or show up in the list
+  @HiveField(5)
   bool get isEnabled => throw _privateConstructorUsedError;
   @override // There are two vars for brightness to discern
 // API responses from slider updates
-  double get brightness => throw _privateConstructorUsedError;
+  @HiveField(6)
+  int get brightness => throw _privateConstructorUsedError;
   @override // the currently active device color
+  @HiveField(7)
+  @JsonKey()
   Color get color => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

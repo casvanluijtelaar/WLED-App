@@ -30,8 +30,9 @@ class LoadingWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(Consts.paddingSmall),
                 child: Text(
-                  text!, //context.locale.deviceListLoading,
+                  text!,
                   style: theme.textTheme.bodyText1,
+                  textAlign: TextAlign.center,
                 ),
               )
           ],

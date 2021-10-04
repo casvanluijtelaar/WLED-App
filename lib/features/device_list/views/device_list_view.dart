@@ -1,10 +1,13 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-
 import 'package:wled/core/core.dart';
 
 import '../bloc/device_list_bloc.dart';
+import '../widgets/device_list_grid_view.dart';
 import '../widgets/device_list_item.dart';
 
 /// DeviceListView entry point
@@ -30,106 +33,40 @@ class DeviceList extends StatelessWidget {
 
     return Scaffold(
       body: BlocBuilder<DeviceListBloc, DeviceListState>(
-        builder: (context, state) => CustomScrollView(
-          physics: const BouncingScrollPhysics(),
-          slivers: [
-            /// extended appbar to include pull-to-refresh feature
-            SliverAppBar(
-              pinned: true,
-              stretch: true,
-              backgroundColor: AppTheme.backgroundColor,
-              automaticallyImplyLeading: false,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: false,
-                title: Text(context.locale.deviceListTitle),
-                titlePadding: EdgeInsets.all(context.isPhone
-                    ? Consts.paddingMedium
-                    : Consts.paddingLarge),
-                stretchModes: const [StretchMode.fadeTitle],
-              ),
-
-              /// when a phone is in landscape there's not enough room for the
-              /// extended appbar, so set the height to the standard appbar
-              expandedHeight: context.isPhone && context.isLandscape ? 56 : 160,
-              onStretchTrigger: () async => bloc.add(const Update()),
-              actions: [
-                InkWell(
-                  customBorder: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  onTap: () => bloc.add(const Add()),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Consts.paddingExtraSmall,
-                      horizontal: Consts.paddingSmall,
-                    ),
-                    child: Row(
-                      children: [
-                        /// on any screen larger than mobile, add some text to
-                        /// the button to increase the size and usability
-                        if (!context.isPhone)
-                          Text(
-                            context.locale.deviceListAction,
-                            style: theme.textTheme.button,
-                          ),
-                        const Padding(
-                          padding: EdgeInsets.all(Consts.paddingSmall),
-                          child: Icon(FeatherIcons.plus),
-                        ),
-                      ],
-                    ),
-                  ),
+        builder: (context, state) => Scaffold(
+          appBar: AppBar(
+            centerTitle: false,
+            title: Text(context.locale.deviceListTitle),
+            backgroundColor: theme.scaffoldBackgroundColor,
+            automaticallyImplyLeading: false,
+            actions: [
+              if (!context.isPhone)
+                RoundIconButton(
+                  onPressed: () => bloc.add(const Update()),
+                  icon: FeatherIcons.refreshCw,
                 ),
-              ],
-            ),
-
-            /// only display in list when we are searching for  devices
-            if (state is Loading)
-              SliverToBoxAdapter(
-                child: LayoutBuilder(
-                  /// we need to center the loading indicator on the screen
-                  /// but since we have an unlimited height we need to calculate
-                  /// the offset every time the layout is updated
-                  builder: (_, __) => SizedBox(
-                    height: context.isPortrait
-                        ? context.height - 160
-                        : context.height - 56,
-                    child: LoadingWidget(
-                      text: context.locale.deviceListLoading,
-                    ),
-                  ),
-                ),
+              RoundIconButton(
+                onPressed: () => bloc.add(const Add()),
+                icon: FeatherIcons.plus,
               ),
-
-            /// only display when we have actual list items to show
-            if (state is Found)
-              SliverPadding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.isPhone
-                      ? Consts.paddingMedium
-                      : Consts.paddingLarge,
+            ],
+          ),
+          body: state is Found
+              ? DeviceListGridview.extent(
+                  mainAxisSpacing: Consts.paddingMedium,
+                  crossAxisSpacing: Consts.paddingMedium,
+                  padding: const EdgeInsets.all(Consts.paddingMedium),
+                  maxCrossAxisExtent: 600,
+                  childHeight: 108,
+                  children: state.devices
+                      .map((e) => DeviceListItem(device: e))
+                      .toList(),
+                )
+              : LoadingWidget(
+                  text: Platform.isWindows
+                      ? context.locale.deviceListLoading
+                      : null,
                 ),
-
-                /// on mobile phones display all the devices in a list, on
-                /// larger displays display a grid
-                sliver: context.isPhone
-                    ? SliverList(
-                        delegate: SliverChildListDelegate(
-                          state.devices
-                              .map((e) => DeviceListItem(device: e))
-                              .toList(),
-                        ),
-                      )
-                    : SliverGrid.extent(
-                        mainAxisSpacing: Consts.paddingMedium,
-                        crossAxisSpacing: Consts.paddingMedium,
-                        maxCrossAxisExtent: 260,
-                        children: state.devices
-                            .map((e) => DeviceListItem(device: e))
-                            .toList(),
-                      ),
-              ),
-          ],
         ),
       ),
     );

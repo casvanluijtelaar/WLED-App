@@ -21,10 +21,27 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "deviceAddIpErrorEmpty":
+            MessageLookupByLibrary.simpleMessage("Ip cannot be Empty"),
+        "deviceAddIpErrorInvalid":
+            MessageLookupByLibrary.simpleMessage("Ip is not valid"),
+        "deviceAddIpHint":
+            MessageLookupByLibrary.simpleMessage("192.168.0.191"),
+        "deviceAddIpTitle": MessageLookupByLibrary.simpleMessage("Ip address"),
+        "deviceAddNameErrorToLong": MessageLookupByLibrary.simpleMessage(
+            "Name is to long. Max 40 characters"),
+        "deviceAddNameHelper": MessageLookupByLibrary.simpleMessage(
+            "Optional. This name will overwrite the WLED device name"),
+        "deviceAddNameHint": MessageLookupByLibrary.simpleMessage("Bedroom"),
+        "deviceAddNameTitle":
+            MessageLookupByLibrary.simpleMessage("Custom name*"),
+        "deviceAddSubmit": MessageLookupByLibrary.simpleMessage("Add device"),
+        "deviceAddTitle":
+            MessageLookupByLibrary.simpleMessage("Add new device"),
         "deviceListAction":
             MessageLookupByLibrary.simpleMessage("Add a new device"),
         "deviceListLoading": MessageLookupByLibrary.simpleMessage(
-            "Looking for WLED devices on this network"),
+            "automatic discovery not supported on windows, add it manually"),
         "deviceListPowerOff": MessageLookupByLibrary.simpleMessage("off"),
         "deviceListTitle": MessageLookupByLibrary.simpleMessage("Devices")
       };

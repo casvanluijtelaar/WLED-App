@@ -2,9 +2,10 @@ part of 'device_list_bloc.dart';
 
 @freezed
 class DeviceListEvent with _$DeviceListEvent {
-  const factory DeviceListEvent.discovered(WledDevice device) = Discovered;
-
   const factory DeviceListEvent.update() = Update;
+
+  const factory DeviceListEvent.discovered(List<WledDevice> devices) =
+      Discovered;
 
   const factory DeviceListEvent.add() = Add;
 
@@ -13,6 +14,12 @@ class DeviceListEvent with _$DeviceListEvent {
 
   const factory DeviceListEvent.devicePower(WledDevice device) = DevicePower;
 
-  const factory DeviceListEvent.deviceSlider(WledDevice device, double value) =
+  const factory DeviceListEvent.deviceSlider(WledDevice device, int value) =
       DeviceSlider;
+
+  const factory DeviceListEvent.deviceSave(WledDevice device) = DeviceSave;
+
+  const factory DeviceListEvent.deviceEdit(WledDevice device) = DeviceEdit;
+
+  const factory DeviceListEvent.deviceDelete(WledDevice device) = DeviceDelete;
 }

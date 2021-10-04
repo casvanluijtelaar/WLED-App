@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:injectable/injectable.dart';
 import 'package:xml/xml.dart';
 
-import '../models/api_reponse.dart';
+import 'models/api_reponse.dart';
 
 class ParseException implements Exception {}
 

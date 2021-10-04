@@ -1,14 +1,14 @@
 import 'dart:async';
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:wled/core/core.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import '../data/repository/device_list_repository.dart';
+import 'package:wled/core/core.dart';
+import '../repository/device_list_repository.dart';
 
 part 'device_list_bloc.freezed.dart';
 part 'device_list_event.dart';
@@ -16,19 +16,28 @@ part 'device_list_state.dart';
 
 @injectable
 class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
-  DeviceListBloc(this._repository, this._router) : super(const Loading()) {
-    on<Discovered>(_onDiscovered);
+  DeviceListBloc(
+    this._listRepository,
+    this._updateRepository,
+    this._router,
+  ) : super(const Loading()) {
     on<Add>(_onAdd);
+    on<Discovered>(_onDiscovered);
     on<DevicePressed>(_onDevicePressed);
     on<Update>(_onUpdate, transformer: droppable());
     on<DevicePower>(_onDevicePower, transformer: BlocTransformers.debounce);
     on<DeviceSlider>(_onDeviceSlider, transformer: BlocTransformers.debounce);
+    on<DeviceSave>(_onDeviceSave);
+    on<DeviceEdit>(_onDeviceEdit);
+    on<DeviceDelete>(_onDeviceDelete);
   }
 
-  final DeviceListRepository _repository;
+  final DeviceListRepository _listRepository;
+  final DeviceUpdateRepository _updateRepository;
   final AppRouter _router;
 
-  StreamSubscription<WledDevice>? _deviceStream;
+  /// subscription for restarting stream if the user requests an [Update]
+  StreamSubscription<List<WledDevice>>? _deviceStream;
 
   /// when a user refreshes the page, reset the device discovery stream and
   /// state machine
@@ -38,62 +47,88 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     // cancel a potentially started stream
     await _deviceStream?.cancel();
     // start the device discovery stream and add the bloc event callback
-    _deviceStream = _repository.getWledDeviceStream().listen((d) {
+    _deviceStream = _listRepository.getWledDevices().listen((d) {
       add(Discovered(d));
     });
   }
 
-  /// when a new deviceDiscovered event is fired, integrate the discovered
-  /// device in the current device list
+  /// when a new device is decovered add it to the state
   void _onDiscovered(Discovered event, Emitter<DeviceListState> emit) {
-    // the discovered device
-    final device = event.device;
+    if (event.devices.isEmpty) return;
     // if there are no devices yet simply add this first found one
-    if (state is Loading) return emit(Found([device]));
+    if (state is Loading) return emit(Found(event.devices));
     // get the currently dicovered device list
-    final devices = List<WledDevice>.from((state as Found).devices);
-    // add the device to the list if it's not a duplicate
-    if (!devices.contains(device)) devices.add(device);
-    // emit the new device list
-    emit(Found(devices));
+    final current = List<WledDevice>.from((state as Found).devices);
+    // for every new device check if the current list already contains
+    // a matching item. if not, add it, otherwise replace it
+    event.devices.forEach(current.addOrReplace);
+    // emit the state with the updated list
+    emit(Found(current));
   }
 
-  /// navigate to the DeviceAdd route
-  void _onAdd(Add event, Emitter<DeviceListState> emit) {
-    /// TODO: navigator to device add
+  /// navigate to the DeviceAdd route when the device add button is pressed
+  Future<void> _onAdd(Add event, Emitter<DeviceListState> emit) async {
+    // navigate to the route and wait for the response
+    final device = await _router.push<WledDevice>(const DeviceAddRoute());
+    if (device == null) return;
+    // if a new device is returned update it and add it to the state
+    final items = await _update(device);
+    emit(Found(items));
   }
 
   /// navigate to the DeviceControls route
-  Future<void> _onDevicePressed(DevicePressed event, Emitter _) async {
-    await _router.push(DeviceControlRoute(
+  Future<void> _onDevicePressed(DevicePressed event, Emitter emit) async {
+    if (Platform.isAndroid || Platform.isIOS) {
+      await _router.push(DeviceControlRoute(
         deviceName: event.device.name,
-        deviceAddress: 'http://${event.device.address}/'));
-
-    return _updateStateDevice(event.device);
+        deviceAddress: 'http://${event.device.address}/',
+      ));
+    } else {
+      await launch('http://${event.device.address}/');
+    }
+    // after we return from the route, the user might have changed the devices
+    // properties, so we need to update the device and make sure we have the
+    // most recent data
+    final items = await _update(event.device);
+    emit(Found(items));
   }
 
   /// sends an updates the device and emits the updated list
-  Future<void> _onDevicePower(DevicePower event, Emitter _) {
-    return _updateStateDevice(event.device, 'T=2');
+  Future<void> _onDevicePower(DevicePower event, Emitter emit) async {
+    final items = await _update(event.device, 'T=2');
+    emit(Found(items));
   }
 
   /// sends an update to the device with the specified brightness value and
   /// updates the devices list
-  Future<void> _onDeviceSlider(DeviceSlider event, Emitter _) {
-    return _updateStateDevice(event.device, 'A=${event.value}');
+  Future<void> _onDeviceSlider(DeviceSlider event, Emitter emit) async {
+  
+    final items = await _update(event.device, 'A=${event.value}');
+    emit(Found(items));
   }
 
   /// updates a wled device and updates the same device in the current state
-  Future<void> _updateStateDevice(WledDevice device, [String data = '']) async {
-    final update = await _repository.updateWledDevice(device, data);
-
+  Future<List<WledDevice>> _update(WledDevice device, [String? data]) async {
+    final update = await _updateRepository.updateWledDevice(device, data);
     // replace the device with it's updated version
-    final items = List<WledDevice>.from((state as Found).devices);
-    final index = items.indexWhere((e) => e.address == update.address);
-    items[index] = update;
+    if (state is Loading) return [device];
+    return List<WledDevice>.from((state as Found).devices)
+      ..addOrReplace(update);
+  }
 
-    // update the device list
-    emit(Found(items));
+  Future<void> _onDeviceSave(DeviceSave event, Emitter emit) async {
+    await _router.pop();
+    _listRepository.saveLocal(event.device);
+  }
+
+  Future<void> _onDeviceEdit(DeviceEdit event, Emitter emit) async {
+    await _router.pop();
+  }
+
+  Future<void> _onDeviceDelete(DeviceDelete event, Emitter emit) async {
+    await _router.pop();
+    _listRepository.deleteLocal(event.device);
+    add(const Update());
   }
 
   /// close the device discovery stream when the bloc is unloaded

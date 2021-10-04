@@ -2,5 +2,16 @@
     "deviceListTitle": "Devices",
     "deviceListAction": "Add a new device",
     "deviceListPowerOff": "off",
-    "deviceListLoading": "Looking for WLED devices on this network"
+    "deviceListLoading": "automatic discovery not supported on windows, add it manually",
+
+    "deviceAddTitle": "Add new device",
+    "deviceAddIpTitle": "Ip address",
+    "deviceAddIpHint": "192.168.0.191",
+    "deviceAddIpErrorEmpty": "Ip cannot be Empty",
+    "deviceAddIpErrorInvalid": "Ip is not valid",
+    "deviceAddNameTitle": "Custom name*",
+    "deviceAddNameHint": "Bedroom",
+    "deviceAddNameErrorToLong": "Name is to long. Max 40 characters",
+    "deviceAddNameHelper": "Optional. This name will overwrite the WLED device name",
+    "deviceAddSubmit": "Add device"
 }

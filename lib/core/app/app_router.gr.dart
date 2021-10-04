@@ -5,10 +5,11 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/cupertino.dart' as _i4;
+import 'package:flutter/cupertino.dart' as _i5;
 import 'package:flutter/material.dart' as _i2;
 
 import '../../features/features.dart' as _i3;
+import '../core.dart' as _i4;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -16,19 +17,23 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    DeviceListRoute.name: (routeData) => _i1.MaterialPageX<_i3.DeviceListView>(
+    DeviceListRoute.name: (routeData) => _i1.MaterialPageX<void>(
         routeData: routeData,
         builder: (_) {
           return const _i3.DeviceListView();
         }),
-    DeviceControlRoute.name: (routeData) =>
-        _i1.MaterialPageX<_i3.DeviceControlView>(
-            routeData: routeData,
-            builder: (data) {
-              final args = data.argsAs<DeviceControlRouteArgs>();
-              return _i3.DeviceControlView(args.deviceAddress, args.deviceName,
-                  key: args.key);
-            })
+    DeviceControlRoute.name: (routeData) => _i1.MaterialPageX<void>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<DeviceControlRouteArgs>();
+          return _i3.DeviceControlView(args.deviceAddress, args.deviceName,
+              key: args.key);
+        }),
+    DeviceAddRoute.name: (routeData) => _i1.MaterialPageX<_i4.WledDevice>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i3.DeviceAddView();
+        })
   };
 
   @override
@@ -36,8 +41,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig('/#redirect',
             path: '/', redirectTo: 'devices', fullMatch: true),
         _i1.RouteConfig(DeviceListRoute.name, path: 'devices'),
-        _i1.RouteConfig(DeviceControlRoute.name,
-            path: 'controls/:deviceAddress')
+        _i1.RouteConfig(DeviceControlRoute.name, path: 'controls'),
+        _i1.RouteConfig(DeviceAddRoute.name, path: 'add')
       ];
 }
 
@@ -49,12 +54,13 @@ class DeviceListRoute extends _i1.PageRouteInfo {
 
 class DeviceControlRoute extends _i1.PageRouteInfo<DeviceControlRouteArgs> {
   DeviceControlRoute(
-      {required String deviceAddress, required String deviceName, _i4.Key? key})
+      {required String deviceAddress, required String deviceName, _i5.Key? key})
       : super(name,
-            path: 'controls/:deviceAddress',
+            path: 'controls',
             args: DeviceControlRouteArgs(
-                deviceAddress: deviceAddress, deviceName: deviceName, key: key),
-            rawPathParams: {'deviceAddress': deviceAddress});
+                deviceAddress: deviceAddress,
+                deviceName: deviceName,
+                key: key));
 
   static const String name = 'DeviceControlRoute';
 }
@@ -67,5 +73,11 @@ class DeviceControlRouteArgs {
 
   final String deviceName;
 
-  final _i4.Key? key;
+  final _i5.Key? key;
+}
+
+class DeviceAddRoute extends _i1.PageRouteInfo {
+  const DeviceAddRoute() : super(name, path: 'add');
+
+  static const String name = 'DeviceAddRoute';
 }

@@ -7,7 +7,7 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onTransition(Bloc bloc, Transition transition) {
     log(
-      '${bloc.runtimeType} '
+      '${bloc.runtimeType}: '
       'from ${transition.currentState.runtimeType} '
       'to ${transition.nextState.runtimeType}',
     );
