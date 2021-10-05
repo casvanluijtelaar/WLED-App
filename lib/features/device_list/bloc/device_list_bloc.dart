@@ -69,7 +69,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   /// navigate to the DeviceAdd route when the device add button is pressed
   Future<void> _onAdd(Add event, Emitter<DeviceListState> emit) async {
     // navigate to the route and wait for the response
-    final device = await _router.push<WledDevice>(const DeviceAddRoute());
+    final device = await _router.push<WledDevice>(DeviceAddRoute());
     if (device == null) return;
     // if a new device is returned update it and add it to the state
     final items = await _update(device);
@@ -102,7 +102,6 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   /// sends an update to the device with the specified brightness value and
   /// updates the devices list
   Future<void> _onDeviceSlider(DeviceSlider event, Emitter emit) async {
-  
     final items = await _update(event.device, 'A=${event.value}');
     emit(Found(items));
   }
@@ -116,19 +115,27 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
       ..addOrReplace(update);
   }
 
+  /// save the wled device to the local device and reload the device
   Future<void> _onDeviceSave(DeviceSave event, Emitter emit) async {
-    await _router.pop();
     _listRepository.saveLocal(event.device);
+    final items = await _update(event.device.copyWith(isSaved: true));
+    emit(Found(items));
   }
 
+  /// go to the device add page to change the device settings then update if any
+  /// device settings have changhed
   Future<void> _onDeviceEdit(DeviceEdit event, Emitter emit) async {
-    await _router.pop();
+    final device = await _router.push<WledDevice>(DeviceAddRoute(
+      editableDevice: event.device,
+    ));
+    if (device == event.device) return;
   }
 
+  /// delete the wled device from the local device and update it's state
   Future<void> _onDeviceDelete(DeviceDelete event, Emitter emit) async {
-    await _router.pop();
     _listRepository.deleteLocal(event.device);
-    add(const Update());
+    final items = await _update(event.device.copyWith(isSaved: false));
+    emit(Found(items));
   }
 
   /// close the device discovery stream when the bloc is unloaded

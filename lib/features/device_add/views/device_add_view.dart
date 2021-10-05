@@ -8,11 +8,14 @@ import '../repository/models/ip.dart';
 import '../repository/models/name.dart';
 
 class DeviceAddView extends StatelessWidget {
-  const DeviceAddView({Key? key}) : super(key: key);
+  const DeviceAddView({Key? key, this.editableDevice}) : super(key: key);
+
+  final WledDevice? editableDevice;
 
   @override
   Widget build(BuildContext context) => BlocProvider<DeviceAddBloc>(
-        create: (BuildContext context) => getIt<DeviceAddBloc>(),
+        create: (BuildContext context) =>
+            getIt<DeviceAddBloc>()..add(Initial(editableDevice)),
         child: const DeviceAdd(),
       );
 }
@@ -84,6 +87,8 @@ class _DeviceAddState extends State<DeviceAdd> {
             constraints: const BoxConstraints(maxWidth: 600),
             child: BlocBuilder<DeviceAddBloc, DeviceAddState>(
               builder: (context, state) {
+                if (state is DeviceAddLoading) return const LoadingWidget();
+
                 return SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,14 +126,20 @@ class _DeviceAddState extends State<DeviceAdd> {
 
                       /// only activate the submit button when the form
                       /// sucessfully validates.
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: state.status == FormzStatus.valid
-                              ? () => bloc.add(const Submitted())
-                              : null,
-                          child: Text(context.locale.deviceAddSubmit),
+                      if (state.status == FormzStatus.submissionInProgress)
+                        const SizedBox(
+                          height: 70,
+                          child: LoadingWidget(),
+                        )
+                      else
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: state.status == FormzStatus.valid
+                                ? () => bloc.add(const Submitted())
+                                : null,
+                            child: Text(context.locale.deviceAddSubmit),
+                          ),
                         ),
-                      ),
                       if (state.status == FormzStatus.submissionFailure)
                         const Text('this is not a valid WLED device'),
                     ],

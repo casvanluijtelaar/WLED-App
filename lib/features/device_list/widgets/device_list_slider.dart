@@ -27,6 +27,7 @@ class _DeviceListSliderState extends State<DeviceListSlider> {
   static const double _kTrackWidth = double.maxFinite;
   static const double _kTrackHeight = 30;
   static const double _kTrackRadius = _kTrackHeight / 2.0;
+  static const Color _kTrackColor = Color.fromRGBO(0, 0, 0, 0.1544);
 
   static const double _kSwitchWidth = 30;
   static const double _kSwitchHeight = 30;
@@ -53,7 +54,6 @@ class _DeviceListSliderState extends State<DeviceListSlider> {
   }
 
   void _onChange(double pos, double width) {
-    if (!widget.enabled) return;
     final newValue = pos.map(0, width, 0, 255).toInt().clamp(0, 255);
     widget.onChanged?.call(newValue);
     setState(() => _sliderValue = newValue);
@@ -67,7 +67,7 @@ class _DeviceListSliderState extends State<DeviceListSlider> {
             borderRadius: BorderRadius.circular(12),
             color: widget.enabled
                 ? widget.color.withOpacity(0.1475)
-                : context.theme.cardColor,
+                : _kTrackColor,
           ),
         ),
       );

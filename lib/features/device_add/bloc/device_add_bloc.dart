@@ -19,7 +19,8 @@ class DeviceAddBloc extends Bloc<DeviceAddEvent, DeviceAddState> {
     this._router,
     this._addRepository,
     this._updateRepository,
-  ) : super(const DeviceAddState()) {
+  ) : super(const DeviceAddLoading()) {
+    on<Initial>(_onInitial);
     on<IpChanged>(_onIpChanged);
     on<IpUnfocused>(_onIpUnfocused);
     on<NameChanged>(_onNameChanged);
@@ -31,6 +32,22 @@ class DeviceAddBloc extends Bloc<DeviceAddEvent, DeviceAddState> {
   final AppRouter _router;
   final DeviceAddRepository _addRepository;
   final DeviceUpdateRepository _updateRepository;
+
+  /// if a device is provided, update the state with the initial values of the
+  /// provided WledDevice
+  void _onInitial(Initial event, Emitter<DeviceAddState> emit) {
+    if (event.device == null) return emit(const DeviceAddState());
+
+    final ip = Ip.pure(event.device!.address);
+    var state = DeviceAddState(ip: ip);
+
+    if (event.device!.nameIsCustom) {
+      final name = Name.pure(event.device!.name);
+      state = state.copyWith(name: name);
+    }
+
+    emit(state.copyWith(status: FormzStatus.valid));
+  }
 
   /// verify the ip status everytime it changes
   void _onIpChanged(IpChanged event, Emitter<DeviceAddState> emit) {
@@ -65,6 +82,8 @@ class DeviceAddBloc extends Bloc<DeviceAddEvent, DeviceAddState> {
   /// create a new WledDevice from the current state and save it locally
   /// bofore popping the route
   Future<void> _onSubmitted(Submitted _, Emitter<DeviceAddState> emit) async {
+    emit(state.copyWith(status: FormzStatus.submissionInProgress));
+
     final device = WledDevice(
       address: state.ip.value,
       name: state.name.value,
@@ -73,6 +92,7 @@ class DeviceAddBloc extends Bloc<DeviceAddEvent, DeviceAddState> {
     );
 
     final updated = await _updateRepository.updateWledDevice(device);
+
     /// if this is not a valid WledDevice,add a form error
     if (updated.status != DeviceStatus.functional) {
       return emit(state.copyWith(status: FormzStatus.submissionFailure));
@@ -80,6 +100,8 @@ class DeviceAddBloc extends Bloc<DeviceAddEvent, DeviceAddState> {
 
     await _addRepository.saveDevice(updated);
     await _router.pop<WledDevice?>(updated);
+
+    emit(state.copyWith(status: FormzStatus.submissionSuccess));
   }
 
   /// pop the route without returning a WledDevice

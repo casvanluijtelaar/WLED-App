@@ -11,11 +11,10 @@ class DeviceAddRepository {
   final HiveInterface _hive;
 
   /// save [WledDevice] to local database
-  Future<void> saveDevice(WledDevice device) async {
+  Future<void> saveDevice(WledDevice d) async {
     final box = _hive.box<WledDevice>(Consts.devicesBox);
-    // don't save if the device already exists
-    if (box.values.where((d) => d.address == device.address).isNotEmpty) return;
-    // save
-    await box.add(device);
+
+    final index = box.values.toList().indexWhere((e) => e.address == d.address);
+    return index == -1 ? box.add(d) : box.putAt(index, d);
   }
 }

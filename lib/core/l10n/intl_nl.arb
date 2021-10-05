@@ -3,6 +3,12 @@
     "deviceListAction": "Voeg een nieuw apparaat toe",
     "deviceListPowerOff": "uit",
     "deviceListLoading": "Zoeken naar WLED apparaten op dit netwerk",
+    "deviceListOptionsSave": "Opslaan",
+    "deviceListOptionsSaveDisc": "Herinner dit apparaat",
+    "deviceListOptionsEdit": "Bewerk",
+    "deviceListOptionsEditDisc": "Verander apparaat instellingen",
+    "deviceListOptionsDelete": "Verwijderen",
+    "deviceLidtOptionsDeleteDisc": "Verwijder dit apparaat van geheugen",
 
     "deviceAddTitle": "Voeg nieuw apparaat toe",
     "deviceAddIpTitle": "Ip adres",

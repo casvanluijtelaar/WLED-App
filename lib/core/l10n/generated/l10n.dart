@@ -90,6 +90,66 @@ class Localization {
     );
   }
 
+  /// `Save`
+  String get deviceListOptionsSave {
+    return Intl.message(
+      'Save',
+      name: 'deviceListOptionsSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remember this device`
+  String get deviceListOptionsSaveDisc {
+    return Intl.message(
+      'Remember this device',
+      name: 'deviceListOptionsSaveDisc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get deviceListOptionsEdit {
+    return Intl.message(
+      'Edit',
+      name: 'deviceListOptionsEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change device settings`
+  String get deviceListOptionsEditDisc {
+    return Intl.message(
+      'Change device settings',
+      name: 'deviceListOptionsEditDisc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get deviceListOptionsDelete {
+    return Intl.message(
+      'Delete',
+      name: 'deviceListOptionsDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove this device from memory`
+  String get deviceLidtOptionsDeleteDisc {
+    return Intl.message(
+      'Remove this device from memory',
+      name: 'deviceLidtOptionsDeleteDisc',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add new device`
   String get deviceAddTitle {
     return Intl.message(

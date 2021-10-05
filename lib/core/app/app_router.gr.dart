@@ -31,8 +31,11 @@ class AppRouter extends _i1.RootStackRouter {
         }),
     DeviceAddRoute.name: (routeData) => _i1.MaterialPageX<_i4.WledDevice>(
         routeData: routeData,
-        builder: (_) {
-          return const _i3.DeviceAddView();
+        builder: (data) {
+          final args = data.argsAs<DeviceAddRouteArgs>(
+              orElse: () => const DeviceAddRouteArgs());
+          return _i3.DeviceAddView(
+              key: args.key, editableDevice: args.editableDevice);
         })
   };
 
@@ -76,8 +79,19 @@ class DeviceControlRouteArgs {
   final _i5.Key? key;
 }
 
-class DeviceAddRoute extends _i1.PageRouteInfo {
-  const DeviceAddRoute() : super(name, path: 'add');
+class DeviceAddRoute extends _i1.PageRouteInfo<DeviceAddRouteArgs> {
+  DeviceAddRoute({_i5.Key? key, _i4.WledDevice? editableDevice})
+      : super(name,
+            path: 'add',
+            args: DeviceAddRouteArgs(key: key, editableDevice: editableDevice));
 
   static const String name = 'DeviceAddRoute';
+}
+
+class DeviceAddRouteArgs {
+  const DeviceAddRouteArgs({this.key, this.editableDevice});
+
+  final _i5.Key? key;
+
+  final _i4.WledDevice? editableDevice;
 }

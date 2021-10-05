@@ -55,6 +55,6 @@ class DeviceListRepositoryImpl implements DeviceListRepository {
 
   @override
   void saveLocal(WledDevice device) {
-    _local.removeWledDevice(device);
+    _local.saveWledDevice(device);
   }
 }

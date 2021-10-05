@@ -17,6 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$DeviceAddEventTearOff {
   const _$DeviceAddEventTearOff();
 
+  Initial initial(WledDevice? device) {
+    return Initial(
+      device,
+    );
+  }
+
   IpChanged ipChanged(String ip) {
     return IpChanged(
       ip,
@@ -53,6 +59,7 @@ const $DeviceAddEvent = _$DeviceAddEventTearOff();
 mixin _$DeviceAddEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(WledDevice? device) initial,
     required TResult Function(String ip) ipChanged,
     required TResult Function() ipUnfocused,
     required TResult Function(String name) nameChanged,
@@ -63,6 +70,7 @@ mixin _$DeviceAddEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -73,6 +81,7 @@ mixin _$DeviceAddEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -84,6 +93,7 @@ mixin _$DeviceAddEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
     required TResult Function(IpChanged value) ipChanged,
     required TResult Function(IpUnfocused value) ipUnfocused,
     required TResult Function(NameChanged value) nameChanged,
@@ -94,6 +104,7 @@ mixin _$DeviceAddEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -104,6 +115,7 @@ mixin _$DeviceAddEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -130,6 +142,179 @@ class _$DeviceAddEventCopyWithImpl<$Res>
   final DeviceAddEvent _value;
   // ignore: unused_field
   final $Res Function(DeviceAddEvent) _then;
+}
+
+/// @nodoc
+abstract class $InitialCopyWith<$Res> {
+  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
+      _$InitialCopyWithImpl<$Res>;
+  $Res call({WledDevice? device});
+
+  $WledDeviceCopyWith<$Res>? get device;
+}
+
+/// @nodoc
+class _$InitialCopyWithImpl<$Res> extends _$DeviceAddEventCopyWithImpl<$Res>
+    implements $InitialCopyWith<$Res> {
+  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
+      : super(_value, (v) => _then(v as Initial));
+
+  @override
+  Initial get _value => super._value as Initial;
+
+  @override
+  $Res call({
+    Object? device = freezed,
+  }) {
+    return _then(Initial(
+      device == freezed
+          ? _value.device
+          : device // ignore: cast_nullable_to_non_nullable
+              as WledDevice?,
+    ));
+  }
+
+  @override
+  $WledDeviceCopyWith<$Res>? get device {
+    if (_value.device == null) {
+      return null;
+    }
+
+    return $WledDeviceCopyWith<$Res>(_value.device!, (value) {
+      return _then(_value.copyWith(device: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$Initial implements Initial {
+  const _$Initial(this.device);
+
+  @override
+  final WledDevice? device;
+
+  @override
+  String toString() {
+    return 'DeviceAddEvent.initial(device: $device)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Initial &&
+            (identical(other.device, device) ||
+                const DeepCollectionEquality().equals(other.device, device)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(device);
+
+  @JsonKey(ignore: true)
+  @override
+  $InitialCopyWith<Initial> get copyWith =>
+      _$InitialCopyWithImpl<Initial>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(WledDevice? device) initial,
+    required TResult Function(String ip) ipChanged,
+    required TResult Function() ipUnfocused,
+    required TResult Function(String name) nameChanged,
+    required TResult Function() nameUnfocused,
+    required TResult Function() submitted,
+    required TResult Function() canceled,
+  }) {
+    return initial(device);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
+    TResult Function(String ip)? ipChanged,
+    TResult Function()? ipUnfocused,
+    TResult Function(String name)? nameChanged,
+    TResult Function()? nameUnfocused,
+    TResult Function()? submitted,
+    TResult Function()? canceled,
+  }) {
+    return initial?.call(device);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
+    TResult Function(String ip)? ipChanged,
+    TResult Function()? ipUnfocused,
+    TResult Function(String name)? nameChanged,
+    TResult Function()? nameUnfocused,
+    TResult Function()? submitted,
+    TResult Function()? canceled,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(device);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(IpChanged value) ipChanged,
+    required TResult Function(IpUnfocused value) ipUnfocused,
+    required TResult Function(NameChanged value) nameChanged,
+    required TResult Function(NameUnfocused value) nameUnfocused,
+    required TResult Function(Submitted value) submitted,
+    required TResult Function(Canceled value) canceled,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(IpChanged value)? ipChanged,
+    TResult Function(IpUnfocused value)? ipUnfocused,
+    TResult Function(NameChanged value)? nameChanged,
+    TResult Function(NameUnfocused value)? nameUnfocused,
+    TResult Function(Submitted value)? submitted,
+    TResult Function(Canceled value)? canceled,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(IpChanged value)? ipChanged,
+    TResult Function(IpUnfocused value)? ipUnfocused,
+    TResult Function(NameChanged value)? nameChanged,
+    TResult Function(NameUnfocused value)? nameUnfocused,
+    TResult Function(Submitted value)? submitted,
+    TResult Function(Canceled value)? canceled,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Initial implements DeviceAddEvent {
+  const factory Initial(WledDevice? device) = _$Initial;
+
+  WledDevice? get device => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $InitialCopyWith<Initial> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -194,6 +379,7 @@ class _$IpChanged implements IpChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(WledDevice? device) initial,
     required TResult Function(String ip) ipChanged,
     required TResult Function() ipUnfocused,
     required TResult Function(String name) nameChanged,
@@ -207,6 +393,7 @@ class _$IpChanged implements IpChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -220,6 +407,7 @@ class _$IpChanged implements IpChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -237,6 +425,7 @@ class _$IpChanged implements IpChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
     required TResult Function(IpChanged value) ipChanged,
     required TResult Function(IpUnfocused value) ipUnfocused,
     required TResult Function(NameChanged value) nameChanged,
@@ -250,6 +439,7 @@ class _$IpChanged implements IpChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -263,6 +453,7 @@ class _$IpChanged implements IpChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -326,6 +517,7 @@ class _$IpUnfocused implements IpUnfocused {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(WledDevice? device) initial,
     required TResult Function(String ip) ipChanged,
     required TResult Function() ipUnfocused,
     required TResult Function(String name) nameChanged,
@@ -339,6 +531,7 @@ class _$IpUnfocused implements IpUnfocused {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -352,6 +545,7 @@ class _$IpUnfocused implements IpUnfocused {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -369,6 +563,7 @@ class _$IpUnfocused implements IpUnfocused {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
     required TResult Function(IpChanged value) ipChanged,
     required TResult Function(IpUnfocused value) ipUnfocused,
     required TResult Function(NameChanged value) nameChanged,
@@ -382,6 +577,7 @@ class _$IpUnfocused implements IpUnfocused {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -395,6 +591,7 @@ class _$IpUnfocused implements IpUnfocused {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -478,6 +675,7 @@ class _$NameChanged implements NameChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(WledDevice? device) initial,
     required TResult Function(String ip) ipChanged,
     required TResult Function() ipUnfocused,
     required TResult Function(String name) nameChanged,
@@ -491,6 +689,7 @@ class _$NameChanged implements NameChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -504,6 +703,7 @@ class _$NameChanged implements NameChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -521,6 +721,7 @@ class _$NameChanged implements NameChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
     required TResult Function(IpChanged value) ipChanged,
     required TResult Function(IpUnfocused value) ipUnfocused,
     required TResult Function(NameChanged value) nameChanged,
@@ -534,6 +735,7 @@ class _$NameChanged implements NameChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -547,6 +749,7 @@ class _$NameChanged implements NameChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -611,6 +814,7 @@ class _$NameUnfocused implements NameUnfocused {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(WledDevice? device) initial,
     required TResult Function(String ip) ipChanged,
     required TResult Function() ipUnfocused,
     required TResult Function(String name) nameChanged,
@@ -624,6 +828,7 @@ class _$NameUnfocused implements NameUnfocused {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -637,6 +842,7 @@ class _$NameUnfocused implements NameUnfocused {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -654,6 +860,7 @@ class _$NameUnfocused implements NameUnfocused {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
     required TResult Function(IpChanged value) ipChanged,
     required TResult Function(IpUnfocused value) ipUnfocused,
     required TResult Function(NameChanged value) nameChanged,
@@ -667,6 +874,7 @@ class _$NameUnfocused implements NameUnfocused {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -680,6 +888,7 @@ class _$NameUnfocused implements NameUnfocused {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -736,6 +945,7 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(WledDevice? device) initial,
     required TResult Function(String ip) ipChanged,
     required TResult Function() ipUnfocused,
     required TResult Function(String name) nameChanged,
@@ -749,6 +959,7 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -762,6 +973,7 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -779,6 +991,7 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
     required TResult Function(IpChanged value) ipChanged,
     required TResult Function(IpUnfocused value) ipUnfocused,
     required TResult Function(NameChanged value) nameChanged,
@@ -792,6 +1005,7 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -805,6 +1019,7 @@ class _$Submitted implements Submitted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -861,6 +1076,7 @@ class _$Canceled implements Canceled {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(WledDevice? device) initial,
     required TResult Function(String ip) ipChanged,
     required TResult Function() ipUnfocused,
     required TResult Function(String name) nameChanged,
@@ -874,6 +1090,7 @@ class _$Canceled implements Canceled {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -887,6 +1104,7 @@ class _$Canceled implements Canceled {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WledDevice? device)? initial,
     TResult Function(String ip)? ipChanged,
     TResult Function()? ipUnfocused,
     TResult Function(String name)? nameChanged,
@@ -904,6 +1122,7 @@ class _$Canceled implements Canceled {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
     required TResult Function(IpChanged value) ipChanged,
     required TResult Function(IpUnfocused value) ipUnfocused,
     required TResult Function(NameChanged value) nameChanged,
@@ -917,6 +1136,7 @@ class _$Canceled implements Canceled {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -930,6 +1150,7 @@ class _$Canceled implements Canceled {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
     TResult Function(IpChanged value)? ipChanged,
     TResult Function(IpUnfocused value)? ipUnfocused,
     TResult Function(NameChanged value)? nameChanged,
@@ -963,6 +1184,17 @@ class _$DeviceAddStateTearOff {
       status: status,
     );
   }
+
+  DeviceAddLoading initial(
+      {Ip ip = const Ip.pure(),
+      Name name = const Name.pure(),
+      FormzStatus status = FormzStatus.pure}) {
+    return DeviceAddLoading(
+      ip: ip,
+      name: name,
+      status: status,
+    );
+  }
 }
 
 /// @nodoc
@@ -973,6 +1205,45 @@ mixin _$DeviceAddState {
   Ip get ip => throw _privateConstructorUsedError;
   Name get name => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Ip ip, Name name, FormzStatus status) $default, {
+    required TResult Function(Ip ip, Name name, FormzStatus status) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(Ip ip, Name name, FormzStatus status)? $default, {
+    TResult Function(Ip ip, Name name, FormzStatus status)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Ip ip, Name name, FormzStatus status)? $default, {
+    TResult Function(Ip ip, Name name, FormzStatus status)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DeviceAddState value) $default, {
+    required TResult Function(DeviceAddLoading value) initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_DeviceAddState value)? $default, {
+    TResult Function(DeviceAddLoading value)? initial,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DeviceAddState value)? $default, {
+    TResult Function(DeviceAddLoading value)? initial,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DeviceAddStateCopyWith<DeviceAddState> get copyWith =>
@@ -1109,6 +1380,68 @@ class _$_DeviceAddState implements _DeviceAddState {
   @override
   _$DeviceAddStateCopyWith<_DeviceAddState> get copyWith =>
       __$DeviceAddStateCopyWithImpl<_DeviceAddState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Ip ip, Name name, FormzStatus status) $default, {
+    required TResult Function(Ip ip, Name name, FormzStatus status) initial,
+  }) {
+    return $default(ip, name, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(Ip ip, Name name, FormzStatus status)? $default, {
+    TResult Function(Ip ip, Name name, FormzStatus status)? initial,
+  }) {
+    return $default?.call(ip, name, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Ip ip, Name name, FormzStatus status)? $default, {
+    TResult Function(Ip ip, Name name, FormzStatus status)? initial,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(ip, name, status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DeviceAddState value) $default, {
+    required TResult Function(DeviceAddLoading value) initial,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_DeviceAddState value)? $default, {
+    TResult Function(DeviceAddLoading value)? initial,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DeviceAddState value)? $default, {
+    TResult Function(DeviceAddLoading value)? initial,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class _DeviceAddState implements DeviceAddState {
@@ -1124,5 +1457,175 @@ abstract class _DeviceAddState implements DeviceAddState {
   @override
   @JsonKey(ignore: true)
   _$DeviceAddStateCopyWith<_DeviceAddState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeviceAddLoadingCopyWith<$Res>
+    implements $DeviceAddStateCopyWith<$Res> {
+  factory $DeviceAddLoadingCopyWith(
+          DeviceAddLoading value, $Res Function(DeviceAddLoading) then) =
+      _$DeviceAddLoadingCopyWithImpl<$Res>;
+  @override
+  $Res call({Ip ip, Name name, FormzStatus status});
+}
+
+/// @nodoc
+class _$DeviceAddLoadingCopyWithImpl<$Res>
+    extends _$DeviceAddStateCopyWithImpl<$Res>
+    implements $DeviceAddLoadingCopyWith<$Res> {
+  _$DeviceAddLoadingCopyWithImpl(
+      DeviceAddLoading _value, $Res Function(DeviceAddLoading) _then)
+      : super(_value, (v) => _then(v as DeviceAddLoading));
+
+  @override
+  DeviceAddLoading get _value => super._value as DeviceAddLoading;
+
+  @override
+  $Res call({
+    Object? ip = freezed,
+    Object? name = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(DeviceAddLoading(
+      ip: ip == freezed
+          ? _value.ip
+          : ip // ignore: cast_nullable_to_non_nullable
+              as Ip,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as Name,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FormzStatus,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeviceAddLoading implements DeviceAddLoading {
+  const _$DeviceAddLoading(
+      {this.ip = const Ip.pure(),
+      this.name = const Name.pure(),
+      this.status = FormzStatus.pure});
+
+  @JsonKey(defaultValue: const Ip.pure())
+  @override
+  final Ip ip;
+  @JsonKey(defaultValue: const Name.pure())
+  @override
+  final Name name;
+  @JsonKey(defaultValue: FormzStatus.pure)
+  @override
+  final FormzStatus status;
+
+  @override
+  String toString() {
+    return 'DeviceAddState.initial(ip: $ip, name: $name, status: $status)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeviceAddLoading &&
+            (identical(other.ip, ip) ||
+                const DeepCollectionEquality().equals(other.ip, ip)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(ip) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(status);
+
+  @JsonKey(ignore: true)
+  @override
+  $DeviceAddLoadingCopyWith<DeviceAddLoading> get copyWith =>
+      _$DeviceAddLoadingCopyWithImpl<DeviceAddLoading>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Ip ip, Name name, FormzStatus status) $default, {
+    required TResult Function(Ip ip, Name name, FormzStatus status) initial,
+  }) {
+    return initial(ip, name, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function(Ip ip, Name name, FormzStatus status)? $default, {
+    TResult Function(Ip ip, Name name, FormzStatus status)? initial,
+  }) {
+    return initial?.call(ip, name, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Ip ip, Name name, FormzStatus status)? $default, {
+    TResult Function(Ip ip, Name name, FormzStatus status)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(ip, name, status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DeviceAddState value) $default, {
+    required TResult Function(DeviceAddLoading value) initial,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_DeviceAddState value)? $default, {
+    TResult Function(DeviceAddLoading value)? initial,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DeviceAddState value)? $default, {
+    TResult Function(DeviceAddLoading value)? initial,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeviceAddLoading implements DeviceAddState {
+  const factory DeviceAddLoading({Ip ip, Name name, FormzStatus status}) =
+      _$DeviceAddLoading;
+
+  @override
+  Ip get ip => throw _privateConstructorUsedError;
+  @override
+  Name get name => throw _privateConstructorUsedError;
+  @override
+  FormzStatus get status => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $DeviceAddLoadingCopyWith<DeviceAddLoading> get copyWith =>
       throw _privateConstructorUsedError;
 }

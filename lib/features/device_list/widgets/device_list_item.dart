@@ -24,6 +24,7 @@ class DeviceListItem extends StatelessWidget {
     final theme = context.theme;
     final bloc = context.read<DeviceListBloc>();
 
+    /// show a popup menu containing the main device settings
     void menu() => showModalBottomSheet<void>(
           context: context,
           builder: (_) => DeviceListOptions(
@@ -48,8 +49,7 @@ class DeviceListItem extends StatelessWidget {
                   device.color.lighten(0.2),
                   device.color,
                   device.color.darken(0.2),
-                ],
-                if (!device.isEnabled) ...[
+                ] else ...[
                   theme.cardColor,
                   theme.cardColor,
                 ]
@@ -70,6 +70,7 @@ class DeviceListItem extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: Row(
                   children: [
+                    /// posibility to add custom icons asignable to each device
                     const Icon(Icons.lightbulb),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
@@ -83,10 +84,17 @@ class DeviceListItem extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    DeviceListSwitch(
-                      value: device.isEnabled,
-                      onChanged: (_) => bloc.add(DevicePower(device)),
-                    ),
+
+                    /// only show the enable switch when the device can actually
+                    /// be used
+                    if (device.status == DeviceStatus.functional)
+                      DeviceListSwitch(
+                        value: device.isEnabled,
+                        onChanged: (_) => bloc.add(DevicePower(device)),
+                      ),
+
+                    /// show an option menu on device where a long press is
+                    /// not the best interaction method
                     if (!context.isPhone) ...[
                       const SizedBox(width: Consts.paddingMedium),
                       RoundIconButton(
@@ -97,12 +105,21 @@ class DeviceListItem extends StatelessWidget {
                   ],
                 ),
               ),
-              DeviceListSlider(
-                color: device.color,
-                value: device.brightness.toInt().clamp(0, 255),
-                enabled: device.isEnabled,
-                onChanged: (value) => bloc.add(DeviceSlider(device, value)),
-              ),
+
+              /// It's possible that a saved device is displayed but actually
+              /// isn't usuable (when you're on a different network for example)
+              /// so dont shot the slider if the device isn't reachable
+              if (device.status == DeviceStatus.functional)
+                DeviceListSlider(
+                  color: device.color,
+                  value: device.brightness.toInt().clamp(0, 255),
+                  enabled: device.isEnabled,
+                  onChanged: (value) => bloc.add(DeviceSlider(device, value)),
+                )
+              else
+                const Center(
+                  child: Text('device not reachable'),
+                ),
             ],
           ),
         ),

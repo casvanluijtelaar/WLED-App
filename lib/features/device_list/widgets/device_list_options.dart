@@ -18,36 +18,38 @@ class DeviceListOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.locale;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        if (device.isSaved)
+        if (!device.isSaved)
           ListTile(
             leading: const Icon(FeatherIcons.save),
-            title: const Text('Save'),
-            subtitle: const Text('Remember this device'),
+            title:  Text(locale.deviceListOptionsSave),
+            subtitle: Text(locale.deviceListOptionsSaveDisc),
             onTap: () {
               Navigator.pop(context);
               onSave?.call();
             },
-          ),
-        if (device.isSaved) ...[
+          )
+        else ...[
           ListTile(
             leading: const Icon(FeatherIcons.edit),
-            title: const Text('Edit'),
-            subtitle: const Text('Change device settings'),
+            title:  Text(locale.deviceListOptionsEdit),
+            subtitle:  Text(locale.deviceListOptionsEditDisc),
             onTap: () {
               Navigator.pop(context);
-              onSave?.call();
+              onEdit?.call();
             },
           ),
           ListTile(
             leading: const Icon(FeatherIcons.delete),
-            title: const Text('Delete'),
-            subtitle: const Text('Remove from this device'),
+            title:  Text(locale.deviceListOptionsDelete),
+            subtitle:  Text(locale.deviceLidtOptionsDeleteDisc),
             onTap: () {
               Navigator.pop(context);
-              onSave?.call();
+              onDelete?.call();
             },
           ),
         ],

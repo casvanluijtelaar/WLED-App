@@ -3,6 +3,12 @@
     "deviceListAction": "Add a new device",
     "deviceListPowerOff": "off",
     "deviceListLoading": "automatic discovery not supported on windows, add it manually",
+    "deviceListOptionsSave": "Save",
+    "deviceListOptionsSaveDisc": "Remember this device",
+    "deviceListOptionsEdit": "Edit",
+    "deviceListOptionsEditDisc": "Change device settings",
+    "deviceListOptionsDelete": "Delete",
+    "deviceLidtOptionsDeleteDisc": "Remove this device from memory",
 
     "deviceAddTitle": "Add new device",
     "deviceAddIpTitle": "Ip address",

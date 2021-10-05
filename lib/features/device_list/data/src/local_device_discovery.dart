@@ -17,16 +17,16 @@ class LocalDeviceDiscovery {
   /// adds a Wled device to the local storage only if it isn't saved already
   void saveWledDevice(WledDevice device) {
     final box = _hive.box<WledDevice>(Consts.devicesBox);
-    if (box.values.contains(device)) return;
+    if (box.values.any((e) => e.address == device.address)) return;
 
     box.add(device);
   }
 
   /// attempts to remove WledDevice from the local storage
-  void removeWledDevice(WledDevice device) {
+  void removeWledDevice(WledDevice d) {
     final box = _hive.box<WledDevice>(Consts.devicesBox);
 
-    final index = box.values.toList().indexOf(device);
-    box.deleteAt(index);
+    final index = box.values.toList().indexWhere((e) => e.address == d.address);
+    if (index != -1) box.deleteAt(index);
   }
 }
