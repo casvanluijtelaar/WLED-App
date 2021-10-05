@@ -50,8 +50,8 @@ class _DeviceListSwitchState extends State<DeviceListSwitch> {
         widget.onChanged?.call(!_value);
         setState(() => _value = !_value);
       },
-      
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           const SizedBox(
             height: _kTrackHeight,
@@ -65,17 +65,17 @@ class _DeviceListSwitchState extends State<DeviceListSwitch> {
           ),
           AnimatedPositioned(
             duration: Consts.durationShort,
-            left: _value ? _kTrackWidth - (_kSwitchSize / 2) : 0,
-            child: const SizedBox.square(
-              dimension: _kSwitchSize,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(_kTrackRadius),
-                  ),
-                  color: _kSwitchColor,
-                  boxShadow: [_kSwitchShadow],
+            left: _value ? _kTrackWidth - _kSwitchSize : 0,
+            child: const DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(_kTrackRadius),
                 ),
+                color: _kSwitchColor,
+                boxShadow: [_kSwitchShadow],
+              ),
+              child: SizedBox.square(
+                dimension: _kSwitchSize,
               ),
             ),
           ),
