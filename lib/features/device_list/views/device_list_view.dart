@@ -52,16 +52,22 @@ class DeviceList extends StatelessWidget {
             ],
           ),
           body: state is Found
-              ? DeviceListGridview.extent(
-                  mainAxisSpacing: Consts.paddingMedium,
-                  crossAxisSpacing: Consts.paddingMedium,
-                  padding: const EdgeInsets.all(Consts.paddingMedium),
-                  maxCrossAxisExtent: 600,
-                  childHeight: 108,
-                  children: state.devices
-                      .map((e) => DeviceListItem(device: e))
-                      .toList(),
-                )
+              ? RefreshIndicator(
+                onRefresh: () async => bloc.add(const Update()),
+                child: DeviceListGridview.extent(
+                    physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics(),
+                    ),
+                    mainAxisSpacing: Consts.paddingMedium,
+                    crossAxisSpacing: Consts.paddingMedium,
+                    padding: const EdgeInsets.all(Consts.paddingMedium),
+                    maxCrossAxisExtent: 600,
+                    childHeight: 108,
+                    children: state.devices
+                        .map((e) => DeviceListItem(device: e))
+                        .toList(),
+                  ),
+              )
               : LoadingWidget(
                   text: Platform.isWindows
                       ? context.locale.deviceListLoading

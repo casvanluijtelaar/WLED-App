@@ -12,7 +12,7 @@ class DeviceListSlider extends StatefulWidget {
     this.onChanged,
   }) : super(key: key);
 
-  final int value;
+  final double value;
   final bool enabled;
   final Color color;
   final ValueChanged<int>? onChanged;
@@ -21,8 +21,10 @@ class DeviceListSlider extends StatefulWidget {
   _DeviceListSliderState createState() => _DeviceListSliderState();
 }
 
-class _DeviceListSliderState extends State<DeviceListSlider> {
-  int _sliderValue = 0;
+class _DeviceListSliderState extends State<DeviceListSlider>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<int> _animation;
 
   static const double _kTrackWidth = double.maxFinite;
   static const double _kTrackHeight = 30;
@@ -41,7 +43,16 @@ class _DeviceListSliderState extends State<DeviceListSlider> {
   @override
   void initState() {
     super.initState();
-    _sliderValue = widget.value;
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: Consts.durationShort,
+    );
+
+    _animation = IntTween(begin: 0, end: 255).animate(_controller)
+      ..addListener(() => setState(() {}));
+
+    _controller.animateTo(widget.value);
   }
 
   @override
@@ -49,14 +60,16 @@ class _DeviceListSliderState extends State<DeviceListSlider> {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.enabled != widget.enabled) {
-      setState(() => _sliderValue = widget.enabled ? widget.value : 0);
+      final value = widget.value.map(0, 255, 0, 1);
+      _controller.animateTo(value);
     }
   }
 
   void _onChange(double pos, double width) {
-    final newValue = pos.map(0, width, 0, 255).toInt().clamp(0, 255);
-    widget.onChanged?.call(newValue);
-    setState(() => _sliderValue = newValue);
+    final newValue = pos.map(0, width, 0, 255).clamp(0, 255);
+    widget.onChanged?.call(newValue.toInt());
+    final animationValue = pos.map(0, width, 0, 1).clamp(0, 1).toDouble();
+    _controller.animateTo(animationValue, duration: Duration.zero);
   }
 
   Widget _buildTrack(BuildContext context) => SizedBox(
@@ -72,8 +85,8 @@ class _DeviceListSliderState extends State<DeviceListSlider> {
         ),
       );
 
-  Widget _buildBar(BuildContext context, double width) => ClipPath(
-        clipper: BoxClipper(width),
+  Widget _buildBar(BuildContext context, double pos) => ClipPath(
+        clipper: BoxClipper(pos),
         clipBehavior: Clip.hardEdge,
         child: SizedBox(
           width: _kTrackWidth,
@@ -94,8 +107,8 @@ class _DeviceListSliderState extends State<DeviceListSlider> {
         ),
       );
 
-  Widget _buildThumb(BuildContext context, double position) => Positioned(
-        left: position,
+  Widget _buildThumb(BuildContext context, double pos) => Positioned(
+        left: pos,
         child: SizedBox(
           width: _kSwitchWidth,
           height: _kSwitchHeight,
@@ -114,17 +127,14 @@ class _DeviceListSliderState extends State<DeviceListSlider> {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(12)),
       child: LayoutBuilder(
-        builder: (context, constraints) {
-          final width = constraints.maxWidth - _kSwitchWidth;
-          final position = _sliderValue.map(0, 255, 0, width);
+        builder: (context, cnstr) {
+          final max = cnstr.maxWidth - _kSwitchWidth;
+          final position = _animation.value.map(0, 255, 0, max);
 
           return GestureDetector(
-            onTapDown: (d) =>
-                _onChange(d.localPosition.dx, constraints.maxWidth),
-            onPanUpdate: (d) =>
-                _onChange(d.localPosition.dx, constraints.maxWidth),
-            onPanDown: (d) =>
-                _onChange(d.localPosition.dx, constraints.maxWidth),
+            onTapDown: (d) => _onChange(d.localPosition.dx, cnstr.maxWidth),
+            onPanUpdate: (d) => _onChange(d.localPosition.dx, cnstr.maxWidth),
+            onPanDown: (d) => _onChange(d.localPosition.dx, cnstr.maxWidth),
             child: Stack(
               children: [
                 _buildTrack(context),

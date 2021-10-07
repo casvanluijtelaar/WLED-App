@@ -35,6 +35,19 @@ class DeviceListItem extends StatelessWidget {
           ),
         );
 
+    final isEnabled =
+        device.isEnabled && device.status == DeviceStatus.functional;
+
+    /// for functional, enabled devices show a nice gradient based on the
+    /// active color, otherwise show the default background card color
+    final colors = isEnabled
+        ? [device.color.lighten(), device.color, device.color.darken()]
+        : [theme.cardColor, theme.cardColor];
+
+    final textColor = device.color.computeLuminance() < 0.6 || !isEnabled
+        ? const Color(0xFFFFFFFF)
+        : const Color(0xFF555555);
+
     return InkWell(
       onTap: () => bloc.add(DevicePressed(device)),
       onLongPress: context.isPhone ? menu : null,
@@ -43,18 +56,7 @@ class DeviceListItem extends StatelessWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            gradient: LinearGradient(
-              colors: [
-                if (device.isEnabled) ...[
-                  device.color.lighten(0.2),
-                  device.color,
-                  device.color.darken(0.2),
-                ] else ...[
-                  theme.cardColor,
-                  theme.cardColor,
-                ]
-              ],
-            ),
+            gradient: LinearGradient(colors: colors),
             boxShadow: const [
               BoxShadow(
                 blurRadius: 10,
@@ -71,25 +73,34 @@ class DeviceListItem extends StatelessWidget {
                 child: Row(
                   children: [
                     /// posibility to add custom icons asignable to each device
-                    const Icon(Icons.lightbulb),
+                    Icon(Icons.lightbulb, color: textColor),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(device.name, style: theme.textTheme.headline4),
-                          Text(device.address, style: theme.textTheme.subtitle1)
+                          Text(
+                            device.name,
+                            style: theme.textTheme.headline4!
+                                .copyWith(color: textColor),
+                          ),
+                          Text(
+                            device.address,
+                            style: theme.textTheme.subtitle1!
+                                .copyWith(color: textColor),
+                          )
                         ],
                       ),
                     ),
+
                     const Spacer(),
 
                     /// only show the enable switch when the device can actually
                     /// be used
                     if (device.status == DeviceStatus.functional)
                       DeviceListSwitch(
-                        value: device.isEnabled,
+                        value: isEnabled,
                         onChanged: (_) => bloc.add(DevicePower(device)),
                       ),
 
@@ -112,14 +123,12 @@ class DeviceListItem extends StatelessWidget {
               if (device.status == DeviceStatus.functional)
                 DeviceListSlider(
                   color: device.color,
-                  value: device.brightness.toInt().clamp(0, 255),
-                  enabled: device.isEnabled,
+                  value: device.brightness.toDouble().clamp(0, 255),
+                  enabled: isEnabled,
                   onChanged: (value) => bloc.add(DeviceSlider(device, value)),
                 )
               else
-                const Center(
-                  child: Text('device not reachable'),
-                ),
+                const Center(child: Text('device not reachable')),
             ],
           ),
         ),
