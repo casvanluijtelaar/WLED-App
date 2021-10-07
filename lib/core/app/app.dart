@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -25,6 +27,12 @@ class App extends StatelessWidget {
         Localization.delegate,
       ],
       supportedLocales: Localization.delegate.supportedLocales,
+      builder: (context, child) {
+        if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+          return DesktopFrame(child: child!);
+        }
+        return child!;
+      },
     );
   }
 }

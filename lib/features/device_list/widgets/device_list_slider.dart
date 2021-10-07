@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:wled/core/core.dart';
 
+/// creates a themed slider to select brightness between 0 and 255
 class DeviceListSlider extends StatefulWidget {
   const DeviceListSlider({
     Key? key,
@@ -65,6 +66,9 @@ class _DeviceListSliderState extends State<DeviceListSlider>
     }
   }
 
+  /// when the slider changes map the local gesture position firstly to between
+  /// 0-255 and fire the callback. then map it to the animation range create an
+  /// instant animation to that position
   void _onChange(double pos, double width) {
     final newValue = pos.map(0, width, 0, 255).clamp(0, 255);
     widget.onChanged?.call(newValue.toInt());
@@ -72,6 +76,8 @@ class _DeviceListSliderState extends State<DeviceListSlider>
     _controller.animateTo(animationValue, duration: Duration.zero);
   }
 
+  /// background of the slider, changes to a slightly lighter version of  the
+  /// devices color.
   Widget _buildTrack(BuildContext context) => SizedBox(
         width: _kTrackWidth,
         height: _kTrackHeight,
@@ -85,6 +91,7 @@ class _DeviceListSliderState extends State<DeviceListSlider>
         ),
       );
 
+  /// the 
   Widget _buildBar(BuildContext context, double pos) => ClipPath(
         clipper: BoxClipper(pos),
         clipBehavior: Clip.hardEdge,

@@ -72,7 +72,7 @@ abstract class AppTheme {
 
   static const _buttonStyle = TextStyle(
     color: _titleColor,
-    fontSize: 20,
+    fontSize: 14,
     fontWeight: FontWeight.w400,
   );
 
@@ -135,10 +135,12 @@ abstract class AppTheme {
     ),
     colorScheme: const ColorScheme.dark(
       primary: _titleColor,
+      secondary: Colors.grey,
       background: _backgroundColor,
     ),
-    progressIndicatorTheme:
-        const ProgressIndicatorThemeData(color: _titleColor),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: _titleColor,
+    ),
     bottomSheetTheme: const BottomSheetThemeData(
       modalBackgroundColor: _backgroundColor,
     ),

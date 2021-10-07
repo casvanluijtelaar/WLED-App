@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -29,8 +30,18 @@ Future<void> main() async {
   await hive.openBox<WledDevice>(Consts.devicesBox,
       compactionStrategy: (_, d) => d > 5);
 
-  /// run main appllication
+  /// run main application
   runZonedGuarded(() => runApp(const App()), (error, stackTrace) {
     log(error.toString(), stackTrace: stackTrace);
   });
+
+  /// setup custom desktop frames
+  doWhenWindowReady(
+    () => appWindow
+      ..minSize = const Size(200, 200)
+      ..size = const Size(1280, 720)
+      ..alignment = Alignment.center
+      ..title = 'WLED'
+      ..show(),
+  );
 }

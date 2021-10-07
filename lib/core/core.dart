@@ -23,6 +23,7 @@ export 'utils/num_extensions.dart';
 export 'utils/string_extensions.dart';
 
 /// widgets
+export 'widgets/desktop_frame.dart';
 export 'widgets/loading_widget.dart';
 export 'widgets/round_icon_button.dart';
 

@@ -22,9 +22,8 @@ class RoundIconButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(double.maxFinite),
       ),
       onTap: onPressed,
-      child: SizedBox(
-        height: size,
-        width: size,
+      child: SizedBox.square(
+        dimension: size,
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: background,

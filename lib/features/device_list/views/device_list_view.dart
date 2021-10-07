@@ -41,10 +41,14 @@ class DeviceList extends StatelessWidget {
             automaticallyImplyLeading: false,
             actions: [
               if (!context.isPhone)
-                RoundIconButton(
-                  onPressed: () => bloc.add(const Update()),
-                  icon: FeatherIcons.refreshCw,
+                TextButton(
+                  onPressed: () {},
+                  child: const Text('Refresh'),
                 ),
+              TextButton(
+                onPressed: () {},
+                child: const Text('Add Device'),
+              ),
               RoundIconButton(
                 onPressed: () => bloc.add(const Add()),
                 icon: FeatherIcons.plus,
@@ -53,8 +57,8 @@ class DeviceList extends StatelessWidget {
           ),
           body: state is Found
               ? RefreshIndicator(
-                onRefresh: () async => bloc.add(const Update()),
-                child: DeviceListGridview.extent(
+                  onRefresh: () async => bloc.add(const Update()),
+                  child: DeviceListGridview.extent(
                     physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
@@ -67,7 +71,7 @@ class DeviceList extends StatelessWidget {
                         .map((e) => DeviceListItem(device: e))
                         .toList(),
                   ),
-              )
+                )
               : LoadingWidget(
                   text: Platform.isWindows
                       ? context.locale.deviceListLoading
