@@ -27,12 +27,10 @@ class App extends StatelessWidget {
         Localization.delegate,
       ],
       supportedLocales: Localization.delegate.supportedLocales,
-      builder: (context, child) {
-        if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-          return DesktopFrame(child: child!);
-        }
-        return child!;
-      },
+      builder: (context, child) =>
+          Platform.isWindows || Platform.isMacOS || Platform.isLinux
+              ? DesktopFrame(child: child!)
+              : child!,
     );
   }
 }

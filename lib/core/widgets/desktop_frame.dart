@@ -1,5 +1,5 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class DesktopFrame extends StatelessWidget {
   const DesktopFrame({
@@ -12,29 +12,45 @@ class DesktopFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final buttonColors = WindowButtonColors(
-      iconNormal: const Color(0xFFFFFFFF),
-      mouseOver: const Color(0xFFFFFFFF),
-      mouseDown: const Color(0xFFFFFFFF),
-      iconMouseOver: const Color(0xFFFFFFFF),
-      iconMouseDown: const Color(0xFFFFFFFF),
+      iconNormal: Colors.white,
+      mouseOver: Colors.white,
+      mouseDown: Colors.white,
+      iconMouseOver: const Color(0xFF1D1D1D),
+      iconMouseDown: const Color(0xFF1D1D1D),
     );
 
-    return WindowBorder(
-      color: const Color(0xFF1D1D1D),
-      child: Column(
-        children: [
-          WindowTitleBarBox(
-            child: Row(
-              children: [
-                Expanded(child: MoveWindow()),
-                MinimizeWindowButton(colors: buttonColors),
-                MaximizeWindowButton(colors: buttonColors),
-                CloseWindowButton(colors: buttonColors),
-              ],
+    final closeButtonColors = WindowButtonColors(
+      mouseOver: const Color(0xFFD32F2F),
+      mouseDown: const Color(0xFFB71C1C),
+      iconNormal: Colors.white,
+      iconMouseOver: Colors.white,
+    );
+
+    return Scaffold(
+      body: WindowBorder(
+        color: const Color(0xFF1D1D1D),
+        width: 1,
+        child: Column(
+          children: [
+            DecoratedBox(
+              decoration: const BoxDecoration(color: Color(0xFF191919)),
+              child: WindowTitleBarBox(
+                child: Row(
+                  children: [
+                    Expanded(child: MoveWindow()),
+                    MinimizeWindowButton(colors: buttonColors),
+                    MaximizeWindowButton(
+                      colors: buttonColors,
+                      onPressed: appWindow.maximizeOrRestore,
+                    ),
+                    CloseWindowButton(colors: closeButtonColors),
+                  ],
+                ),
+              ),
             ),
-          ),
-          child
-        ],
+            Expanded(child: child),
+          ],
+        ),
       ),
     );
   }

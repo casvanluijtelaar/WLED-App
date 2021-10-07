@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:bloc/bloc.dart';
@@ -36,12 +37,14 @@ Future<void> main() async {
   });
 
   /// setup custom desktop frames
-  doWhenWindowReady(
-    () => appWindow
-      ..minSize = const Size(200, 200)
-      ..size = const Size(1280, 720)
-      ..alignment = Alignment.center
-      ..title = 'WLED'
-      ..show(),
-  );
+  if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+    doWhenWindowReady(
+      () => appWindow
+        ..minSize = const Size(400, 300)
+        ..size = const Size(1280, 720)
+        ..alignment = Alignment.center
+        ..title = 'WLED'
+        ..show(),
+    );
+  }
 }
