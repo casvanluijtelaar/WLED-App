@@ -3,6 +3,8 @@
     "deviceListAction": "Add a new device",
     "deviceListPowerOff": "off",
     "deviceListLoading": "automatic discovery not supported on windows, add it manually",
+    "deviceListRefresh": "Refresh",
+    "deviceListAdd": "Add device",
     "deviceListOptionsSave": "Save",
     "deviceListOptionsSaveDisc": "Remember this device",
     "deviceListOptionsEdit": "Edit",

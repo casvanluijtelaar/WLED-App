@@ -90,6 +90,26 @@ class Localization {
     );
   }
 
+  /// `Refresh`
+  String get deviceListRefresh {
+    return Intl.message(
+      'Refresh',
+      name: 'deviceListRefresh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add device`
+  String get deviceListAdd {
+    return Intl.message(
+      'Add device',
+      name: 'deviceListAdd',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Save`
   String get deviceListOptionsSave {
     return Intl.message(

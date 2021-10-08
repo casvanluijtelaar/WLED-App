@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Verwijder dit apparaat van geheugen"),
         "deviceListAction":
             MessageLookupByLibrary.simpleMessage("Voeg een nieuw apparaat toe"),
+        "deviceListAdd": MessageLookupByLibrary.simpleMessage("Nieuw Apparaat"),
         "deviceListLoading": MessageLookupByLibrary.simpleMessage(
             "Zoeken naar WLED apparaten op dit netwerk"),
         "deviceListOptionsDelete":
@@ -55,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "deviceListOptionsSaveDisc":
             MessageLookupByLibrary.simpleMessage("Herinner dit apparaat"),
         "deviceListPowerOff": MessageLookupByLibrary.simpleMessage("uit"),
+        "deviceListRefresh": MessageLookupByLibrary.simpleMessage("Herlaad"),
         "deviceListTitle": MessageLookupByLibrary.simpleMessage("Apparaten")
       };
 }

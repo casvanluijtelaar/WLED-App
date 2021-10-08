@@ -3,6 +3,8 @@
     "deviceListAction": "Voeg een nieuw apparaat toe",
     "deviceListPowerOff": "uit",
     "deviceListLoading": "Zoeken naar WLED apparaten op dit netwerk",
+    "deviceListRefresh": "Herlaad",
+    "deviceListAdd": "Nieuw Apparaat",
     "deviceListOptionsSave": "Opslaan",
     "deviceListOptionsSaveDisc": "Herinner dit apparaat",
     "deviceListOptionsEdit": "Bewerk",

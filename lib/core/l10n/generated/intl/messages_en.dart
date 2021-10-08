@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Remove this device from memory"),
         "deviceListAction":
             MessageLookupByLibrary.simpleMessage("Add a new device"),
+        "deviceListAdd": MessageLookupByLibrary.simpleMessage("Add device"),
         "deviceListLoading": MessageLookupByLibrary.simpleMessage(
             "automatic discovery not supported on windows, add it manually"),
         "deviceListOptionsDelete":
@@ -53,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "deviceListOptionsSaveDisc":
             MessageLookupByLibrary.simpleMessage("Remember this device"),
         "deviceListPowerOff": MessageLookupByLibrary.simpleMessage("off"),
+        "deviceListRefresh": MessageLookupByLibrary.simpleMessage("Refresh"),
         "deviceListTitle": MessageLookupByLibrary.simpleMessage("Devices")
       };
 }

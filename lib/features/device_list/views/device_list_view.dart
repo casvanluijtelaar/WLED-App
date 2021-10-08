@@ -39,22 +39,30 @@ class DeviceList extends StatelessWidget {
             title: Text(context.locale.deviceListTitle),
             backgroundColor: theme.scaffoldBackgroundColor,
             automaticallyImplyLeading: false,
-            actions: [
-              if (!context.isPhone)
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('Refresh'),
-                ),
-              TextButton(
-                onPressed: () {},
-                child: const Text('Add Device'),
-              ),
-              RoundIconButton(
-                onPressed: () => bloc.add(const Add()),
-                icon: FeatherIcons.plus,
-              ),
-            ],
+
+            /// on mobile, show a simple 'add' icon. on desktop show an add and
+            /// refresh text button
+            actions: !context.isPhone
+                ? [
+                    TextButton(
+                      onPressed: () => bloc.add(const Update()),
+                      child: Text(context.locale.deviceListRefresh),
+                    ),
+                    TextButton(
+                      onPressed: () => bloc.add(const Add()),
+                      child: Text(context.locale.deviceListAdd),
+                    ),
+                  ]
+                : [
+                    IconButton(
+                      onPressed: () => bloc.add(const Add()),
+                      icon: const Icon(FeatherIcons.plus),
+                    ),
+                  ],
           ),
+
+          /// show a loading widget during setup before displaying the wled
+          /// device list
           body: state is Found
               ? RefreshIndicator(
                   onRefresh: () async => bloc.add(const Update()),
