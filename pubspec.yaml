@@ -25,6 +25,7 @@ dependencies:
   http: ^0.13.3
   injectable: ^1.5.0
   json_annotation: ^4.1.0
+  msix: ^2.2.3
   multicast_dns: ^0.3.1
   rive: ^0.7.28
   rxdart: ^0.27.2
@@ -95,3 +96,4 @@ flutter_icons:
 # set flutter app name
 flutter_app_name:
   name: "WLED"
+

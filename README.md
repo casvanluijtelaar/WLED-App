@@ -9,4 +9,4 @@ This application is build from the ground up to natively support Android, IOS, W
 <img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/mobile.jpg?raw=true" alt="Example" width="300"/>
 <img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/webview.jpg?raw=true" alt="Example" width="300"/>
 <div/>
-<img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/dekstop.jpg?raw=true" alt="Example" width="600"/>
+<img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/desktop.png?raw=true" alt="Example" width="600"/>
