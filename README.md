@@ -6,7 +6,7 @@ This application is build from the ground up to natively support Android, IOS, W
 
 
 <div>
-<img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/Screenshot_20210918-134753.jpg?raw=true" alt="Example" width="200"/>
-<img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/Screenshot_20210918-134805.jpg?raw=true" alt="Example" width="200"/>
-<img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/Screenshot_20210920-105517.jpg?raw=true" alt="Example" width="200"/>
+<img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/mobile.jpg?raw=true" alt="Example" width="300"/>
+<img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/webview.jpg?raw=true" alt="Example" width="300"/>
 <div/>
+<img src="https://github.com/casvanluijtelaar/WLED-App/blob/master/images/dekstop.jpg?raw=true" alt="Example" width="600"/>
