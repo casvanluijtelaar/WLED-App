@@ -12,7 +12,7 @@ class DeviceAddRepository {
 
   /// save [WledDevice] to local database
   Future<void> saveDevice(WledDevice d) async {
-    final box = _hive.box<WledDevice>(Consts.devicesBox);
+    final box = _hive.box<WledDevice>(Kasset.devicesBox);
 
     final index = box.values.toList().indexWhere((e) => e.address == d.address);
     return index == -1 ? box.add(d) : box.putAt(index, d);

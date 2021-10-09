@@ -61,30 +61,52 @@ class DeviceList extends StatelessWidget {
                   ],
           ),
 
-          /// show a loading widget during setup before displaying the wled
-          /// device list
-          body: state is Found
-              ? RefreshIndicator(
-                  onRefresh: () async => bloc.add(const Update()),
-                  child: DeviceListGridview.extent(
-                    physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics(),
-                    ),
-                    mainAxisSpacing: Consts.paddingMedium,
-                    crossAxisSpacing: Consts.paddingMedium,
-                    padding: const EdgeInsets.all(Consts.paddingMedium),
-                    maxCrossAxisExtent: 600,
-                    childHeight: 108,
-                    children: state.devices
-                        .map((e) => DeviceListItem(device: e))
-                        .toList(),
-                  ),
-                )
-              : LoadingWidget(
-                  text: Platform.isWindows
-                      ? context.locale.deviceListLoading
-                      : null,
-                ),
+          /// alwas add the option for pull to refresh
+          body: RefreshIndicator(
+            onRefresh: () async => bloc.add(const Update()),
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              child: SizedBox(
+                width: double.maxFinite,
+                height: context.height - 56,
+                child: () {
+                  if (state is Empty) {
+                    /// if no items are found, show empty screen
+                    return const Center(
+                      child: Text('No devices found, add them manually'),
+                    );
+                  } else if (state is Found) {
+                    /// if devices are found, display them in a dynamic grid
+                    return RefreshIndicator(
+                      onRefresh: () async => bloc.add(const Update()),
+                      child: DeviceListGridview.extent(
+                        physics: const BouncingScrollPhysics(
+                          parent: AlwaysScrollableScrollPhysics(),
+                        ),
+                        mainAxisSpacing: Kpadding.medium,
+                        crossAxisSpacing: Kpadding.medium,
+                        padding: const EdgeInsets.all(Kpadding.medium),
+                        maxCrossAxisExtent: 600,
+                        childHeight: 108,
+                        children: state.devices
+                            .map((e) => DeviceListItem(device: e))
+                            .toList(),
+                      ),
+                    );
+                  } else {
+                    /// if it's still fetching data show a loading display
+                    return LoadingWidget(
+                      text: Platform.isWindows
+                          ? context.locale.deviceListLoading
+                          : null,
+                    );
+                  }
+                }(),
+              ),
+            ),
+          ),
         ),
       ),
     );

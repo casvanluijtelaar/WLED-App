@@ -45,17 +45,22 @@ class _DeviceListSliderState extends State<DeviceListSlider>
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: Consts.durationShort,
-    );
+    _controller = AnimationController(vsync: this, duration: Kduration.short);
 
-    _animation = IntTween(begin: 0, end: 255).animate(_controller)
-      ..addListener(() => setState(() {}));
+    _animation = IntTween(begin: 0, end: 255).animate(_controller);
+    _animation.addListener(() => setState(() {}));
 
     _controller.animateTo(widget.value);
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  /// when the item updates, the brightness might have changed, so animate to
+  /// to the new brightness position on rebuild
   @override
   void didUpdateWidget(DeviceListSlider oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -91,7 +96,8 @@ class _DeviceListSliderState extends State<DeviceListSlider>
         ),
       );
 
-  /// the 
+  /// the background of the slider, has a gradient that fades to invisible based
+  /// on the slider strength
   Widget _buildBar(BuildContext context, double pos) => ClipPath(
         clipper: BoxClipper(pos),
         clipBehavior: Clip.hardEdge,
@@ -114,6 +120,7 @@ class _DeviceListSliderState extends State<DeviceListSlider>
         ),
       );
 
+  /// the circular touchpoint for interacting with the slider
   Widget _buildThumb(BuildContext context, double pos) => Positioned(
         left: pos,
         child: SizedBox(

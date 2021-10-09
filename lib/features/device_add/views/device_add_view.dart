@@ -81,7 +81,7 @@ class _DeviceAddState extends State<DeviceAdd> {
         title: Text(context.locale.deviceAddTitle),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(Consts.paddingMedium),
+        padding: const EdgeInsets.all(Kpadding.medium),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
@@ -94,7 +94,7 @@ class _DeviceAddState extends State<DeviceAdd> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(context.locale.deviceAddIpTitle),
-                      Consts.spacerSmall,
+                      Kspacer.small,
                       TextFormField(
                         initialValue: state.ip.value,
                         focusNode: _ipFocusNode,
@@ -106,9 +106,9 @@ class _DeviceAddState extends State<DeviceAdd> {
                         onChanged: (value) => bloc.add(IpChanged(value)),
                         textInputAction: TextInputAction.next,
                       ),
-                      Consts.spacerLarge,
+                      Kspacer.large,
                       Text(context.locale.deviceAddNameTitle),
-                      Consts.spacerSmall,
+                      Kspacer.small,
                       TextFormField(
                         initialValue: state.name.value,
                         focusNode: _nameFocusNode,
@@ -122,7 +122,7 @@ class _DeviceAddState extends State<DeviceAdd> {
                         onChanged: (value) => bloc.add(NameChanged(value)),
                         textInputAction: TextInputAction.done,
                       ),
-                      Consts.spacerLarge,
+                      Kspacer.large,
 
                       /// only activate the submit button when the form
                       /// sucessfully validates.

@@ -6,8 +6,8 @@ import 'package:multicast_dns/multicast_dns.dart';
 /// class handling listening for multi_dns devices
 @injectable
 class MdnsDeviceDiscovery {
-  /// mDNS default address
-  static const _name = '_http._tcp';
+  /// mDNS default wled address
+  static const _name = '_wled._tcp';
 
   /// creates the MDnsClient
   final _client = MDnsClient(rawDatagramSocketFactory: _socketFactory);
@@ -25,15 +25,13 @@ class MdnsDeviceDiscovery {
     return RawDatagramSocket.bind(InternetAddress.anyIPv4, port, ttl: ttl!);
   }
 
-  /// start the MdnsDeviceDiscovery client
-  Future<void> start() => _client.start();
-
-  /// stop the MdnsDeviceDiscovery client
-  void stop() => _client.stop();
 
   /// receive an instance of the stream containing the service records for
   /// listening to.
   Stream<MDNSrecord> get stream async* {
+    _client.stop();
+    await _client.start();
+
     final ptrQuery = ResourceRecordQuery.serverPointer(_name);
     final ptrRecord = _client.lookup<PtrResourceRecord>(ptrQuery);
 

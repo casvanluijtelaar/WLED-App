@@ -22,13 +22,13 @@ class LoadingWidget extends StatelessWidget {
               width: 50,
               height: 50,
               child: RiveAnimation.asset(
-                Consts.assetLoading,
+                Kasset.loading,
                 antialiasing: false,
               ),
             ),
             if (text != null)
               Padding(
-                padding: const EdgeInsets.all(Consts.paddingSmall),
+                padding: const EdgeInsets.all(Kpadding.small),
                 child: Text(
                   text!,
                   style: theme.textTheme.bodyText1,

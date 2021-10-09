@@ -1764,6 +1764,10 @@ class _$DeviceListStateTearOff {
       devices,
     );
   }
+
+  Empty empty() {
+    return const Empty();
+  }
 }
 
 /// @nodoc
@@ -1775,18 +1779,21 @@ mixin _$DeviceListState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<WledDevice> devices) found,
+    required TResult Function() empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<WledDevice> devices)? found,
+    TResult Function()? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<WledDevice> devices)? found,
+    TResult Function()? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1794,18 +1801,21 @@ mixin _$DeviceListState {
   TResult map<TResult extends Object?>({
     required TResult Function(Loading value) loading,
     required TResult Function(Found value) found,
+    required TResult Function(Empty value) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Loading value)? loading,
     TResult Function(Found value)? found,
+    TResult Function(Empty value)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Loading value)? loading,
     TResult Function(Found value)? found,
+    TResult Function(Empty value)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1867,6 +1877,7 @@ class _$Loading implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<WledDevice> devices) found,
+    required TResult Function() empty,
   }) {
     return loading();
   }
@@ -1876,6 +1887,7 @@ class _$Loading implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<WledDevice> devices)? found,
+    TResult Function()? empty,
   }) {
     return loading?.call();
   }
@@ -1885,6 +1897,7 @@ class _$Loading implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<WledDevice> devices)? found,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1898,6 +1911,7 @@ class _$Loading implements Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(Loading value) loading,
     required TResult Function(Found value) found,
+    required TResult Function(Empty value) empty,
   }) {
     return loading(this);
   }
@@ -1907,6 +1921,7 @@ class _$Loading implements Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Loading value)? loading,
     TResult Function(Found value)? found,
+    TResult Function(Empty value)? empty,
   }) {
     return loading?.call(this);
   }
@@ -1916,6 +1931,7 @@ class _$Loading implements Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Loading value)? loading,
     TResult Function(Found value)? found,
+    TResult Function(Empty value)? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1993,6 +2009,7 @@ class _$Found implements Found {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<WledDevice> devices) found,
+    required TResult Function() empty,
   }) {
     return found(devices);
   }
@@ -2002,6 +2019,7 @@ class _$Found implements Found {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<WledDevice> devices)? found,
+    TResult Function()? empty,
   }) {
     return found?.call(devices);
   }
@@ -2011,6 +2029,7 @@ class _$Found implements Found {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<WledDevice> devices)? found,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (found != null) {
@@ -2024,6 +2043,7 @@ class _$Found implements Found {
   TResult map<TResult extends Object?>({
     required TResult Function(Loading value) loading,
     required TResult Function(Found value) found,
+    required TResult Function(Empty value) empty,
   }) {
     return found(this);
   }
@@ -2033,6 +2053,7 @@ class _$Found implements Found {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Loading value)? loading,
     TResult Function(Found value)? found,
+    TResult Function(Empty value)? empty,
   }) {
     return found?.call(this);
   }
@@ -2042,6 +2063,7 @@ class _$Found implements Found {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Loading value)? loading,
     TResult Function(Found value)? found,
+    TResult Function(Empty value)? empty,
     required TResult orElse(),
   }) {
     if (found != null) {
@@ -2057,4 +2079,111 @@ abstract class Found implements DeviceListState {
   List<WledDevice> get devices => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $FoundCopyWith<Found> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EmptyCopyWith<$Res> {
+  factory $EmptyCopyWith(Empty value, $Res Function(Empty) then) =
+      _$EmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EmptyCopyWithImpl<$Res> extends _$DeviceListStateCopyWithImpl<$Res>
+    implements $EmptyCopyWith<$Res> {
+  _$EmptyCopyWithImpl(Empty _value, $Res Function(Empty) _then)
+      : super(_value, (v) => _then(v as Empty));
+
+  @override
+  Empty get _value => super._value as Empty;
+}
+
+/// @nodoc
+
+class _$Empty implements Empty {
+  const _$Empty();
+
+  @override
+  String toString() {
+    return 'DeviceListState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<WledDevice> devices) found,
+    required TResult Function() empty,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<WledDevice> devices)? found,
+    TResult Function()? empty,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<WledDevice> devices)? found,
+    TResult Function()? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Loading value) loading,
+    required TResult Function(Found value) found,
+    required TResult Function(Empty value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Loading value)? loading,
+    TResult Function(Found value)? found,
+    TResult Function(Empty value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Loading value)? loading,
+    TResult Function(Found value)? found,
+    TResult Function(Empty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Empty implements DeviceListState {
+  const factory Empty() = _$Empty;
 }

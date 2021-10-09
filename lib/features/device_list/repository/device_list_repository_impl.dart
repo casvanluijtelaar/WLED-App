@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:injectable/injectable.dart';
 import 'package:wled/core/core.dart';
 
-import '../data/src/local_device_discovery.dart';
-import '../data/src/mdns_device_discovery.dart';
+import '../data/local_device_discovery.dart';
+import '../data/mdns_device_discovery.dart';
 import 'device_list_repository.dart';
 
 @Injectable(as: DeviceListRepository)
@@ -29,11 +29,6 @@ class DeviceListRepositoryImpl implements DeviceListRepository {
     yield await Future.wait(futures);
     // mdns lookup currently doesn't work on Windows, so end the stream here
     if (Platform.isWindows) return;
-    // it's possible that a mdns lookup is already running from a previous
-    // fetch, so try to stop it first
-    _remote.stop();
-    // initialize a new Mdns lookup
-    await _remote.start();
     // map the incomming mdns devices to Wled devices
     final remoteDevices = _remote.stream.asyncMap((mdns) async {
       // create a new WledDevice from mdns lookup

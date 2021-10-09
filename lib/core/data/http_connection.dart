@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 
@@ -17,14 +15,13 @@ class HttpConnection {
     if (data.isNotEmpty) uri += '&$data';
 
     try {
-      const timeoutDelay = Duration(seconds: 2);
+      const timeoutDelay = Duration(seconds: 4);
       final result = await http.get(Uri.parse(uri)).timeout(timeoutDelay);
 
       if (result.statusCode != 200) throw HttpStatusException();
 
       return result.body;
-    } catch (e, s) {
-      log(e.toString(), stackTrace: s);
+    } catch (e) {
       throw HttpConnectionException();
     }
   }

@@ -64,7 +64,7 @@ class _DeviceListSwitchState extends State<DeviceListSwitch> {
             ),
           ),
           AnimatedPositioned(
-            duration: Consts.durationShort,
+            duration: Kduration.short,
             left: _value ? _kTrackWidth - _kSwitchSize : 0,
             child: const DecoratedBox(
               decoration: BoxDecoration(

@@ -28,7 +28,7 @@ Future<void> main() async {
     ..registerAdapter(WledDeviceAdapter());
 
   // open devices box for acces in the application
-  await hive.openBox<WledDevice>(Consts.devicesBox,
+  await hive.openBox<WledDevice>(Kasset.devicesBox,
       compactionStrategy: (_, d) => d > 5);
 
   /// run main application

@@ -145,7 +145,7 @@ abstract class AppTheme {
       modalBackgroundColor: _backgroundColor,
     ),
     inputDecorationTheme: const InputDecorationTheme(
-      contentPadding: EdgeInsets.all(Consts.paddingSmall),
+      contentPadding: EdgeInsets.all(Kpadding.small),
       alignLabelWithHint: true,
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(10)),

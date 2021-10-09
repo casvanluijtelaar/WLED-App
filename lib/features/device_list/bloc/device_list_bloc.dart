@@ -54,7 +54,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
 
   /// when a new device is decovered add it to the state
   void _onDiscovered(Discovered event, Emitter<DeviceListState> emit) {
-    if (event.devices.isEmpty) return;
+    if (event.devices.isEmpty) return emit(const Empty());
     // if there are no devices yet simply add this first found one
     if (state is Loading) return emit(Found(event.devices));
     // get the currently dicovered device list
@@ -78,6 +78,8 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
 
   /// navigate to the DeviceControls route
   Future<void> _onDevicePressed(DevicePressed event, Emitter emit) async {
+    if (event.device.status != DeviceStatus.functional) return;
+
     if (Platform.isAndroid || Platform.isIOS) {
       await _router.push(DeviceControlRoute(
         deviceName: event.device.name,
@@ -128,7 +130,11 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     final device = await _router.push<WledDevice>(DeviceAddRoute(
       editableDevice: event.device,
     ));
+    
     if (device == event.device) return;
+
+    final items = await _update(device!);
+    emit(Found(items));
   }
 
   /// delete the wled device from the local device and update it's state

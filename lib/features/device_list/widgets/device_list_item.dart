@@ -107,7 +107,7 @@ class DeviceListItem extends StatelessWidget {
                     /// show an option menu on device where a long press is
                     /// not the best interaction method
                     if (!context.isPhone) ...[
-                      const SizedBox(width: Consts.paddingMedium),
+                      const SizedBox(width: Kpadding.medium),
                       RoundIconButton(
                         icon: FeatherIcons.moreVertical,
                         onPressed: menu,

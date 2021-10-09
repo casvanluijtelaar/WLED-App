@@ -13,8 +13,8 @@ import '../../features/device_add/repository/device_add_repository.dart'
     as _i11;
 import '../../features/device_control/bloc/device_control_bloc.dart' as _i4;
 import '../../features/device_list/bloc/device_list_bloc.dart' as _i17;
-import '../../features/device_list/data/src/local_device_discovery.dart' as _i8;
-import '../../features/device_list/data/src/mdns_device_discovery.dart' as _i9;
+import '../../features/device_list/data/local_device_discovery.dart' as _i8;
+import '../../features/device_list/data/mdns_device_discovery.dart' as _i9;
 import '../../features/device_list/repository/device_list_repository.dart'
     as _i12;
 import '../../features/device_list/repository/device_list_repository_impl.dart'
