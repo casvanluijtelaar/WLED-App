@@ -18,7 +18,6 @@ enum DeviceStatus {
 }
 
 @freezed
-@immutable
 class WledDevice with _$WledDevice {
   @ColorConverter()
   @HiveType(typeId: 1)
