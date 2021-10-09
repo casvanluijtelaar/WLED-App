@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:convert' show utf8;
 
 import 'package:flutter/rendering.dart';
 import 'package:injectable/injectable.dart';
@@ -41,7 +42,7 @@ class XmlParser {
         brightness: brightness,
         isOn: brightness > 0,
         color: color,
-        name: name,
+        name: utf8.decode(name.runes.toList()),
       );
     } catch (e, s) {
       log(e.toString(), stackTrace: s);
