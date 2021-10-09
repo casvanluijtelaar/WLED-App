@@ -38,13 +38,15 @@ class DeviceListItem extends StatelessWidget {
     final isEnabled =
         device.isEnabled && device.status == DeviceStatus.functional;
 
+    final color = device.color.clamp(0.15, 0.85);
+
     /// for functional, enabled devices show a nice gradient based on the
     /// active color, otherwise show the default background card color
     final colors = isEnabled
-        ? [device.color.lighten(), device.color, device.color.darken()]
+        ? [color.lighten(), color, color.darken()]
         : [theme.cardColor, theme.cardColor];
 
-    final textColor = device.color.computeLuminance() < 0.6 || !isEnabled
+    final textColor = color.computeLuminance() < 0.6 || !isEnabled
         ? const Color(0xFFFFFFFF)
         : const Color(0xFF555555);
 
@@ -100,6 +102,7 @@ class DeviceListItem extends StatelessWidget {
                     /// be used
                     if (device.status == DeviceStatus.functional)
                       DeviceListSwitch(
+  
                         value: isEnabled,
                         onChanged: (_) => bloc.add(DevicePower(device)),
                       ),
@@ -122,7 +125,7 @@ class DeviceListItem extends StatelessWidget {
               /// so dont shot the slider if the device isn't reachable
               if (device.status == DeviceStatus.functional)
                 DeviceListSlider(
-                  color: device.color,
+                  color: color,
                   value: device.brightness.toDouble().clamp(0, 255),
                   enabled: isEnabled,
                   onChanged: (value) => bloc.add(DeviceSlider(device, value)),
