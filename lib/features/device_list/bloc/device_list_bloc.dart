@@ -131,9 +131,9 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
       editableDevice: event.device,
     ));
     
-    if (device == event.device) return;
+    if (device == event.device || device == null) return;
 
-    final items = await _update(device!);
+    final items = await _update(device);
     emit(Found(items));
   }
 

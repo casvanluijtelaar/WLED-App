@@ -161,10 +161,20 @@ class Localization {
   }
 
   /// `Remove this device from memory`
-  String get deviceLidtOptionsDeleteDisc {
+  String get deviceListOptionsDeleteDisc {
     return Intl.message(
       'Remove this device from memory',
-      name: 'deviceLidtOptionsDeleteDisc',
+      name: 'deviceListOptionsDeleteDisc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No devices found, add them manually`
+  String get deviceListEmpty {
+    return Intl.message(
+      'No devices found, add them manually',
+      name: 'deviceListEmpty',
       desc: '',
       args: [],
     );
@@ -260,10 +270,10 @@ class Localization {
     );
   }
 
-  /// `Add device`
+  /// `Save`
   String get deviceAddSubmit {
     return Intl.message(
-      'Add device',
+      'Save',
       name: 'deviceAddSubmit',
       desc: '',
       args: [],

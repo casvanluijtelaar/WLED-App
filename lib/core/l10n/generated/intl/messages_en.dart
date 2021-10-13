@@ -35,18 +35,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "deviceAddNameHint": MessageLookupByLibrary.simpleMessage("Bedroom"),
         "deviceAddNameTitle":
             MessageLookupByLibrary.simpleMessage("Custom name*"),
-        "deviceAddSubmit": MessageLookupByLibrary.simpleMessage("Add device"),
+        "deviceAddSubmit": MessageLookupByLibrary.simpleMessage("Save"),
         "deviceAddTitle":
             MessageLookupByLibrary.simpleMessage("Add new device"),
-        "deviceLidtOptionsDeleteDisc": MessageLookupByLibrary.simpleMessage(
-            "Remove this device from memory"),
         "deviceListAction":
             MessageLookupByLibrary.simpleMessage("Add a new device"),
         "deviceListAdd": MessageLookupByLibrary.simpleMessage("Add device"),
+        "deviceListEmpty": MessageLookupByLibrary.simpleMessage(
+            "No devices found, add them manually"),
         "deviceListLoading": MessageLookupByLibrary.simpleMessage(
             "automatic discovery not supported on windows, add it manually"),
         "deviceListOptionsDelete":
             MessageLookupByLibrary.simpleMessage("Delete"),
+        "deviceListOptionsDeleteDisc": MessageLookupByLibrary.simpleMessage(
+            "Remove this device from memory"),
         "deviceListOptionsEdit": MessageLookupByLibrary.simpleMessage("Edit"),
         "deviceListOptionsEditDisc":
             MessageLookupByLibrary.simpleMessage("Change device settings"),

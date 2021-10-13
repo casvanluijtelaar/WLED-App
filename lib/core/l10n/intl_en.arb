@@ -10,7 +10,8 @@
     "deviceListOptionsEdit": "Edit",
     "deviceListOptionsEditDisc": "Change device settings",
     "deviceListOptionsDelete": "Delete",
-    "deviceLidtOptionsDeleteDisc": "Remove this device from memory",
+    "deviceListOptionsDeleteDisc": "Remove this device from memory",
+    "deviceListEmpty": "No devices found, add them manually",
 
     "deviceAddTitle": "Add new device",
     "deviceAddIpTitle": "Ip address",
@@ -21,5 +22,5 @@
     "deviceAddNameHint": "Bedroom",
     "deviceAddNameErrorToLong": "Name is to long. Max 40 characters",
     "deviceAddNameHelper": "Optional. This name will overwrite the WLED device name",
-    "deviceAddSubmit": "Add device"
+    "deviceAddSubmit": "Save"
 }

@@ -46,7 +46,7 @@ class DeviceListOptions extends StatelessWidget {
           ListTile(
             leading: const Icon(FeatherIcons.delete),
             title:  Text(locale.deviceListOptionsDelete),
-            subtitle:  Text(locale.deviceLidtOptionsDeleteDisc),
+            subtitle:  Text(locale.deviceListOptionsDeleteDisc),
             onTap: () {
               Navigator.pop(context);
               onDelete?.call();

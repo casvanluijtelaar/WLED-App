@@ -10,7 +10,8 @@
     "deviceListOptionsEdit": "Bewerk",
     "deviceListOptionsEditDisc": "Verander apparaat instellingen",
     "deviceListOptionsDelete": "Verwijderen",
-    "deviceLidtOptionsDeleteDisc": "Verwijder dit apparaat van geheugen",
+    "deviceListOptionsDeleteDisc": "Verwijder dit apparaat van geheugen",
+    "deviceListEmpty": "Geen apparaten gevonden, voeg ze manueel toe",
 
     "deviceAddTitle": "Voeg nieuw apparaat toe",
     "deviceAddIpTitle": "Ip adres",
@@ -21,5 +22,5 @@
     "deviceAddNameHint": "Woonkamer",
     "deviceAddNameErrorToLong": "Naam is te lang. Max 40 karakters",
     "deviceAddNameHelper": "Optioneel. Deze naam overschrijft het WLED apparaat's naam",
-    "deviceAddSubmit": "Apparaat toevoegen"
+    "deviceAddSubmit": "Opslaan"
 }

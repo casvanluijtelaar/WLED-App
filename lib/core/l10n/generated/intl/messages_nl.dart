@@ -35,19 +35,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "deviceAddNameHint": MessageLookupByLibrary.simpleMessage("Woonkamer"),
         "deviceAddNameTitle":
             MessageLookupByLibrary.simpleMessage("Aangepaste naam*"),
-        "deviceAddSubmit":
-            MessageLookupByLibrary.simpleMessage("Apparaat toevoegen"),
+        "deviceAddSubmit": MessageLookupByLibrary.simpleMessage("Opslaan"),
         "deviceAddTitle":
             MessageLookupByLibrary.simpleMessage("Voeg nieuw apparaat toe"),
-        "deviceLidtOptionsDeleteDisc": MessageLookupByLibrary.simpleMessage(
-            "Verwijder dit apparaat van geheugen"),
         "deviceListAction":
             MessageLookupByLibrary.simpleMessage("Voeg een nieuw apparaat toe"),
         "deviceListAdd": MessageLookupByLibrary.simpleMessage("Nieuw Apparaat"),
+        "deviceListEmpty": MessageLookupByLibrary.simpleMessage(
+            "Geen apparaten gevonden, voeg ze manueel toe"),
         "deviceListLoading": MessageLookupByLibrary.simpleMessage(
             "Zoeken naar WLED apparaten op dit netwerk"),
         "deviceListOptionsDelete":
             MessageLookupByLibrary.simpleMessage("Verwijderen"),
+        "deviceListOptionsDeleteDisc": MessageLookupByLibrary.simpleMessage(
+            "Verwijder dit apparaat van geheugen"),
         "deviceListOptionsEdit": MessageLookupByLibrary.simpleMessage("Bewerk"),
         "deviceListOptionsEditDisc": MessageLookupByLibrary.simpleMessage(
             "Verander apparaat instellingen"),
