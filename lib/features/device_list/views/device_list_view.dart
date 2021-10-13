@@ -31,81 +31,79 @@ class DeviceList extends StatelessWidget {
     final bloc = context.read<DeviceListBloc>();
     final theme = context.theme;
 
-    return Scaffold(
-      body: BlocBuilder<DeviceListBloc, DeviceListState>(
-        builder: (context, state) => Scaffold(
-          appBar: AppBar(
-            centerTitle: false,
-            title: Text(context.locale.deviceListTitle),
-            backgroundColor: theme.scaffoldBackgroundColor,
-            automaticallyImplyLeading: false,
+    return BlocBuilder<DeviceListBloc, DeviceListState>(
+      builder: (context, state) => Scaffold(
+        appBar: AppBar(
+          centerTitle: false,
+          title: Text(context.locale.deviceListTitle),
+          backgroundColor: theme.scaffoldBackgroundColor,
+          automaticallyImplyLeading: false,
 
-            /// on mobile, show a simple 'add' icon. on desktop show an add and
-            /// refresh text button
-            actions: !context.isPhone
-                ? [
-                    TextButton(
-                      onPressed: () => bloc.add(const Update()),
-                      child: Text(context.locale.deviceListRefresh),
-                    ),
-                    TextButton(
-                      onPressed: () => bloc.add(const Add()),
-                      child: Text(context.locale.deviceListAdd),
-                    ),
-                  ]
-                : [
-                    IconButton(
-                      onPressed: () => bloc.add(const Add()),
-                      icon: const Icon(FeatherIcons.plus),
-                    ),
-                  ],
-          ),
-          body: () {
-            /// if devices are found, display them in a dynamic grid
-            if (state is Found) {
-              return RefreshIndicator(
-                onRefresh: () async => bloc.add(const Update()),
-                child: DeviceListGridview.extent(
-                  physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics(),
+          /// on mobile, show a simple 'add' icon. on desktop show an add and
+          /// refresh text button
+          actions: !context.isPhone
+              ? [
+                  TextButton(
+                    onPressed: () => bloc.add(const Update()),
+                    child: Text(context.locale.deviceListRefresh),
                   ),
-                  mainAxisSpacing: Kpadding.medium,
-                  crossAxisSpacing: Kpadding.medium,
-                  padding: const EdgeInsets.all(Kpadding.medium),
-                  maxCrossAxisExtent: 600,
-                  childHeight: 108,
-                  children: state.devices
-                      .map((e) => DeviceListItem(device: e))
-                      .toList(),
-                ),
-              );
-            }
-
-            /// if there are no items, we still want the ability to pull-down-
-            /// to-refresh so we need to wrap the widgets in a scrollview
+                  TextButton(
+                    onPressed: () => bloc.add(const Add()),
+                    child: Text(context.locale.deviceListAdd),
+                  ),
+                ]
+              : [
+                  IconButton(
+                    onPressed: () => bloc.add(const Add()),
+                    icon: const Icon(FeatherIcons.plus),
+                  ),
+                ],
+        ),
+        body: () {
+          /// if devices are found, display them in a dynamic grid
+          if (state is Found) {
             return RefreshIndicator(
               onRefresh: () async => bloc.add(const Update()),
-              child: SingleChildScrollView(
+              child: DeviceListGridview.extent(
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
-                child: SizedBox(
-                  width: double.maxFinite,
-                  height: context.height - 56,
-                  child: state is Empty
-                      ? const Center(
-                          child: Text('No devices found, add them manually'),
-                        )
-                      : LoadingWidget(
-                          text: Platform.isWindows
-                              ? context.locale.deviceListLoading
-                              : null,
-                        ),
-                ),
+                mainAxisSpacing: Kpadding.medium,
+                crossAxisSpacing: Kpadding.medium,
+                padding: const EdgeInsets.all(Kpadding.medium),
+                maxCrossAxisExtent: 600,
+                childHeight: 108,
+                children: state.devices
+                    .map((e) => DeviceListItem(device: e))
+                    .toList(),
               ),
             );
-          }(),
-        ),
+          }
+
+          /// if there are no items, we still want the ability to pull-down-
+          /// to-refresh so we need to wrap the widgets in a scrollview
+          return RefreshIndicator(
+            onRefresh: () async => bloc.add(const Update()),
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              child: SizedBox(
+                width: double.maxFinite,
+                height: context.height - 56,
+                child: state is Empty
+                    ? const Center(
+                        child: Text('No devices found, add them manually'),
+                      )
+                    : LoadingWidget(
+                        text: Platform.isWindows
+                            ? context.locale.deviceListLoading
+                            : null,
+                      ),
+              ),
+            ),
+          );
+        }(),
       ),
     );
   }
