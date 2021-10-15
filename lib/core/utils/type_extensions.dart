@@ -1,5 +1,39 @@
 import 'package:flutter/painting.dart';
 
+import '../core.dart';
+
+/// custom extensions specifically for working with [WledDevice] lists
+extension WledListExtension on List<WledDevice> {
+  /// contains operation only comparing the WledDevice.address properties
+  bool containsWithAddress(WledDevice device) {
+    for (final e in this) {
+      if (e.address == device.address) return true;
+    }
+    return false;
+  }
+
+  /// compares device against list, if it exists replace it, otherwise add it
+  void addOrReplace(WledDevice d) {
+    final index = indexWhere((i) => i.address == d.address);
+    index == -1 ? add(d) : this[index] = d;
+  }
+}
+
+
+extension NumExtension<T extends num> on num {
+  /// maps a number from an old range to a new range
+  double map(T oldStart, T oldEnd, T newStart, T newEnd) {
+    final slope = (newEnd - newStart) / (oldEnd - oldStart);
+    return newStart + slope * (this - oldStart);
+  }
+}
+
+
+extension StringExtension on String {
+  bool parseBool() => toLowerCase() == 'true';
+}
+
+
 extension ColorExtension on Color {
   /// darkens the color by an [amount] where 1.0 is min brightness and 0.0 is
   /// no changes

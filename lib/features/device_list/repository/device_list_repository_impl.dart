@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wled/core/core.dart';
 
@@ -21,15 +22,26 @@ class DeviceListRepositoryImpl implements DeviceListRepository {
 
   @override
   Stream<List<WledDevice>> getWledDevices() async* {
+    yield await getLocalWledDevices();
+    // mdns lookup currently doesn't work on Windows, so end the stream here
+    if (Platform.isWindows) return;
+    yield* getRemoteWledDevices();
+  }
+
+  /// retrieve locally saved WledDevices and return an updated version of each
+  @visibleForTesting
+  Future<List<WledDevice>> getLocalWledDevices() {
     // first fetch the locally saved devices
     final localDevices = _local.getWledDevice();
     // update devices by fetching new data
     final futures = localDevices.map(_update.updateWledDevice);
     // yield the local devices first
-    yield await Future.wait(futures);
-    // mdns lookup currently doesn't work on Windows, so end the stream here
-    if (Platform.isWindows) return;
-    // map the incomming mdns devices to Wled devices
+    return Future.wait(futures);
+  }
+
+  /// retrieve a stream of potential WledDevices on this network
+  @visibleForTesting
+  Stream<List<WledDevice>> getRemoteWledDevices() {
     final remoteDevices = _remote.stream.asyncMap((mdns) async {
       // create a new WledDevice from mdns lookup
       final address = mdns.ip.address.address;
@@ -40,7 +52,7 @@ class DeviceListRepositoryImpl implements DeviceListRepository {
       // succesfully
     }).where((i) => i.status != DeviceStatus.unreachable);
 
-    yield* remoteDevices.map((i) => [i]);
+    return remoteDevices.map((i) => [i]);
   }
 
   @override
