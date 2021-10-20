@@ -40,7 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add new device"),
         "deviceListAction":
             MessageLookupByLibrary.simpleMessage("Add a new device"),
-        "deviceListAdd": MessageLookupByLibrary.simpleMessage("Add device"),
         "deviceListEmpty": MessageLookupByLibrary.simpleMessage(
             "No devices found, add them manually"),
         "deviceListLoading": MessageLookupByLibrary.simpleMessage(
@@ -56,7 +55,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "deviceListOptionsSaveDisc":
             MessageLookupByLibrary.simpleMessage("Remember this device"),
         "deviceListPowerOff": MessageLookupByLibrary.simpleMessage("off"),
-        "deviceListRefresh": MessageLookupByLibrary.simpleMessage("Refresh"),
         "deviceListTitle": MessageLookupByLibrary.simpleMessage("Devices")
       };
 }

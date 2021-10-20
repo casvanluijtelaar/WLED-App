@@ -17,8 +17,9 @@ extension WledListExtension on List<WledDevice> {
     final index = indexWhere((i) => i.address == d.address);
     index == -1 ? add(d) : this[index] = d;
   }
-}
 
+  bool get anyOn => any((e) => e.isEnabled);
+}
 
 extension NumExtension<T extends num> on num {
   /// maps a number from an old range to a new range
@@ -28,11 +29,9 @@ extension NumExtension<T extends num> on num {
   }
 }
 
-
 extension StringExtension on String {
   bool parseBool() => toLowerCase() == 'true';
 }
-
 
 extension ColorExtension on Color {
   /// darkens the color by an [amount] where 1.0 is min brightness and 0.0 is

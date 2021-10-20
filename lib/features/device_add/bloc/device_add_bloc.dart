@@ -5,9 +5,9 @@ import 'package:injectable/injectable.dart';
 
 import 'package:wled/core/core.dart';
 
-import '../repository/device_add_repository.dart';
-import '../repository/models/ip.dart';
-import '../repository/models/name.dart';
+import '../domain/device_add_repository.dart';
+import '../domain/models/ip.dart';
+import '../domain/models/name.dart';
 
 part 'device_add_bloc.freezed.dart';
 part 'device_add_event.dart';

@@ -28,7 +28,6 @@ dependencies:
   multicast_dns: ^0.3.1
   rive: ^0.7.28
   rxdart: ^0.27.2
-  tutorial_coach_mark: ^1.1.1
   url_launcher: ^6.0.12
   webview_flutter: ^2.0.14
   xml: ^5.1.0

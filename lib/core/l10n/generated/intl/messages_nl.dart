@@ -40,7 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Voeg nieuw apparaat toe"),
         "deviceListAction":
             MessageLookupByLibrary.simpleMessage("Voeg een nieuw apparaat toe"),
-        "deviceListAdd": MessageLookupByLibrary.simpleMessage("Nieuw Apparaat"),
         "deviceListEmpty": MessageLookupByLibrary.simpleMessage(
             "Geen apparaten gevonden, voeg ze manueel toe"),
         "deviceListLoading": MessageLookupByLibrary.simpleMessage(
@@ -57,7 +56,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "deviceListOptionsSaveDisc":
             MessageLookupByLibrary.simpleMessage("Herinner dit apparaat"),
         "deviceListPowerOff": MessageLookupByLibrary.simpleMessage("uit"),
-        "deviceListRefresh": MessageLookupByLibrary.simpleMessage("Herlaad"),
         "deviceListTitle": MessageLookupByLibrary.simpleMessage("Apparaten")
       };
 }

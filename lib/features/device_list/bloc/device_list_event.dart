@@ -22,4 +22,6 @@ class DeviceListEvent with _$DeviceListEvent {
   const factory DeviceListEvent.deviceEdit(WledDevice device) = DeviceEdit;
 
   const factory DeviceListEvent.deviceDelete(WledDevice device) = DeviceDelete;
+
+  const factory DeviceListEvent.deviceGlobalPower( ) = DeviceGlobalPower;
 }

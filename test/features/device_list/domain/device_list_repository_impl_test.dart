@@ -5,7 +5,7 @@ import 'package:wled/core/core.dart';
 import 'package:wled/core/repository/device_update_repository.dart';
 import 'package:wled/features/device_list/data/local_device_discovery.dart';
 import 'package:wled/features/device_list/data/mdns_device_discovery.dart';
-import 'package:wled/features/device_list/repository/device_list_repository_impl.dart';
+import 'package:wled/features/device_list/domain/device_list_repository_impl.dart';
 
 import '../device_list_test_utils.dart';
 

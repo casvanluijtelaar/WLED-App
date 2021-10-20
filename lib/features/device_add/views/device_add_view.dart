@@ -4,8 +4,8 @@ import 'package:formz/formz.dart';
 import 'package:wled/core/core.dart';
 
 import '../bloc/device_add_bloc.dart';
-import '../repository/models/ip.dart';
-import '../repository/models/name.dart';
+import '../domain/models/ip.dart';
+import '../domain/models/name.dart';
 
 class DeviceAddView extends StatelessWidget {
   const DeviceAddView({Key? key, this.editableDevice}) : super(key: key);

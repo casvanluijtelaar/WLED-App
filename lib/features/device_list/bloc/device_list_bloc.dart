@@ -6,9 +6,9 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'package:wled/core/core.dart';
-import '../repository/device_list_repository.dart';
+
+import '../domain/device_list_repository.dart';
 
 part 'device_list_bloc.freezed.dart';
 part 'device_list_event.dart';
@@ -30,6 +30,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     on<DeviceSave>(_onDeviceSave);
     on<DeviceEdit>(_onDeviceEdit);
     on<DeviceDelete>(_onDeviceDelete);
+    on<DeviceGlobalPower>(_onGlobal, transformer: BlocTransformers.debounce);
   }
 
   final DeviceListRepository _listRepository;
@@ -101,20 +102,26 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     emit(Found(items));
   }
 
+  /// switches the power state on all devices.
+  Future<void> _onGlobal(DeviceGlobalPower event, Emitter emit) async {
+    if (state is! Found) return;
+
+    final devices = (state as Found).devices;
+    final command = 'T=${devices.anyOn ? 0 : 1}';
+
+    final futures = devices.map((device) {
+      return _updateRepository.updateWledDevice(device, command);
+    });
+
+    final updated = await Future.wait(futures);
+    emit(Found(updated));
+  }
+
   /// sends an update to the device with the specified brightness value and
   /// updates the devices list
   Future<void> _onDeviceSlider(DeviceSlider event, Emitter emit) async {
     final items = await _update(event.device, 'A=${event.value}');
     emit(Found(items));
-  }
-
-  /// updates a wled device and updates the same device in the current state
-  Future<List<WledDevice>> _update(WledDevice device, [String? data]) async {
-    final update = await _updateRepository.updateWledDevice(device, data);
-    // replace the device with it's updated version
-    if (state is Loading) return [device];
-    return List<WledDevice>.from((state as Found).devices)
-      ..addOrReplace(update);
   }
 
   /// save the wled device to the local device and reload the device
@@ -130,7 +137,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     final device = await _router.push<WledDevice>(DeviceAddRoute(
       editableDevice: event.device,
     ));
-    
+
     if (device == event.device || device == null) return;
 
     final items = await _update(device);
@@ -142,6 +149,15 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     _listRepository.deleteLocal(event.device);
     final items = await _update(event.device.copyWith(isSaved: false));
     emit(Found(items));
+  }
+
+  /// updates a wled device and updates the same device in the current state
+  Future<List<WledDevice>> _update(WledDevice device, [String? data]) async {
+    final update = await _updateRepository.updateWledDevice(device, data);
+    // replace the device with it's updated version
+    if (state is Loading) return [device];
+    return List<WledDevice>.from((state as Found).devices)
+      ..addOrReplace(update);
   }
 
   /// close the device discovery stream when the bloc is unloaded

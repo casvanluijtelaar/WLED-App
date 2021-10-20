@@ -6,10 +6,12 @@ class DeviceListSwitch extends StatefulWidget {
     Key? key,
     required this.value,
     this.onChanged,
+    this.height = 30,
   }) : super(key: key);
 
   final bool value;
   final ValueChanged<bool>? onChanged;
+  final double height;
 
   @override
   _DeviceListSwitchState createState() => _DeviceListSwitchState();
@@ -17,11 +19,7 @@ class DeviceListSwitch extends StatefulWidget {
 
 class _DeviceListSwitchState extends State<DeviceListSwitch> {
   static const double _kTrackWidth = 50;
-  static const double _kTrackHeight = 30;
-  static const double _kTrackRadius = _kTrackHeight / 2.0;
   static const Color _kTrackColor = Color.fromRGBO(0, 0, 0, 0.1544);
-
-  static const double _kSwitchSize = 30;
   static const Color _kSwitchColor = Color.fromRGBO(255, 255, 255, 1);
   static const BoxShadow _kSwitchShadow = BoxShadow(
     blurRadius: 3,
@@ -53,29 +51,27 @@ class _DeviceListSwitchState extends State<DeviceListSwitch> {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          const SizedBox(
-            height: _kTrackHeight,
+          SizedBox(
+            height: widget.height,
             width: _kTrackWidth,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: _kTrackColor,
-                borderRadius: BorderRadius.all(Radius.circular(_kTrackRadius)),
+                borderRadius: BorderRadius.all(Radius.circular(widget.height)),
               ),
             ),
           ),
           AnimatedPositioned(
             duration: Kduration.short,
-            left: _value ? _kTrackWidth - _kSwitchSize : 0,
-            child: const DecoratedBox(
+            left: _value ? _kTrackWidth - widget.height : 0,
+            child: DecoratedBox(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(_kTrackRadius),
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(widget.height)),
                 color: _kSwitchColor,
-                boxShadow: [_kSwitchShadow],
+                boxShadow: const [_kSwitchShadow],
               ),
               child: SizedBox.square(
-                dimension: _kSwitchSize,
+                dimension: widget.height,
               ),
             ),
           ),
