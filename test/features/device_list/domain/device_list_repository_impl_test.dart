@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:wled/core/core.dart';
-import 'package:wled/core/repository/device_update_repository.dart';
+import 'package:wled/core/domain/device_update_repository.dart';
 import 'package:wled/features/device_list/data/local_device_discovery.dart';
 import 'package:wled/features/device_list/data/mdns_device_discovery.dart';
 import 'package:wled/features/device_list/domain/device_list_repository_impl.dart';

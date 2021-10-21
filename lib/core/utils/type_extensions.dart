@@ -12,12 +12,20 @@ extension WledListExtension on List<WledDevice> {
     return false;
   }
 
+  /// only add device to list if a device with the same ip isn't 
+  /// allready in the list
+  void addIfNotCointains(WledDevice d) {
+    final index = indexWhere((i) => i.address == d.address);
+    if (index == -1) add(d);
+  }
+
   /// compares device against list, if it exists replace it, otherwise add it
   void addOrReplace(WledDevice d) {
     final index = indexWhere((i) => i.address == d.address);
     index == -1 ? add(d) : this[index] = d;
   }
 
+  /// check if any of the device in the list are currently enabled
   bool get anyOn => any((e) => e.isEnabled);
 }
 

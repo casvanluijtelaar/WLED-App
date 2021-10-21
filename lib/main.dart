@@ -38,13 +38,11 @@ Future<void> main() async {
 
   /// setup custom desktop frames
   if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-    doWhenWindowReady(
-      () => appWindow
-        ..minSize = const Size(400, 300)
-        ..size = const Size(1280, 720)
-        ..alignment = Alignment.center
-        ..title = 'WLED'
-        ..show(),
-    );
+    doWhenWindowReady(() => appWindow
+      ..minSize = const Size(400, 300)
+      ..size = const Size(1280, 720)
+      ..alignment = Alignment.center
+      ..title = 'WLED'
+      ..show());
   }
 }

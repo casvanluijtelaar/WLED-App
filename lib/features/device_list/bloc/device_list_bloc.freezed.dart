@@ -71,6 +71,10 @@ class _$DeviceListEventTearOff {
   DeviceGlobalPower deviceGlobalPower() {
     return const DeviceGlobalPower();
   }
+
+  Periodic periodicUpdate() {
+    return const Periodic();
+  }
 }
 
 /// @nodoc
@@ -90,6 +94,7 @@ mixin _$DeviceListEvent {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,6 +109,7 @@ mixin _$DeviceListEvent {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -118,6 +124,7 @@ mixin _$DeviceListEvent {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +140,7 @@ mixin _$DeviceListEvent {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -147,6 +155,7 @@ mixin _$DeviceListEvent {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -161,6 +170,7 @@ mixin _$DeviceListEvent {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -230,6 +240,7 @@ class _$Update implements Update {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return update();
   }
@@ -247,6 +258,7 @@ class _$Update implements Update {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return update?.call();
   }
@@ -264,6 +276,7 @@ class _$Update implements Update {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -285,6 +298,7 @@ class _$Update implements Update {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return update(this);
   }
@@ -302,6 +316,7 @@ class _$Update implements Update {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return update?.call(this);
   }
@@ -319,6 +334,7 @@ class _$Update implements Update {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -405,6 +421,7 @@ class _$Discovered implements Discovered {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return discovered(devices);
   }
@@ -422,6 +439,7 @@ class _$Discovered implements Discovered {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return discovered?.call(devices);
   }
@@ -439,6 +457,7 @@ class _$Discovered implements Discovered {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (discovered != null) {
@@ -460,6 +479,7 @@ class _$Discovered implements Discovered {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return discovered(this);
   }
@@ -477,6 +497,7 @@ class _$Discovered implements Discovered {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return discovered?.call(this);
   }
@@ -494,6 +515,7 @@ class _$Discovered implements Discovered {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (discovered != null) {
@@ -559,6 +581,7 @@ class _$Add implements Add {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return add();
   }
@@ -576,6 +599,7 @@ class _$Add implements Add {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return add?.call();
   }
@@ -593,6 +617,7 @@ class _$Add implements Add {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -614,6 +639,7 @@ class _$Add implements Add {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return add(this);
   }
@@ -631,6 +657,7 @@ class _$Add implements Add {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return add?.call(this);
   }
@@ -648,6 +675,7 @@ class _$Add implements Add {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -745,6 +773,7 @@ class _$DevicePressed implements DevicePressed {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return devicePressed(device);
   }
@@ -762,6 +791,7 @@ class _$DevicePressed implements DevicePressed {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return devicePressed?.call(device);
   }
@@ -779,6 +809,7 @@ class _$DevicePressed implements DevicePressed {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (devicePressed != null) {
@@ -800,6 +831,7 @@ class _$DevicePressed implements DevicePressed {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return devicePressed(this);
   }
@@ -817,6 +849,7 @@ class _$DevicePressed implements DevicePressed {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return devicePressed?.call(this);
   }
@@ -834,6 +867,7 @@ class _$DevicePressed implements DevicePressed {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (devicePressed != null) {
@@ -936,6 +970,7 @@ class _$DevicePower implements DevicePower {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return devicePower(device);
   }
@@ -953,6 +988,7 @@ class _$DevicePower implements DevicePower {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return devicePower?.call(device);
   }
@@ -970,6 +1006,7 @@ class _$DevicePower implements DevicePower {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (devicePower != null) {
@@ -991,6 +1028,7 @@ class _$DevicePower implements DevicePower {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return devicePower(this);
   }
@@ -1008,6 +1046,7 @@ class _$DevicePower implements DevicePower {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return devicePower?.call(this);
   }
@@ -1025,6 +1064,7 @@ class _$DevicePower implements DevicePower {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (devicePower != null) {
@@ -1138,6 +1178,7 @@ class _$DeviceSlider implements DeviceSlider {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return deviceSlider(device, value);
   }
@@ -1155,6 +1196,7 @@ class _$DeviceSlider implements DeviceSlider {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return deviceSlider?.call(device, value);
   }
@@ -1172,6 +1214,7 @@ class _$DeviceSlider implements DeviceSlider {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceSlider != null) {
@@ -1193,6 +1236,7 @@ class _$DeviceSlider implements DeviceSlider {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return deviceSlider(this);
   }
@@ -1210,6 +1254,7 @@ class _$DeviceSlider implements DeviceSlider {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return deviceSlider?.call(this);
   }
@@ -1227,6 +1272,7 @@ class _$DeviceSlider implements DeviceSlider {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceSlider != null) {
@@ -1328,6 +1374,7 @@ class _$DeviceSave implements DeviceSave {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return deviceSave(device);
   }
@@ -1345,6 +1392,7 @@ class _$DeviceSave implements DeviceSave {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return deviceSave?.call(device);
   }
@@ -1362,6 +1410,7 @@ class _$DeviceSave implements DeviceSave {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceSave != null) {
@@ -1383,6 +1432,7 @@ class _$DeviceSave implements DeviceSave {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return deviceSave(this);
   }
@@ -1400,6 +1450,7 @@ class _$DeviceSave implements DeviceSave {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return deviceSave?.call(this);
   }
@@ -1417,6 +1468,7 @@ class _$DeviceSave implements DeviceSave {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceSave != null) {
@@ -1517,6 +1569,7 @@ class _$DeviceEdit implements DeviceEdit {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return deviceEdit(device);
   }
@@ -1534,6 +1587,7 @@ class _$DeviceEdit implements DeviceEdit {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return deviceEdit?.call(device);
   }
@@ -1551,6 +1605,7 @@ class _$DeviceEdit implements DeviceEdit {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceEdit != null) {
@@ -1572,6 +1627,7 @@ class _$DeviceEdit implements DeviceEdit {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return deviceEdit(this);
   }
@@ -1589,6 +1645,7 @@ class _$DeviceEdit implements DeviceEdit {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return deviceEdit?.call(this);
   }
@@ -1606,6 +1663,7 @@ class _$DeviceEdit implements DeviceEdit {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceEdit != null) {
@@ -1708,6 +1766,7 @@ class _$DeviceDelete implements DeviceDelete {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return deviceDelete(device);
   }
@@ -1725,6 +1784,7 @@ class _$DeviceDelete implements DeviceDelete {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return deviceDelete?.call(device);
   }
@@ -1742,6 +1802,7 @@ class _$DeviceDelete implements DeviceDelete {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceDelete != null) {
@@ -1763,6 +1824,7 @@ class _$DeviceDelete implements DeviceDelete {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return deviceDelete(this);
   }
@@ -1780,6 +1842,7 @@ class _$DeviceDelete implements DeviceDelete {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return deviceDelete?.call(this);
   }
@@ -1797,6 +1860,7 @@ class _$DeviceDelete implements DeviceDelete {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceDelete != null) {
@@ -1865,6 +1929,7 @@ class _$DeviceGlobalPower implements DeviceGlobalPower {
     required TResult Function(WledDevice device) deviceEdit,
     required TResult Function(WledDevice device) deviceDelete,
     required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
   }) {
     return deviceGlobalPower();
   }
@@ -1882,6 +1947,7 @@ class _$DeviceGlobalPower implements DeviceGlobalPower {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
   }) {
     return deviceGlobalPower?.call();
   }
@@ -1899,6 +1965,7 @@ class _$DeviceGlobalPower implements DeviceGlobalPower {
     TResult Function(WledDevice device)? deviceEdit,
     TResult Function(WledDevice device)? deviceDelete,
     TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceGlobalPower != null) {
@@ -1920,6 +1987,7 @@ class _$DeviceGlobalPower implements DeviceGlobalPower {
     required TResult Function(DeviceEdit value) deviceEdit,
     required TResult Function(DeviceDelete value) deviceDelete,
     required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
   }) {
     return deviceGlobalPower(this);
   }
@@ -1937,6 +2005,7 @@ class _$DeviceGlobalPower implements DeviceGlobalPower {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
   }) {
     return deviceGlobalPower?.call(this);
   }
@@ -1954,6 +2023,7 @@ class _$DeviceGlobalPower implements DeviceGlobalPower {
     TResult Function(DeviceEdit value)? deviceEdit,
     TResult Function(DeviceDelete value)? deviceDelete,
     TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
     required TResult orElse(),
   }) {
     if (deviceGlobalPower != null) {
@@ -1965,6 +2035,161 @@ class _$DeviceGlobalPower implements DeviceGlobalPower {
 
 abstract class DeviceGlobalPower implements DeviceListEvent {
   const factory DeviceGlobalPower() = _$DeviceGlobalPower;
+}
+
+/// @nodoc
+abstract class $PeriodicCopyWith<$Res> {
+  factory $PeriodicCopyWith(Periodic value, $Res Function(Periodic) then) =
+      _$PeriodicCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$PeriodicCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
+    implements $PeriodicCopyWith<$Res> {
+  _$PeriodicCopyWithImpl(Periodic _value, $Res Function(Periodic) _then)
+      : super(_value, (v) => _then(v as Periodic));
+
+  @override
+  Periodic get _value => super._value as Periodic;
+}
+
+/// @nodoc
+
+class _$Periodic implements Periodic {
+  const _$Periodic();
+
+  @override
+  String toString() {
+    return 'DeviceListEvent.periodicUpdate()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Periodic);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() update,
+    required TResult Function(List<WledDevice> devices) discovered,
+    required TResult Function() add,
+    required TResult Function(WledDevice device) devicePressed,
+    required TResult Function(WledDevice device) devicePower,
+    required TResult Function(WledDevice device, int value) deviceSlider,
+    required TResult Function(WledDevice device) deviceSave,
+    required TResult Function(WledDevice device) deviceEdit,
+    required TResult Function(WledDevice device) deviceDelete,
+    required TResult Function() deviceGlobalPower,
+    required TResult Function() periodicUpdate,
+  }) {
+    return periodicUpdate();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? update,
+    TResult Function(List<WledDevice> devices)? discovered,
+    TResult Function()? add,
+    TResult Function(WledDevice device)? devicePressed,
+    TResult Function(WledDevice device)? devicePower,
+    TResult Function(WledDevice device, int value)? deviceSlider,
+    TResult Function(WledDevice device)? deviceSave,
+    TResult Function(WledDevice device)? deviceEdit,
+    TResult Function(WledDevice device)? deviceDelete,
+    TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
+  }) {
+    return periodicUpdate?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? update,
+    TResult Function(List<WledDevice> devices)? discovered,
+    TResult Function()? add,
+    TResult Function(WledDevice device)? devicePressed,
+    TResult Function(WledDevice device)? devicePower,
+    TResult Function(WledDevice device, int value)? deviceSlider,
+    TResult Function(WledDevice device)? deviceSave,
+    TResult Function(WledDevice device)? deviceEdit,
+    TResult Function(WledDevice device)? deviceDelete,
+    TResult Function()? deviceGlobalPower,
+    TResult Function()? periodicUpdate,
+    required TResult orElse(),
+  }) {
+    if (periodicUpdate != null) {
+      return periodicUpdate();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Update value) update,
+    required TResult Function(Discovered value) discovered,
+    required TResult Function(Add value) add,
+    required TResult Function(DevicePressed value) devicePressed,
+    required TResult Function(DevicePower value) devicePower,
+    required TResult Function(DeviceSlider value) deviceSlider,
+    required TResult Function(DeviceSave value) deviceSave,
+    required TResult Function(DeviceEdit value) deviceEdit,
+    required TResult Function(DeviceDelete value) deviceDelete,
+    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
+    required TResult Function(Periodic value) periodicUpdate,
+  }) {
+    return periodicUpdate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Update value)? update,
+    TResult Function(Discovered value)? discovered,
+    TResult Function(Add value)? add,
+    TResult Function(DevicePressed value)? devicePressed,
+    TResult Function(DevicePower value)? devicePower,
+    TResult Function(DeviceSlider value)? deviceSlider,
+    TResult Function(DeviceSave value)? deviceSave,
+    TResult Function(DeviceEdit value)? deviceEdit,
+    TResult Function(DeviceDelete value)? deviceDelete,
+    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
+  }) {
+    return periodicUpdate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Update value)? update,
+    TResult Function(Discovered value)? discovered,
+    TResult Function(Add value)? add,
+    TResult Function(DevicePressed value)? devicePressed,
+    TResult Function(DevicePower value)? devicePower,
+    TResult Function(DeviceSlider value)? deviceSlider,
+    TResult Function(DeviceSave value)? deviceSave,
+    TResult Function(DeviceEdit value)? deviceEdit,
+    TResult Function(DeviceDelete value)? deviceDelete,
+    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
+    TResult Function(Periodic value)? periodicUpdate,
+    required TResult orElse(),
+  }) {
+    if (periodicUpdate != null) {
+      return periodicUpdate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Periodic implements DeviceListEvent {
+  const factory Periodic() = _$Periodic;
 }
 
 /// @nodoc

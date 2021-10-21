@@ -8,6 +8,7 @@ abstract class Kpadding {
 }
 
 abstract class Kduration {
+  static const xLarge = Duration(milliseconds: 1000);
   static const large = Duration(milliseconds: 800);
   static const medium = Duration(milliseconds: 400);
   static const short = Duration(milliseconds: 200);
@@ -20,7 +21,6 @@ abstract class Kspacer {
 }
 
 abstract class Kasset {
-   static const loading = 'assets/rive/loading.riv';
-   static const devicesBox = 'devices';
+  static const loading = 'assets/rive/loading.riv';
+  static const devicesBox = 'devices';
 }
-

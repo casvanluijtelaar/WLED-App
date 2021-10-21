@@ -4,11 +4,11 @@ export 'app/app_bloc_observer.dart';
 export 'app/app_injector.dart';
 export 'app/app_router.gr.dart';
 export 'app/app_theme.dart';
+/// domain
+export 'domain/device_update_repository.dart';
+export 'domain/models/wled_device.dart';
 /// l10n
 export 'l10n/generated/l10n.dart';
-/// repository
-export 'repository/device_update_repository.dart';
-export 'repository/models/wled_device.dart';
 /// utils
 export 'utils/bloc_transformers.dart';
 export 'utils/consts.dart';

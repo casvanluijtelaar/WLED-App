@@ -31,6 +31,10 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     on<DeviceEdit>(_onDeviceEdit);
     on<DeviceDelete>(_onDeviceDelete);
     on<DeviceGlobalPower>(_onGlobal, transformer: BlocTransformers.debounce);
+    on<Periodic>(_onPeriodic);
+
+    Stream<void>.periodic(Kduration.xLarge)
+        .listen((_) => add(const Periodic()));
   }
 
   final DeviceListRepository _listRepository;
@@ -48,9 +52,19 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     // cancel a potentially started stream
     await _deviceStream?.cancel();
     // start the device discovery stream and add the bloc event callback
-    _deviceStream = _listRepository.getWledDevices().listen((d) {
-      add(Discovered(d));
-    });
+    final stream = _listRepository.getWledDevices();
+    _deviceStream = stream.listen((d) => add(Discovered(d)));
+  }
+
+  /// updates all available wled devices with new data
+  Future<void> _onPeriodic(Periodic _, Emitter<DeviceListState> emit) async {
+    if (state is! Found) return;
+
+    final devices = (state as Found).devices;
+    final futures = devices.map(_updateRepository.updateWledDevice);
+
+    final results = await Future.wait(futures);
+    emit(Found(results));
   }
 
   /// when a new device is decovered add it to the state
@@ -62,7 +76,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     final current = List<WledDevice>.from((state as Found).devices);
     // for every new device check if the current list already contains
     // a matching item. if not, add it, otherwise replace it
-    event.devices.forEach(current.addOrReplace);
+    event.devices.forEach(current.addIfNotCointains);
     // emit the state with the updated list
     emit(Found(current));
   }

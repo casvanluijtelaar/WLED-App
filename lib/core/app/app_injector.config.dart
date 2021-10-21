@@ -9,21 +9,19 @@ import 'package:hive/hive.dart' as _i6;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../../features/device_add/bloc/device_add_bloc.dart' as _i16;
-import '../../features/device_add/repository/device_add_repository.dart'
-    as _i11;
+import '../../features/device_add/domain/device_add_repository.dart' as _i11;
 import '../../features/device_control/bloc/device_control_bloc.dart' as _i4;
 import '../../features/device_list/bloc/device_list_bloc.dart' as _i17;
 import '../../features/device_list/data/local_device_discovery.dart' as _i8;
 import '../../features/device_list/data/mdns_device_discovery.dart' as _i9;
-import '../../features/device_list/repository/device_list_repository.dart'
-    as _i12;
-import '../../features/device_list/repository/device_list_repository_impl.dart'
+import '../../features/device_list/domain/device_list_repository.dart' as _i12;
+import '../../features/device_list/domain/device_list_repository_impl.dart'
     as _i13;
 import '../core.dart' as _i5;
 import '../data/http_connection.dart' as _i7;
 import '../data/xml_parser.dart' as _i10;
-import '../repository/device_update_repository.dart' as _i14;
-import '../repository/device_update_repository_impl.dart' as _i15;
+import '../domain/device_update_repository.dart' as _i14;
+import '../domain/device_update_repository_impl.dart' as _i15;
 import 'app_injector.dart' as _i18;
 import 'app_router.gr.dart' as _i3; // ignore_for_file: unnecessary_lambdas
 
