@@ -14,7 +14,7 @@ extension WledListExtension on List<WledDevice> {
 
   /// only add device to list if a device with the same ip isn't 
   /// allready in the list
-  void addIfNotCointains(WledDevice d) {
+  void addIfNotContains(WledDevice d) {
     final index = indexWhere((i) => i.address == d.address);
     if (index == -1) add(d);
   }
