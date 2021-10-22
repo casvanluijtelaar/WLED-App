@@ -34,7 +34,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
     on<DeviceGlobalPower>(_onGlobal, transformer: BlocTransformers.debounce);
     on<Periodic>(_onPeriodic);
 
-    /// periodically callback for updatong devices on a fixed time interval
+    /// periodically callback for updating devices on a fixed time interval
     Stream<void>.periodic(Kduration.xLarge)
         .listen((_) => add(const Periodic()));
   }

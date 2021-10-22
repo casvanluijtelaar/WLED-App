@@ -23,10 +23,12 @@ class DeviceControlBloc extends Bloc<DeviceControlEvent, DeviceControlState> {
   String get _address =>
       _router.current.argsAs<DeviceControlRouteArgs>().deviceAddress;
 
+  /// when have fetched all data from the router we can display the controls
   void _onStarted(Started event, Emitter<DeviceControlState> emit) {
     emit(Loaded(name: _name, address: _address));
   }
 
+  /// pop this route from the stack to go back to the previous page
   void _onBack(Back event, Emitter<DeviceControlState> emit) {
     _router.pop();
   }
