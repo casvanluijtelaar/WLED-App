@@ -8,7 +8,7 @@ part of 'wled_device.dart';
 
 class DeviceStatusAdapter extends TypeAdapter<DeviceStatus> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
   DeviceStatus read(BinaryReader reader) {

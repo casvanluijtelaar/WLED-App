@@ -7,6 +7,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wled/core/core.dart';
+import 'package:wled/features/device_list/device_list.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,8 @@ Future<void> main() async {
   hive
     ..registerAdapter(ColorAdapter())
     ..registerAdapter(DeviceStatusAdapter())
-    ..registerAdapter(WledDeviceAdapter());
+    ..registerAdapter(WledDeviceAdapter())
+    ..registerAdapter(DeviceGroupAdapter());
 
   // open devices box for acces in the application
   await hive.openBox<WledDevice>(Kasset.devicesBox,

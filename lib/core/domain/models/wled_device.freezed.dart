@@ -236,7 +236,7 @@ class __$WledDeviceCopyWithImpl<$Res> extends _$WledDeviceCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 @ColorConverter()
-@HiveType(typeId: 1)
+@HiveType(typeId: 2)
 class _$_WledDevice implements _WledDevice {
   const _$_WledDevice(
       {@HiveField(0) required this.address,

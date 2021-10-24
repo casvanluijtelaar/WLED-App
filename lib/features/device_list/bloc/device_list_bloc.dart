@@ -176,7 +176,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   Future<List<WledDevice>> _update(WledDevice device, [String? data]) async {
     final update = await _updateRepository.updateWledDevice(device, data);
     // replace the device with it's updated version
-    if (state is Loading) return [device];
+    if (state is Loading || state is Empty) return [device];
     return List<WledDevice>.from((state as Found).devices)
       ..addOrReplace(update);
   }

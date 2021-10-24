@@ -7,7 +7,7 @@ import 'package:wled/core/core.dart';
 part 'wled_device.freezed.dart';
 part 'wled_device.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 enum DeviceStatus {
   @HiveField(0)
   functional,
@@ -20,7 +20,7 @@ enum DeviceStatus {
 @freezed
 class WledDevice with _$WledDevice {
   @ColorConverter()
-  @HiveType(typeId: 1)
+  @HiveType(typeId: 2)
   const factory WledDevice({
     // device IP (can also be hostname if applicable)
     @HiveField(0) required String address,
@@ -48,7 +48,7 @@ class WledDevice with _$WledDevice {
 
 class WledDeviceAdapter extends TypeAdapter<WledDevice> {
   @override
-  final typeId = 1;
+  final typeId = 2;
 
   @override
   WledDevice read(BinaryReader reader) {
