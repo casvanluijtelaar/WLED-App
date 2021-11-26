@@ -7,6 +7,10 @@ linter:
     sort_constructors_first: false
     implicit_dynamic_type: false
     use_full_hex_values_for_flutter_colors: false
+    unawaited_futures: false
+    require_trailing_commas: false
+    library_private_types_in_public_api: false
+    prefer_asserts_with_message: false
 
 analyzer:
   exclude:

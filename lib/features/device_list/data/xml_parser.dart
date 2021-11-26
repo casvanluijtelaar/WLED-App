@@ -7,6 +7,7 @@ import 'package:xml/xml.dart';
 
 import 'models/api_reponse.dart';
 
+
 class ParseException implements Exception {}
 
 @injectable

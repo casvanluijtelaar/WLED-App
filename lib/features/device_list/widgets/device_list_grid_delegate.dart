@@ -1,79 +1,7 @@
 import 'dart:math';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-
-/// custom griv view that contains children with a fixed height but a
-/// dynamic with based on maxCrossAxisExtent
-class DeviceListGridview extends BoxScrollView {
-  
-  /// creates a [DeviceListGridview] with a [DeviceListSliverGridDelegate]
-  DeviceListGridview.extent({
-    Key? key,
-    Axis scrollDirection = Axis.vertical,
-    bool reverse = false,
-    ScrollController? controller,
-    bool? primary,
-    ScrollPhysics? physics,
-    bool shrinkWrap = false,
-    EdgeInsetsGeometry? padding,
-    required double maxCrossAxisExtent,
-    required double childHeight,
-    double mainAxisSpacing = 0.0,
-    double crossAxisSpacing = 0.0,
-    bool addAutomaticKeepAlives = true,
-    bool addRepaintBoundaries = true,
-    bool addSemanticIndexes = true,
-    double? cacheExtent,
-    List<Widget> children = const <Widget>[],
-    int? semanticChildCount,
-    DragStartBehavior dragStartBehavior = DragStartBehavior.start,
-    ScrollViewKeyboardDismissBehavior keyboardDismissBehavior =
-        ScrollViewKeyboardDismissBehavior.manual,
-    String? restorationId,
-    Clip clipBehavior = Clip.hardEdge,
-  })  : gridDelegate = DeviceListSliverGridDelegate(
-          maxCrossAxisExtent: maxCrossAxisExtent,
-          mainAxisSpacing: mainAxisSpacing,
-          crossAxisSpacing: crossAxisSpacing,
-          height: childHeight,
-        ),
-        childrenDelegate = SliverChildListDelegate(
-          children,
-          addAutomaticKeepAlives: addAutomaticKeepAlives,
-          addRepaintBoundaries: addRepaintBoundaries,
-          addSemanticIndexes: addSemanticIndexes,
-        ),
-        super(
-          key: key,
-          scrollDirection: scrollDirection,
-          reverse: reverse,
-          controller: controller,
-          primary: primary,
-          physics: physics,
-          shrinkWrap: shrinkWrap,
-          padding: padding,
-          cacheExtent: cacheExtent,
-          semanticChildCount: semanticChildCount ?? children.length,
-          dragStartBehavior: dragStartBehavior,
-          keyboardDismissBehavior: keyboardDismissBehavior,
-          restorationId: restorationId,
-          clipBehavior: clipBehavior,
-        );
-
-
-  final SliverGridDelegate gridDelegate;
-  final SliverChildDelegate childrenDelegate;
-
-  @override
-  Widget buildChildLayout(BuildContext context) {
-    return SliverGrid(
-      delegate: childrenDelegate,
-      gridDelegate: gridDelegate,
-    );
-  }
-}
 
 class DeviceListSliverGridDelegate extends SliverGridDelegate {
   /// Creates a delegate that makes grid layouts with tiles that have a maximum

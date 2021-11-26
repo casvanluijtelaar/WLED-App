@@ -7,13 +7,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wled/core/core.dart';
-import 'package:wled/features/device_list/device_list.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  /// set up bloc error / transition listener
-  Bloc.observer = AppBlocObserver();
 
   /// setup GetIt injections
   configureDependencies();
@@ -26,17 +22,20 @@ Future<void> main() async {
   hive
     ..registerAdapter(ColorAdapter())
     ..registerAdapter(DeviceStatusAdapter())
-    ..registerAdapter(WledDeviceAdapter())
-    ..registerAdapter(DeviceGroupAdapter());
+    ..registerAdapter(WledDeviceAdapter());
 
   // open devices box for acces in the application
-  await hive.openBox<WledDevice>(Kasset.devicesBox,
-      compactionStrategy: (_, d) => d > 5);
+  await hive.openBox<WledDevice>(
+    Kasset.devicesBox,
+    compactionStrategy: (_, deleted) => deleted > 5,
+  );
 
   /// run main application
-  runZonedGuarded(() => runApp(const App()), (error, stackTrace) {
-    log(error.toString(), stackTrace: stackTrace);
-  });
+  runZonedGuarded(
+    () => BlocOverrides.runZoned(() => runApp(const App()),
+        blocObserver: AppBlocObserver()),
+    (e, s) => log(e.toString(), stackTrace: s),
+  );
 
   /// setup custom desktop frames
   if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {

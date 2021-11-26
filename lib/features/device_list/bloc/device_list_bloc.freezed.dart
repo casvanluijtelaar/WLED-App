@@ -17,63 +17,39 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$DeviceListEventTearOff {
   const _$DeviceListEventTearOff();
 
-  Update update() {
-    return const Update();
+  ListUpdate listUpdate() {
+    return const ListUpdate();
   }
 
-  Discovered discovered(List<WledDevice> devices) {
-    return Discovered(
+  ListDiscovered listDiscovered(List<WledDevice> devices) {
+    return ListDiscovered(
       devices,
     );
   }
 
-  Add add() {
-    return const Add();
+  ListAdd listAdd() {
+    return const ListAdd();
   }
 
-  DevicePressed devicePressed(WledDevice device) {
-    return DevicePressed(
-      device,
+  ListPower listPower() {
+    return const ListPower();
+  }
+
+  ListMove listMove(int oldIndex, int newIndex) {
+    return ListMove(
+      oldIndex,
+      newIndex,
     );
   }
 
-  DevicePower devicePower(WledDevice device) {
-    return DevicePower(
+  ListPeriodic listPeriodic() {
+    return const ListPeriodic();
+  }
+
+  ListDeviceUpdate listDeviceUpdate(WledDevice device) {
+    return ListDeviceUpdate(
       device,
     );
-  }
-
-  DeviceSlider deviceSlider(WledDevice device, int value) {
-    return DeviceSlider(
-      device,
-      value,
-    );
-  }
-
-  DeviceSave deviceSave(WledDevice device) {
-    return DeviceSave(
-      device,
-    );
-  }
-
-  DeviceEdit deviceEdit(WledDevice device) {
-    return DeviceEdit(
-      device,
-    );
-  }
-
-  DeviceDelete deviceDelete(WledDevice device) {
-    return DeviceDelete(
-      device,
-    );
-  }
-
-  DeviceGlobalPower deviceGlobalPower() {
-    return const DeviceGlobalPower();
-  }
-
-  Periodic periodicUpdate() {
-    return const Periodic();
   }
 }
 
@@ -84,93 +60,69 @@ const $DeviceListEvent = _$DeviceListEventTearOff();
 mixin _$DeviceListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
+    required TResult Function() listUpdate,
+    required TResult Function(List<WledDevice> devices) listDiscovered,
+    required TResult Function() listAdd,
+    required TResult Function() listPower,
+    required TResult Function(int oldIndex, int newIndex) listMove,
+    required TResult Function() listPeriodic,
+    required TResult Function(WledDevice device) listDeviceUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
+    required TResult Function(ListUpdate value) listUpdate,
+    required TResult Function(ListDiscovered value) listDiscovered,
+    required TResult Function(ListAdd value) listAdd,
+    required TResult Function(ListPower value) listPower,
+    required TResult Function(ListMove value) listMove,
+    required TResult Function(ListPeriodic value) listPeriodic,
+    required TResult Function(ListDeviceUpdate value) listDeviceUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -194,34 +146,36 @@ class _$DeviceListEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $UpdateCopyWith<$Res> {
-  factory $UpdateCopyWith(Update value, $Res Function(Update) then) =
-      _$UpdateCopyWithImpl<$Res>;
+abstract class $ListUpdateCopyWith<$Res> {
+  factory $ListUpdateCopyWith(
+          ListUpdate value, $Res Function(ListUpdate) then) =
+      _$ListUpdateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UpdateCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $UpdateCopyWith<$Res> {
-  _$UpdateCopyWithImpl(Update _value, $Res Function(Update) _then)
-      : super(_value, (v) => _then(v as Update));
+class _$ListUpdateCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
+    implements $ListUpdateCopyWith<$Res> {
+  _$ListUpdateCopyWithImpl(ListUpdate _value, $Res Function(ListUpdate) _then)
+      : super(_value, (v) => _then(v as ListUpdate));
 
   @override
-  Update get _value => super._value as Update;
+  ListUpdate get _value => super._value as ListUpdate;
 }
 
 /// @nodoc
 
-class _$Update implements Update {
-  const _$Update();
+class _$ListUpdate implements ListUpdate {
+  const _$ListUpdate();
 
   @override
   String toString() {
-    return 'DeviceListEvent.update()';
+    return 'DeviceListEvent.listUpdate()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Update);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ListUpdate);
   }
 
   @override
@@ -230,57 +184,45 @@ class _$Update implements Update {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
+    required TResult Function() listUpdate,
+    required TResult Function(List<WledDevice> devices) listDiscovered,
+    required TResult Function() listAdd,
+    required TResult Function() listPower,
+    required TResult Function(int oldIndex, int newIndex) listMove,
+    required TResult Function() listPeriodic,
+    required TResult Function(WledDevice device) listDeviceUpdate,
   }) {
-    return update();
+    return listUpdate();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
   }) {
-    return update?.call();
+    return listUpdate?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (update != null) {
-      return update();
+    if (listUpdate != null) {
+      return listUpdate();
     }
     return orElse();
   }
@@ -288,88 +230,78 @@ class _$Update implements Update {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
+    required TResult Function(ListUpdate value) listUpdate,
+    required TResult Function(ListDiscovered value) listDiscovered,
+    required TResult Function(ListAdd value) listAdd,
+    required TResult Function(ListPower value) listPower,
+    required TResult Function(ListMove value) listMove,
+    required TResult Function(ListPeriodic value) listPeriodic,
+    required TResult Function(ListDeviceUpdate value) listDeviceUpdate,
   }) {
-    return update(this);
+    return listUpdate(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
   }) {
-    return update?.call(this);
+    return listUpdate?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (update != null) {
-      return update(this);
+    if (listUpdate != null) {
+      return listUpdate(this);
     }
     return orElse();
   }
 }
 
-abstract class Update implements DeviceListEvent {
-  const factory Update() = _$Update;
+abstract class ListUpdate implements DeviceListEvent {
+  const factory ListUpdate() = _$ListUpdate;
 }
 
 /// @nodoc
-abstract class $DiscoveredCopyWith<$Res> {
-  factory $DiscoveredCopyWith(
-          Discovered value, $Res Function(Discovered) then) =
-      _$DiscoveredCopyWithImpl<$Res>;
+abstract class $ListDiscoveredCopyWith<$Res> {
+  factory $ListDiscoveredCopyWith(
+          ListDiscovered value, $Res Function(ListDiscovered) then) =
+      _$ListDiscoveredCopyWithImpl<$Res>;
   $Res call({List<WledDevice> devices});
 }
 
 /// @nodoc
-class _$DiscoveredCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $DiscoveredCopyWith<$Res> {
-  _$DiscoveredCopyWithImpl(Discovered _value, $Res Function(Discovered) _then)
-      : super(_value, (v) => _then(v as Discovered));
+class _$ListDiscoveredCopyWithImpl<$Res>
+    extends _$DeviceListEventCopyWithImpl<$Res>
+    implements $ListDiscoveredCopyWith<$Res> {
+  _$ListDiscoveredCopyWithImpl(
+      ListDiscovered _value, $Res Function(ListDiscovered) _then)
+      : super(_value, (v) => _then(v as ListDiscovered));
 
   @override
-  Discovered get _value => super._value as Discovered;
+  ListDiscovered get _value => super._value as ListDiscovered;
 
   @override
   $Res call({
     Object? devices = freezed,
   }) {
-    return _then(Discovered(
+    return _then(ListDiscovered(
       devices == freezed
           ? _value.devices
           : devices // ignore: cast_nullable_to_non_nullable
@@ -380,88 +312,76 @@ class _$DiscoveredCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Discovered implements Discovered {
-  const _$Discovered(this.devices);
+class _$ListDiscovered implements ListDiscovered {
+  const _$ListDiscovered(this.devices);
 
   @override
   final List<WledDevice> devices;
 
   @override
   String toString() {
-    return 'DeviceListEvent.discovered(devices: $devices)';
+    return 'DeviceListEvent.listDiscovered(devices: $devices)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Discovered &&
-            (identical(other.devices, devices) ||
-                const DeepCollectionEquality().equals(other.devices, devices)));
+        (other.runtimeType == runtimeType &&
+            other is ListDiscovered &&
+            const DeepCollectionEquality().equals(other.devices, devices));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(devices);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(devices));
 
   @JsonKey(ignore: true)
   @override
-  $DiscoveredCopyWith<Discovered> get copyWith =>
-      _$DiscoveredCopyWithImpl<Discovered>(this, _$identity);
+  $ListDiscoveredCopyWith<ListDiscovered> get copyWith =>
+      _$ListDiscoveredCopyWithImpl<ListDiscovered>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
+    required TResult Function() listUpdate,
+    required TResult Function(List<WledDevice> devices) listDiscovered,
+    required TResult Function() listAdd,
+    required TResult Function() listPower,
+    required TResult Function(int oldIndex, int newIndex) listMove,
+    required TResult Function() listPeriodic,
+    required TResult Function(WledDevice device) listDeviceUpdate,
   }) {
-    return discovered(devices);
+    return listDiscovered(devices);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
   }) {
-    return discovered?.call(devices);
+    return listDiscovered?.call(devices);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (discovered != null) {
-      return discovered(devices);
+    if (listDiscovered != null) {
+      return listDiscovered(devices);
     }
     return orElse();
   }
@@ -469,100 +389,89 @@ class _$Discovered implements Discovered {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
+    required TResult Function(ListUpdate value) listUpdate,
+    required TResult Function(ListDiscovered value) listDiscovered,
+    required TResult Function(ListAdd value) listAdd,
+    required TResult Function(ListPower value) listPower,
+    required TResult Function(ListMove value) listMove,
+    required TResult Function(ListPeriodic value) listPeriodic,
+    required TResult Function(ListDeviceUpdate value) listDeviceUpdate,
   }) {
-    return discovered(this);
+    return listDiscovered(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
   }) {
-    return discovered?.call(this);
+    return listDiscovered?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (discovered != null) {
-      return discovered(this);
+    if (listDiscovered != null) {
+      return listDiscovered(this);
     }
     return orElse();
   }
 }
 
-abstract class Discovered implements DeviceListEvent {
-  const factory Discovered(List<WledDevice> devices) = _$Discovered;
+abstract class ListDiscovered implements DeviceListEvent {
+  const factory ListDiscovered(List<WledDevice> devices) = _$ListDiscovered;
 
-  List<WledDevice> get devices => throw _privateConstructorUsedError;
+  List<WledDevice> get devices;
   @JsonKey(ignore: true)
-  $DiscoveredCopyWith<Discovered> get copyWith =>
+  $ListDiscoveredCopyWith<ListDiscovered> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddCopyWith<$Res> {
-  factory $AddCopyWith(Add value, $Res Function(Add) then) =
-      _$AddCopyWithImpl<$Res>;
+abstract class $ListAddCopyWith<$Res> {
+  factory $ListAddCopyWith(ListAdd value, $Res Function(ListAdd) then) =
+      _$ListAddCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AddCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $AddCopyWith<$Res> {
-  _$AddCopyWithImpl(Add _value, $Res Function(Add) _then)
-      : super(_value, (v) => _then(v as Add));
+class _$ListAddCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
+    implements $ListAddCopyWith<$Res> {
+  _$ListAddCopyWithImpl(ListAdd _value, $Res Function(ListAdd) _then)
+      : super(_value, (v) => _then(v as ListAdd));
 
   @override
-  Add get _value => super._value as Add;
+  ListAdd get _value => super._value as ListAdd;
 }
 
 /// @nodoc
 
-class _$Add implements Add {
-  const _$Add();
+class _$ListAdd implements ListAdd {
+  const _$ListAdd();
 
   @override
   String toString() {
-    return 'DeviceListEvent.add()';
+    return 'DeviceListEvent.listAdd()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Add);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ListAdd);
   }
 
   @override
@@ -571,57 +480,45 @@ class _$Add implements Add {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
+    required TResult Function() listUpdate,
+    required TResult Function(List<WledDevice> devices) listDiscovered,
+    required TResult Function() listAdd,
+    required TResult Function() listPower,
+    required TResult Function(int oldIndex, int newIndex) listMove,
+    required TResult Function() listPeriodic,
+    required TResult Function(WledDevice device) listDeviceUpdate,
   }) {
-    return add();
+    return listAdd();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
   }) {
-    return add?.call();
+    return listAdd?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (add != null) {
-      return add();
+    if (listAdd != null) {
+      return listAdd();
     }
     return orElse();
   }
@@ -629,191 +526,131 @@ class _$Add implements Add {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
+    required TResult Function(ListUpdate value) listUpdate,
+    required TResult Function(ListDiscovered value) listDiscovered,
+    required TResult Function(ListAdd value) listAdd,
+    required TResult Function(ListPower value) listPower,
+    required TResult Function(ListMove value) listMove,
+    required TResult Function(ListPeriodic value) listPeriodic,
+    required TResult Function(ListDeviceUpdate value) listDeviceUpdate,
   }) {
-    return add(this);
+    return listAdd(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
   }) {
-    return add?.call(this);
+    return listAdd?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (add != null) {
-      return add(this);
+    if (listAdd != null) {
+      return listAdd(this);
     }
     return orElse();
   }
 }
 
-abstract class Add implements DeviceListEvent {
-  const factory Add() = _$Add;
+abstract class ListAdd implements DeviceListEvent {
+  const factory ListAdd() = _$ListAdd;
 }
 
 /// @nodoc
-abstract class $DevicePressedCopyWith<$Res> {
-  factory $DevicePressedCopyWith(
-          DevicePressed value, $Res Function(DevicePressed) then) =
-      _$DevicePressedCopyWithImpl<$Res>;
-  $Res call({WledDevice device});
-
-  $WledDeviceCopyWith<$Res> get device;
+abstract class $ListPowerCopyWith<$Res> {
+  factory $ListPowerCopyWith(ListPower value, $Res Function(ListPower) then) =
+      _$ListPowerCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DevicePressedCopyWithImpl<$Res>
-    extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $DevicePressedCopyWith<$Res> {
-  _$DevicePressedCopyWithImpl(
-      DevicePressed _value, $Res Function(DevicePressed) _then)
-      : super(_value, (v) => _then(v as DevicePressed));
+class _$ListPowerCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
+    implements $ListPowerCopyWith<$Res> {
+  _$ListPowerCopyWithImpl(ListPower _value, $Res Function(ListPower) _then)
+      : super(_value, (v) => _then(v as ListPower));
 
   @override
-  DevicePressed get _value => super._value as DevicePressed;
-
-  @override
-  $Res call({
-    Object? device = freezed,
-  }) {
-    return _then(DevicePressed(
-      device == freezed
-          ? _value.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as WledDevice,
-    ));
-  }
-
-  @override
-  $WledDeviceCopyWith<$Res> get device {
-    return $WledDeviceCopyWith<$Res>(_value.device, (value) {
-      return _then(_value.copyWith(device: value));
-    });
-  }
+  ListPower get _value => super._value as ListPower;
 }
 
 /// @nodoc
 
-class _$DevicePressed implements DevicePressed {
-  const _$DevicePressed(this.device);
-
-  @override
-  final WledDevice device;
+class _$ListPower implements ListPower {
+  const _$ListPower();
 
   @override
   String toString() {
-    return 'DeviceListEvent.devicePressed(device: $device)';
+    return 'DeviceListEvent.listPower()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DevicePressed &&
-            (identical(other.device, device) ||
-                const DeepCollectionEquality().equals(other.device, device)));
+        (other.runtimeType == runtimeType && other is ListPower);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(device);
-
-  @JsonKey(ignore: true)
-  @override
-  $DevicePressedCopyWith<DevicePressed> get copyWith =>
-      _$DevicePressedCopyWithImpl<DevicePressed>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
+    required TResult Function() listUpdate,
+    required TResult Function(List<WledDevice> devices) listDiscovered,
+    required TResult Function() listAdd,
+    required TResult Function() listPower,
+    required TResult Function(int oldIndex, int newIndex) listMove,
+    required TResult Function() listPeriodic,
+    required TResult Function(WledDevice device) listDeviceUpdate,
   }) {
-    return devicePressed(device);
+    return listPower();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
   }) {
-    return devicePressed?.call(device);
+    return listPower?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (devicePressed != null) {
-      return devicePressed(device);
+    if (listPower != null) {
+      return listPower();
     }
     return orElse();
   }
@@ -821,404 +658,164 @@ class _$DevicePressed implements DevicePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
+    required TResult Function(ListUpdate value) listUpdate,
+    required TResult Function(ListDiscovered value) listDiscovered,
+    required TResult Function(ListAdd value) listAdd,
+    required TResult Function(ListPower value) listPower,
+    required TResult Function(ListMove value) listMove,
+    required TResult Function(ListPeriodic value) listPeriodic,
+    required TResult Function(ListDeviceUpdate value) listDeviceUpdate,
   }) {
-    return devicePressed(this);
+    return listPower(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
   }) {
-    return devicePressed?.call(this);
+    return listPower?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (devicePressed != null) {
-      return devicePressed(this);
+    if (listPower != null) {
+      return listPower(this);
     }
     return orElse();
   }
 }
 
-abstract class DevicePressed implements DeviceListEvent {
-  const factory DevicePressed(WledDevice device) = _$DevicePressed;
-
-  WledDevice get device => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $DevicePressedCopyWith<DevicePressed> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class ListPower implements DeviceListEvent {
+  const factory ListPower() = _$ListPower;
 }
 
 /// @nodoc
-abstract class $DevicePowerCopyWith<$Res> {
-  factory $DevicePowerCopyWith(
-          DevicePower value, $Res Function(DevicePower) then) =
-      _$DevicePowerCopyWithImpl<$Res>;
-  $Res call({WledDevice device});
-
-  $WledDeviceCopyWith<$Res> get device;
+abstract class $ListMoveCopyWith<$Res> {
+  factory $ListMoveCopyWith(ListMove value, $Res Function(ListMove) then) =
+      _$ListMoveCopyWithImpl<$Res>;
+  $Res call({int oldIndex, int newIndex});
 }
 
 /// @nodoc
-class _$DevicePowerCopyWithImpl<$Res>
-    extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $DevicePowerCopyWith<$Res> {
-  _$DevicePowerCopyWithImpl(
-      DevicePower _value, $Res Function(DevicePower) _then)
-      : super(_value, (v) => _then(v as DevicePower));
+class _$ListMoveCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
+    implements $ListMoveCopyWith<$Res> {
+  _$ListMoveCopyWithImpl(ListMove _value, $Res Function(ListMove) _then)
+      : super(_value, (v) => _then(v as ListMove));
 
   @override
-  DevicePower get _value => super._value as DevicePower;
+  ListMove get _value => super._value as ListMove;
 
   @override
   $Res call({
-    Object? device = freezed,
+    Object? oldIndex = freezed,
+    Object? newIndex = freezed,
   }) {
-    return _then(DevicePower(
-      device == freezed
-          ? _value.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as WledDevice,
-    ));
-  }
-
-  @override
-  $WledDeviceCopyWith<$Res> get device {
-    return $WledDeviceCopyWith<$Res>(_value.device, (value) {
-      return _then(_value.copyWith(device: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$DevicePower implements DevicePower {
-  const _$DevicePower(this.device);
-
-  @override
-  final WledDevice device;
-
-  @override
-  String toString() {
-    return 'DeviceListEvent.devicePower(device: $device)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is DevicePower &&
-            (identical(other.device, device) ||
-                const DeepCollectionEquality().equals(other.device, device)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(device);
-
-  @JsonKey(ignore: true)
-  @override
-  $DevicePowerCopyWith<DevicePower> get copyWith =>
-      _$DevicePowerCopyWithImpl<DevicePower>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
-  }) {
-    return devicePower(device);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
-  }) {
-    return devicePower?.call(device);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
-    required TResult orElse(),
-  }) {
-    if (devicePower != null) {
-      return devicePower(device);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
-  }) {
-    return devicePower(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
-  }) {
-    return devicePower?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
-    required TResult orElse(),
-  }) {
-    if (devicePower != null) {
-      return devicePower(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DevicePower implements DeviceListEvent {
-  const factory DevicePower(WledDevice device) = _$DevicePower;
-
-  WledDevice get device => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $DevicePowerCopyWith<DevicePower> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DeviceSliderCopyWith<$Res> {
-  factory $DeviceSliderCopyWith(
-          DeviceSlider value, $Res Function(DeviceSlider) then) =
-      _$DeviceSliderCopyWithImpl<$Res>;
-  $Res call({WledDevice device, int value});
-
-  $WledDeviceCopyWith<$Res> get device;
-}
-
-/// @nodoc
-class _$DeviceSliderCopyWithImpl<$Res>
-    extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $DeviceSliderCopyWith<$Res> {
-  _$DeviceSliderCopyWithImpl(
-      DeviceSlider _value, $Res Function(DeviceSlider) _then)
-      : super(_value, (v) => _then(v as DeviceSlider));
-
-  @override
-  DeviceSlider get _value => super._value as DeviceSlider;
-
-  @override
-  $Res call({
-    Object? device = freezed,
-    Object? value = freezed,
-  }) {
-    return _then(DeviceSlider(
-      device == freezed
-          ? _value.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as WledDevice,
-      value == freezed
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+    return _then(ListMove(
+      oldIndex == freezed
+          ? _value.oldIndex
+          : oldIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      newIndex == freezed
+          ? _value.newIndex
+          : newIndex // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
-
-  @override
-  $WledDeviceCopyWith<$Res> get device {
-    return $WledDeviceCopyWith<$Res>(_value.device, (value) {
-      return _then(_value.copyWith(device: value));
-    });
-  }
 }
 
 /// @nodoc
 
-class _$DeviceSlider implements DeviceSlider {
-  const _$DeviceSlider(this.device, this.value);
+class _$ListMove implements ListMove {
+  const _$ListMove(this.oldIndex, this.newIndex);
 
   @override
-  final WledDevice device;
+  final int oldIndex;
   @override
-  final int value;
+  final int newIndex;
 
   @override
   String toString() {
-    return 'DeviceListEvent.deviceSlider(device: $device, value: $value)';
+    return 'DeviceListEvent.listMove(oldIndex: $oldIndex, newIndex: $newIndex)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DeviceSlider &&
-            (identical(other.device, device) ||
-                const DeepCollectionEquality().equals(other.device, device)) &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)));
+        (other.runtimeType == runtimeType &&
+            other is ListMove &&
+            (identical(other.oldIndex, oldIndex) ||
+                other.oldIndex == oldIndex) &&
+            (identical(other.newIndex, newIndex) ||
+                other.newIndex == newIndex));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(device) ^
-      const DeepCollectionEquality().hash(value);
+  int get hashCode => Object.hash(runtimeType, oldIndex, newIndex);
 
   @JsonKey(ignore: true)
   @override
-  $DeviceSliderCopyWith<DeviceSlider> get copyWith =>
-      _$DeviceSliderCopyWithImpl<DeviceSlider>(this, _$identity);
+  $ListMoveCopyWith<ListMove> get copyWith =>
+      _$ListMoveCopyWithImpl<ListMove>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
+    required TResult Function() listUpdate,
+    required TResult Function(List<WledDevice> devices) listDiscovered,
+    required TResult Function() listAdd,
+    required TResult Function() listPower,
+    required TResult Function(int oldIndex, int newIndex) listMove,
+    required TResult Function() listPeriodic,
+    required TResult Function(WledDevice device) listDeviceUpdate,
   }) {
-    return deviceSlider(device, value);
+    return listMove(oldIndex, newIndex);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
   }) {
-    return deviceSlider?.call(device, value);
+    return listMove?.call(oldIndex, newIndex);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (deviceSlider != null) {
-      return deviceSlider(device, value);
+    if (listMove != null) {
+      return listMove(oldIndex, newIndex);
     }
     return orElse();
   }
@@ -1226,691 +823,93 @@ class _$DeviceSlider implements DeviceSlider {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
+    required TResult Function(ListUpdate value) listUpdate,
+    required TResult Function(ListDiscovered value) listDiscovered,
+    required TResult Function(ListAdd value) listAdd,
+    required TResult Function(ListPower value) listPower,
+    required TResult Function(ListMove value) listMove,
+    required TResult Function(ListPeriodic value) listPeriodic,
+    required TResult Function(ListDeviceUpdate value) listDeviceUpdate,
   }) {
-    return deviceSlider(this);
+    return listMove(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
   }) {
-    return deviceSlider?.call(this);
+    return listMove?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (deviceSlider != null) {
-      return deviceSlider(this);
+    if (listMove != null) {
+      return listMove(this);
     }
     return orElse();
   }
 }
 
-abstract class DeviceSlider implements DeviceListEvent {
-  const factory DeviceSlider(WledDevice device, int value) = _$DeviceSlider;
+abstract class ListMove implements DeviceListEvent {
+  const factory ListMove(int oldIndex, int newIndex) = _$ListMove;
 
-  WledDevice get device => throw _privateConstructorUsedError;
-  int get value => throw _privateConstructorUsedError;
+  int get oldIndex;
+  int get newIndex;
   @JsonKey(ignore: true)
-  $DeviceSliderCopyWith<DeviceSlider> get copyWith =>
+  $ListMoveCopyWith<ListMove> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeviceSaveCopyWith<$Res> {
-  factory $DeviceSaveCopyWith(
-          DeviceSave value, $Res Function(DeviceSave) then) =
-      _$DeviceSaveCopyWithImpl<$Res>;
-  $Res call({WledDevice device});
-
-  $WledDeviceCopyWith<$Res> get device;
+abstract class $ListPeriodicCopyWith<$Res> {
+  factory $ListPeriodicCopyWith(
+          ListPeriodic value, $Res Function(ListPeriodic) then) =
+      _$ListPeriodicCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DeviceSaveCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $DeviceSaveCopyWith<$Res> {
-  _$DeviceSaveCopyWithImpl(DeviceSave _value, $Res Function(DeviceSave) _then)
-      : super(_value, (v) => _then(v as DeviceSave));
-
-  @override
-  DeviceSave get _value => super._value as DeviceSave;
-
-  @override
-  $Res call({
-    Object? device = freezed,
-  }) {
-    return _then(DeviceSave(
-      device == freezed
-          ? _value.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as WledDevice,
-    ));
-  }
-
-  @override
-  $WledDeviceCopyWith<$Res> get device {
-    return $WledDeviceCopyWith<$Res>(_value.device, (value) {
-      return _then(_value.copyWith(device: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$DeviceSave implements DeviceSave {
-  const _$DeviceSave(this.device);
-
-  @override
-  final WledDevice device;
-
-  @override
-  String toString() {
-    return 'DeviceListEvent.deviceSave(device: $device)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is DeviceSave &&
-            (identical(other.device, device) ||
-                const DeepCollectionEquality().equals(other.device, device)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(device);
-
-  @JsonKey(ignore: true)
-  @override
-  $DeviceSaveCopyWith<DeviceSave> get copyWith =>
-      _$DeviceSaveCopyWithImpl<DeviceSave>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
-  }) {
-    return deviceSave(device);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
-  }) {
-    return deviceSave?.call(device);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
-    required TResult orElse(),
-  }) {
-    if (deviceSave != null) {
-      return deviceSave(device);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
-  }) {
-    return deviceSave(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
-  }) {
-    return deviceSave?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
-    required TResult orElse(),
-  }) {
-    if (deviceSave != null) {
-      return deviceSave(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DeviceSave implements DeviceListEvent {
-  const factory DeviceSave(WledDevice device) = _$DeviceSave;
-
-  WledDevice get device => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $DeviceSaveCopyWith<DeviceSave> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DeviceEditCopyWith<$Res> {
-  factory $DeviceEditCopyWith(
-          DeviceEdit value, $Res Function(DeviceEdit) then) =
-      _$DeviceEditCopyWithImpl<$Res>;
-  $Res call({WledDevice device});
-
-  $WledDeviceCopyWith<$Res> get device;
-}
-
-/// @nodoc
-class _$DeviceEditCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $DeviceEditCopyWith<$Res> {
-  _$DeviceEditCopyWithImpl(DeviceEdit _value, $Res Function(DeviceEdit) _then)
-      : super(_value, (v) => _then(v as DeviceEdit));
-
-  @override
-  DeviceEdit get _value => super._value as DeviceEdit;
-
-  @override
-  $Res call({
-    Object? device = freezed,
-  }) {
-    return _then(DeviceEdit(
-      device == freezed
-          ? _value.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as WledDevice,
-    ));
-  }
-
-  @override
-  $WledDeviceCopyWith<$Res> get device {
-    return $WledDeviceCopyWith<$Res>(_value.device, (value) {
-      return _then(_value.copyWith(device: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$DeviceEdit implements DeviceEdit {
-  const _$DeviceEdit(this.device);
-
-  @override
-  final WledDevice device;
-
-  @override
-  String toString() {
-    return 'DeviceListEvent.deviceEdit(device: $device)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is DeviceEdit &&
-            (identical(other.device, device) ||
-                const DeepCollectionEquality().equals(other.device, device)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(device);
-
-  @JsonKey(ignore: true)
-  @override
-  $DeviceEditCopyWith<DeviceEdit> get copyWith =>
-      _$DeviceEditCopyWithImpl<DeviceEdit>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
-  }) {
-    return deviceEdit(device);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
-  }) {
-    return deviceEdit?.call(device);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
-    required TResult orElse(),
-  }) {
-    if (deviceEdit != null) {
-      return deviceEdit(device);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
-  }) {
-    return deviceEdit(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
-  }) {
-    return deviceEdit?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
-    required TResult orElse(),
-  }) {
-    if (deviceEdit != null) {
-      return deviceEdit(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DeviceEdit implements DeviceListEvent {
-  const factory DeviceEdit(WledDevice device) = _$DeviceEdit;
-
-  WledDevice get device => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $DeviceEditCopyWith<DeviceEdit> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DeviceDeleteCopyWith<$Res> {
-  factory $DeviceDeleteCopyWith(
-          DeviceDelete value, $Res Function(DeviceDelete) then) =
-      _$DeviceDeleteCopyWithImpl<$Res>;
-  $Res call({WledDevice device});
-
-  $WledDeviceCopyWith<$Res> get device;
-}
-
-/// @nodoc
-class _$DeviceDeleteCopyWithImpl<$Res>
+class _$ListPeriodicCopyWithImpl<$Res>
     extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $DeviceDeleteCopyWith<$Res> {
-  _$DeviceDeleteCopyWithImpl(
-      DeviceDelete _value, $Res Function(DeviceDelete) _then)
-      : super(_value, (v) => _then(v as DeviceDelete));
+    implements $ListPeriodicCopyWith<$Res> {
+  _$ListPeriodicCopyWithImpl(
+      ListPeriodic _value, $Res Function(ListPeriodic) _then)
+      : super(_value, (v) => _then(v as ListPeriodic));
 
   @override
-  DeviceDelete get _value => super._value as DeviceDelete;
-
-  @override
-  $Res call({
-    Object? device = freezed,
-  }) {
-    return _then(DeviceDelete(
-      device == freezed
-          ? _value.device
-          : device // ignore: cast_nullable_to_non_nullable
-              as WledDevice,
-    ));
-  }
-
-  @override
-  $WledDeviceCopyWith<$Res> get device {
-    return $WledDeviceCopyWith<$Res>(_value.device, (value) {
-      return _then(_value.copyWith(device: value));
-    });
-  }
+  ListPeriodic get _value => super._value as ListPeriodic;
 }
 
 /// @nodoc
 
-class _$DeviceDelete implements DeviceDelete {
-  const _$DeviceDelete(this.device);
-
-  @override
-  final WledDevice device;
+class _$ListPeriodic implements ListPeriodic {
+  const _$ListPeriodic();
 
   @override
   String toString() {
-    return 'DeviceListEvent.deviceDelete(device: $device)';
+    return 'DeviceListEvent.listPeriodic()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DeviceDelete &&
-            (identical(other.device, device) ||
-                const DeepCollectionEquality().equals(other.device, device)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(device);
-
-  @JsonKey(ignore: true)
-  @override
-  $DeviceDeleteCopyWith<DeviceDelete> get copyWith =>
-      _$DeviceDeleteCopyWithImpl<DeviceDelete>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
-  }) {
-    return deviceDelete(device);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
-  }) {
-    return deviceDelete?.call(device);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
-    required TResult orElse(),
-  }) {
-    if (deviceDelete != null) {
-      return deviceDelete(device);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
-  }) {
-    return deviceDelete(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
-  }) {
-    return deviceDelete?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
-    required TResult orElse(),
-  }) {
-    if (deviceDelete != null) {
-      return deviceDelete(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DeviceDelete implements DeviceListEvent {
-  const factory DeviceDelete(WledDevice device) = _$DeviceDelete;
-
-  WledDevice get device => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $DeviceDeleteCopyWith<DeviceDelete> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DeviceGlobalPowerCopyWith<$Res> {
-  factory $DeviceGlobalPowerCopyWith(
-          DeviceGlobalPower value, $Res Function(DeviceGlobalPower) then) =
-      _$DeviceGlobalPowerCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$DeviceGlobalPowerCopyWithImpl<$Res>
-    extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $DeviceGlobalPowerCopyWith<$Res> {
-  _$DeviceGlobalPowerCopyWithImpl(
-      DeviceGlobalPower _value, $Res Function(DeviceGlobalPower) _then)
-      : super(_value, (v) => _then(v as DeviceGlobalPower));
-
-  @override
-  DeviceGlobalPower get _value => super._value as DeviceGlobalPower;
-}
-
-/// @nodoc
-
-class _$DeviceGlobalPower implements DeviceGlobalPower {
-  const _$DeviceGlobalPower();
-
-  @override
-  String toString() {
-    return 'DeviceListEvent.deviceGlobalPower()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is DeviceGlobalPower);
+        (other.runtimeType == runtimeType && other is ListPeriodic);
   }
 
   @override
@@ -1919,57 +918,45 @@ class _$DeviceGlobalPower implements DeviceGlobalPower {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
+    required TResult Function() listUpdate,
+    required TResult Function(List<WledDevice> devices) listDiscovered,
+    required TResult Function() listAdd,
+    required TResult Function() listPower,
+    required TResult Function(int oldIndex, int newIndex) listMove,
+    required TResult Function() listPeriodic,
+    required TResult Function(WledDevice device) listDeviceUpdate,
   }) {
-    return deviceGlobalPower();
+    return listPeriodic();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
   }) {
-    return deviceGlobalPower?.call();
+    return listPeriodic?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (deviceGlobalPower != null) {
-      return deviceGlobalPower();
+    if (listPeriodic != null) {
+      return listPeriodic();
     }
     return orElse();
   }
@@ -1977,154 +964,166 @@ class _$DeviceGlobalPower implements DeviceGlobalPower {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
+    required TResult Function(ListUpdate value) listUpdate,
+    required TResult Function(ListDiscovered value) listDiscovered,
+    required TResult Function(ListAdd value) listAdd,
+    required TResult Function(ListPower value) listPower,
+    required TResult Function(ListMove value) listMove,
+    required TResult Function(ListPeriodic value) listPeriodic,
+    required TResult Function(ListDeviceUpdate value) listDeviceUpdate,
   }) {
-    return deviceGlobalPower(this);
+    return listPeriodic(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
   }) {
-    return deviceGlobalPower?.call(this);
+    return listPeriodic?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (deviceGlobalPower != null) {
-      return deviceGlobalPower(this);
+    if (listPeriodic != null) {
+      return listPeriodic(this);
     }
     return orElse();
   }
 }
 
-abstract class DeviceGlobalPower implements DeviceListEvent {
-  const factory DeviceGlobalPower() = _$DeviceGlobalPower;
+abstract class ListPeriodic implements DeviceListEvent {
+  const factory ListPeriodic() = _$ListPeriodic;
 }
 
 /// @nodoc
-abstract class $PeriodicCopyWith<$Res> {
-  factory $PeriodicCopyWith(Periodic value, $Res Function(Periodic) then) =
-      _$PeriodicCopyWithImpl<$Res>;
+abstract class $ListDeviceUpdateCopyWith<$Res> {
+  factory $ListDeviceUpdateCopyWith(
+          ListDeviceUpdate value, $Res Function(ListDeviceUpdate) then) =
+      _$ListDeviceUpdateCopyWithImpl<$Res>;
+  $Res call({WledDevice device});
+
+  $WledDeviceCopyWith<$Res> get device;
 }
 
 /// @nodoc
-class _$PeriodicCopyWithImpl<$Res> extends _$DeviceListEventCopyWithImpl<$Res>
-    implements $PeriodicCopyWith<$Res> {
-  _$PeriodicCopyWithImpl(Periodic _value, $Res Function(Periodic) _then)
-      : super(_value, (v) => _then(v as Periodic));
+class _$ListDeviceUpdateCopyWithImpl<$Res>
+    extends _$DeviceListEventCopyWithImpl<$Res>
+    implements $ListDeviceUpdateCopyWith<$Res> {
+  _$ListDeviceUpdateCopyWithImpl(
+      ListDeviceUpdate _value, $Res Function(ListDeviceUpdate) _then)
+      : super(_value, (v) => _then(v as ListDeviceUpdate));
 
   @override
-  Periodic get _value => super._value as Periodic;
+  ListDeviceUpdate get _value => super._value as ListDeviceUpdate;
+
+  @override
+  $Res call({
+    Object? device = freezed,
+  }) {
+    return _then(ListDeviceUpdate(
+      device == freezed
+          ? _value.device
+          : device // ignore: cast_nullable_to_non_nullable
+              as WledDevice,
+    ));
+  }
+
+  @override
+  $WledDeviceCopyWith<$Res> get device {
+    return $WledDeviceCopyWith<$Res>(_value.device, (value) {
+      return _then(_value.copyWith(device: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$Periodic implements Periodic {
-  const _$Periodic();
+class _$ListDeviceUpdate implements ListDeviceUpdate {
+  const _$ListDeviceUpdate(this.device);
+
+  @override
+  final WledDevice device;
 
   @override
   String toString() {
-    return 'DeviceListEvent.periodicUpdate()';
+    return 'DeviceListEvent.listDeviceUpdate(device: $device)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Periodic);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ListDeviceUpdate &&
+            (identical(other.device, device) || other.device == device));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, device);
+
+  @JsonKey(ignore: true)
+  @override
+  $ListDeviceUpdateCopyWith<ListDeviceUpdate> get copyWith =>
+      _$ListDeviceUpdateCopyWithImpl<ListDeviceUpdate>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() update,
-    required TResult Function(List<WledDevice> devices) discovered,
-    required TResult Function() add,
-    required TResult Function(WledDevice device) devicePressed,
-    required TResult Function(WledDevice device) devicePower,
-    required TResult Function(WledDevice device, int value) deviceSlider,
-    required TResult Function(WledDevice device) deviceSave,
-    required TResult Function(WledDevice device) deviceEdit,
-    required TResult Function(WledDevice device) deviceDelete,
-    required TResult Function() deviceGlobalPower,
-    required TResult Function() periodicUpdate,
+    required TResult Function() listUpdate,
+    required TResult Function(List<WledDevice> devices) listDiscovered,
+    required TResult Function() listAdd,
+    required TResult Function() listPower,
+    required TResult Function(int oldIndex, int newIndex) listMove,
+    required TResult Function() listPeriodic,
+    required TResult Function(WledDevice device) listDeviceUpdate,
   }) {
-    return periodicUpdate();
+    return listDeviceUpdate(device);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
   }) {
-    return periodicUpdate?.call();
+    return listDeviceUpdate?.call(device);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? update,
-    TResult Function(List<WledDevice> devices)? discovered,
-    TResult Function()? add,
-    TResult Function(WledDevice device)? devicePressed,
-    TResult Function(WledDevice device)? devicePower,
-    TResult Function(WledDevice device, int value)? deviceSlider,
-    TResult Function(WledDevice device)? deviceSave,
-    TResult Function(WledDevice device)? deviceEdit,
-    TResult Function(WledDevice device)? deviceDelete,
-    TResult Function()? deviceGlobalPower,
-    TResult Function()? periodicUpdate,
+    TResult Function()? listUpdate,
+    TResult Function(List<WledDevice> devices)? listDiscovered,
+    TResult Function()? listAdd,
+    TResult Function()? listPower,
+    TResult Function(int oldIndex, int newIndex)? listMove,
+    TResult Function()? listPeriodic,
+    TResult Function(WledDevice device)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (periodicUpdate != null) {
-      return periodicUpdate();
+    if (listDeviceUpdate != null) {
+      return listDeviceUpdate(device);
     }
     return orElse();
   }
@@ -2132,64 +1131,57 @@ class _$Periodic implements Periodic {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Update value) update,
-    required TResult Function(Discovered value) discovered,
-    required TResult Function(Add value) add,
-    required TResult Function(DevicePressed value) devicePressed,
-    required TResult Function(DevicePower value) devicePower,
-    required TResult Function(DeviceSlider value) deviceSlider,
-    required TResult Function(DeviceSave value) deviceSave,
-    required TResult Function(DeviceEdit value) deviceEdit,
-    required TResult Function(DeviceDelete value) deviceDelete,
-    required TResult Function(DeviceGlobalPower value) deviceGlobalPower,
-    required TResult Function(Periodic value) periodicUpdate,
+    required TResult Function(ListUpdate value) listUpdate,
+    required TResult Function(ListDiscovered value) listDiscovered,
+    required TResult Function(ListAdd value) listAdd,
+    required TResult Function(ListPower value) listPower,
+    required TResult Function(ListMove value) listMove,
+    required TResult Function(ListPeriodic value) listPeriodic,
+    required TResult Function(ListDeviceUpdate value) listDeviceUpdate,
   }) {
-    return periodicUpdate(this);
+    return listDeviceUpdate(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
   }) {
-    return periodicUpdate?.call(this);
+    return listDeviceUpdate?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Update value)? update,
-    TResult Function(Discovered value)? discovered,
-    TResult Function(Add value)? add,
-    TResult Function(DevicePressed value)? devicePressed,
-    TResult Function(DevicePower value)? devicePower,
-    TResult Function(DeviceSlider value)? deviceSlider,
-    TResult Function(DeviceSave value)? deviceSave,
-    TResult Function(DeviceEdit value)? deviceEdit,
-    TResult Function(DeviceDelete value)? deviceDelete,
-    TResult Function(DeviceGlobalPower value)? deviceGlobalPower,
-    TResult Function(Periodic value)? periodicUpdate,
+    TResult Function(ListUpdate value)? listUpdate,
+    TResult Function(ListDiscovered value)? listDiscovered,
+    TResult Function(ListAdd value)? listAdd,
+    TResult Function(ListPower value)? listPower,
+    TResult Function(ListMove value)? listMove,
+    TResult Function(ListPeriodic value)? listPeriodic,
+    TResult Function(ListDeviceUpdate value)? listDeviceUpdate,
     required TResult orElse(),
   }) {
-    if (periodicUpdate != null) {
-      return periodicUpdate(this);
+    if (listDeviceUpdate != null) {
+      return listDeviceUpdate(this);
     }
     return orElse();
   }
 }
 
-abstract class Periodic implements DeviceListEvent {
-  const factory Periodic() = _$Periodic;
+abstract class ListDeviceUpdate implements DeviceListEvent {
+  const factory ListDeviceUpdate(WledDevice device) = _$ListDeviceUpdate;
+
+  WledDevice get device;
+  @JsonKey(ignore: true)
+  $ListDeviceUpdateCopyWith<ListDeviceUpdate> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2307,7 +1299,8 @@ class _$Loading implements Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Loading);
   }
 
   @override
@@ -2431,14 +1424,14 @@ class _$Found implements Found {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Found &&
-            (identical(other.devices, devices) ||
-                const DeepCollectionEquality().equals(other.devices, devices)));
+        (other.runtimeType == runtimeType &&
+            other is Found &&
+            const DeepCollectionEquality().equals(other.devices, devices));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(devices);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(devices));
 
   @JsonKey(ignore: true)
   @override
@@ -2517,7 +1510,7 @@ class _$Found implements Found {
 abstract class Found implements DeviceListState {
   const factory Found(List<WledDevice> devices) = _$Found;
 
-  List<WledDevice> get devices => throw _privateConstructorUsedError;
+  List<WledDevice> get devices;
   @JsonKey(ignore: true)
   $FoundCopyWith<Found> get copyWith => throw _privateConstructorUsedError;
 }
@@ -2550,7 +1543,8 @@ class _$Empty implements Empty {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Empty);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Empty);
   }
 
   @override

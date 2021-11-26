@@ -9,7 +9,12 @@ import '../bloc/device_list_bloc.dart';
 import '../widgets/device_list_switch.dart';
 
 class DeviceListAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const DeviceListAppbar({Key? key}) : super(key: key);
+  const DeviceListAppbar({
+    Key? key,
+    required this.isEnabled,
+  }) : super(key: key);
+
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -21,29 +26,25 @@ class DeviceListAppbar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: context.theme.scaffoldBackgroundColor,
       automaticallyImplyLeading: false,
       actions: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Kpadding.medium),
-          child: Center(
-            child: BlocBuilder<DeviceListBloc, DeviceListState>(
-              builder: (context, state) => state is Found
-                  ? DeviceListSwitch(
-                      value: state.devices.anyOn,
-                      height: 24,
-                      onChanged: (v) => bloc.add(const DeviceGlobalPower()),
-                    )
-                  : const SizedBox.shrink(),
-            ),
+        Center(
+          child: DeviceListSwitch(
+            height: 24,
+            value: isEnabled,
+            onChanged: (_) => bloc.add(const ListPower()),
           ),
         ),
+
         // show fixed refresh button instead of pull to refresh
         // on larger devices
         if (!Platform.isAndroid && !Platform.isIOS)
           IconButton(
-            onPressed: () => bloc.add(const Update()),
+            splashRadius: 28,
+            onPressed: () => bloc.add(const ListUpdate()),
             icon: const Icon(FeatherIcons.repeat),
           ),
         IconButton(
-          onPressed: () => bloc.add(const Add()),
+          splashRadius: 28,
+          onPressed: () => bloc.add(const ListAdd()),
           icon: const Icon(FeatherIcons.plus),
         ),
       ],

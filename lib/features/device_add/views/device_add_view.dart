@@ -123,25 +123,14 @@ class _DeviceAddState extends State<DeviceAdd> {
                         textInputAction: TextInputAction.done,
                       ),
                       Kspacer.large,
-
-                      /// only activate the submit button when the form
-                      /// sucessfully validates.
-                      if (state.status == FormzStatus.submissionInProgress)
-                        const SizedBox(
-                          height: 70,
-                          child: LoadingWidget(),
-                        )
-                      else
-                        Center(
-                          child: ElevatedButton(
-                            onPressed: state.status == FormzStatus.valid
-                                ? () => bloc.add(const Submitted())
-                                : null,
-                            child: Text(context.locale.deviceAddSubmit),
-                          ),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: state.status == FormzStatus.valid
+                              ? () => bloc.add(const Submitted())
+                              : null,
+                          child: Text(context.locale.deviceAddSubmit),
                         ),
-                      if (state.status == FormzStatus.submissionFailure)
-                        const Text('this is not a valid WLED device'),
+                      ),
                     ],
                   ),
                 );

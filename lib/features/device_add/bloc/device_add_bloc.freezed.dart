@@ -202,14 +202,13 @@ class _$Initial implements Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Initial &&
-            (identical(other.device, device) ||
-                const DeepCollectionEquality().equals(other.device, device)));
+        (other.runtimeType == runtimeType &&
+            other is Initial &&
+            (identical(other.device, device) || other.device == device));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(device);
+  int get hashCode => Object.hash(runtimeType, device);
 
   @JsonKey(ignore: true)
   @override
@@ -312,7 +311,7 @@ class _$Initial implements Initial {
 abstract class Initial implements DeviceAddEvent {
   const factory Initial(WledDevice? device) = _$Initial;
 
-  WledDevice? get device => throw _privateConstructorUsedError;
+  WledDevice? get device;
   @JsonKey(ignore: true)
   $InitialCopyWith<Initial> get copyWith => throw _privateConstructorUsedError;
 }
@@ -362,14 +361,13 @@ class _$IpChanged implements IpChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is IpChanged &&
-            (identical(other.ip, ip) ||
-                const DeepCollectionEquality().equals(other.ip, ip)));
+        (other.runtimeType == runtimeType &&
+            other is IpChanged &&
+            (identical(other.ip, ip) || other.ip == ip));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(ip);
+  int get hashCode => Object.hash(runtimeType, ip);
 
   @JsonKey(ignore: true)
   @override
@@ -472,7 +470,7 @@ class _$IpChanged implements IpChanged {
 abstract class IpChanged implements DeviceAddEvent {
   const factory IpChanged(String ip) = _$IpChanged;
 
-  String get ip => throw _privateConstructorUsedError;
+  String get ip;
   @JsonKey(ignore: true)
   $IpChangedCopyWith<IpChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -508,7 +506,8 @@ class _$IpUnfocused implements IpUnfocused {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is IpUnfocused);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is IpUnfocused);
   }
 
   @override
@@ -658,14 +657,13 @@ class _$NameChanged implements NameChanged {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is NameChanged &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+        (other.runtimeType == runtimeType &&
+            other is NameChanged &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(name);
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
@@ -768,7 +766,7 @@ class _$NameChanged implements NameChanged {
 abstract class NameChanged implements DeviceAddEvent {
   const factory NameChanged(String name) = _$NameChanged;
 
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @JsonKey(ignore: true)
   $NameChangedCopyWith<NameChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -805,7 +803,8 @@ class _$NameUnfocused implements NameUnfocused {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is NameUnfocused);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is NameUnfocused);
   }
 
   @override
@@ -936,7 +935,8 @@ class _$Submitted implements Submitted {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Submitted);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Submitted);
   }
 
   @override
@@ -1067,7 +1067,8 @@ class _$Canceled implements Canceled {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Canceled);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Canceled);
   }
 
   @override
@@ -1360,21 +1361,15 @@ class _$_DeviceAddState implements _DeviceAddState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _DeviceAddState &&
-            (identical(other.ip, ip) ||
-                const DeepCollectionEquality().equals(other.ip, ip)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is _DeviceAddState &&
+            (identical(other.ip, ip) || other.ip == ip) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(ip) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(status);
+  int get hashCode => Object.hash(runtimeType, ip, name, status);
 
   @JsonKey(ignore: true)
   @override
@@ -1449,11 +1444,11 @@ abstract class _DeviceAddState implements DeviceAddState {
       _$_DeviceAddState;
 
   @override
-  Ip get ip => throw _privateConstructorUsedError;
+  Ip get ip;
   @override
-  Name get name => throw _privateConstructorUsedError;
+  Name get name;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$DeviceAddStateCopyWith<_DeviceAddState> get copyWith =>
@@ -1530,21 +1525,15 @@ class _$DeviceAddLoading implements DeviceAddLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is DeviceAddLoading &&
-            (identical(other.ip, ip) ||
-                const DeepCollectionEquality().equals(other.ip, ip)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is DeviceAddLoading &&
+            (identical(other.ip, ip) || other.ip == ip) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(ip) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(status);
+  int get hashCode => Object.hash(runtimeType, ip, name, status);
 
   @JsonKey(ignore: true)
   @override
@@ -1619,11 +1608,11 @@ abstract class DeviceAddLoading implements DeviceAddState {
       _$DeviceAddLoading;
 
   @override
-  Ip get ip => throw _privateConstructorUsedError;
+  Ip get ip;
   @override
-  Name get name => throw _privateConstructorUsedError;
+  Name get name;
   @override
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   $DeviceAddLoadingCopyWith<DeviceAddLoading> get copyWith =>

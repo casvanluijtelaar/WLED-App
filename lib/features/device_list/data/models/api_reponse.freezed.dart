@@ -176,25 +176,17 @@ class _$_ApiResponse with DiagnosticableTreeMixin implements _ApiResponse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ApiResponse &&
+        (other.runtimeType == runtimeType &&
+            other is _ApiResponse &&
             (identical(other.brightness, brightness) ||
-                const DeepCollectionEquality()
-                    .equals(other.brightness, brightness)) &&
-            (identical(other.isOn, isOn) ||
-                const DeepCollectionEquality().equals(other.isOn, isOn)) &&
-            (identical(other.color, color) ||
-                const DeepCollectionEquality().equals(other.color, color)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+                other.brightness == brightness) &&
+            (identical(other.isOn, isOn) || other.isOn == isOn) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(brightness) ^
-      const DeepCollectionEquality().hash(isOn) ^
-      const DeepCollectionEquality().hash(color) ^
-      const DeepCollectionEquality().hash(name);
+  int get hashCode => Object.hash(runtimeType, brightness, isOn, color, name);
 
   @JsonKey(ignore: true)
   @override
@@ -210,13 +202,13 @@ abstract class _ApiResponse implements ApiResponse {
       required String name}) = _$_ApiResponse;
 
   @override
-  double get brightness => throw _privateConstructorUsedError;
+  double get brightness;
   @override
-  bool get isOn => throw _privateConstructorUsedError;
+  bool get isOn;
   @override
-  Color get color => throw _privateConstructorUsedError;
+  Color get color;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$ApiResponseCopyWith<_ApiResponse> get copyWith =>

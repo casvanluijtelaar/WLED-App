@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wled/core/core.dart';
+import 'package:wled/features/device_list/domain/extensions.dart';
 
 void main() {
   group('List extension tests', () {

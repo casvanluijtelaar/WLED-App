@@ -58,7 +58,7 @@ _$_WledDevice _$$_WledDeviceFromJson(Map<String, dynamic> json) =>
     _$_WledDevice(
       address: json['address'] as String,
       name: json['name'] as String,
-      status: _$enumDecodeNullable(_$DeviceStatusEnumMap, json['status']) ??
+      status: $enumDecodeNullable(_$DeviceStatusEnumMap, json['status']) ??
           DeviceStatus.functional,
       nameIsCustom: json['nameIsCustom'] as bool? ?? false,
       isSaved: json['isSaved'] as bool? ?? false,
@@ -67,6 +67,7 @@ _$_WledDevice _$$_WledDeviceFromJson(Map<String, dynamic> json) =>
       color: json['color'] == null
           ? ColorConverter.defaultColor
           : const ColorConverter().fromJson(json['color'] as int),
+      group: json['group'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_WledDeviceToJson(_$_WledDevice instance) =>
@@ -79,44 +80,8 @@ Map<String, dynamic> _$$_WledDeviceToJson(_$_WledDevice instance) =>
       'isEnabled': instance.isEnabled,
       'brightness': instance.brightness,
       'color': const ColorConverter().toJson(instance.color),
+      'group': instance.group,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
-}
 
 const _$DeviceStatusEnumMap = {
   DeviceStatus.functional: 'functional',

@@ -116,7 +116,8 @@ class _$Started implements Started {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Started);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Started);
   }
 
   @override
@@ -217,7 +218,8 @@ class _$Back implements Back {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Back);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Back);
   }
 
   @override
@@ -396,7 +398,8 @@ class _$Initial implements Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Initial);
   }
 
   @override
@@ -521,18 +524,14 @@ class _$Loaded implements Loaded {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Loaded &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality().equals(other.address, address)));
+        (other.runtimeType == runtimeType &&
+            other is Loaded &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.address, address) || other.address == address));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(address);
+  int get hashCode => Object.hash(runtimeType, name, address);
 
   @JsonKey(ignore: true)
   @override
@@ -606,8 +605,8 @@ abstract class Loaded implements DeviceControlState {
   const factory Loaded({required String name, required String address}) =
       _$Loaded;
 
-  String get name => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
+  String get name;
+  String get address;
   @JsonKey(ignore: true)
   $LoadedCopyWith<Loaded> get copyWith => throw _privateConstructorUsedError;
 }

@@ -20,26 +20,27 @@ enum DeviceStatus {
 @freezed
 class WledDevice with _$WledDevice {
   @ColorConverter()
-  @HiveType(typeId: 2)
   const factory WledDevice({
     // device IP (can also be hostname if applicable)
-    @HiveField(0) required String address,
+    required String address,
     // device display name ("Server Description")
-    @HiveField(1) required String name,
+    required String name,
     // Current connection status
-    @HiveField(2) @Default(DeviceStatus.functional) DeviceStatus status,
+    @Default(DeviceStatus.functional) DeviceStatus status,
     // If the light name is custom, the name returned
     // by the API response will be ignored
-    @HiveField(3) @Default(false) bool nameIsCustom,
+    @Default(false) bool nameIsCustom,
     // if the wled device is saved to the local device
-    @HiveField(4) @Default(false) bool isSaved,
+    @Default(false) bool isSaved,
     // Disabled devices don't get polled or show up in the list
-    @HiveField(5) @Default(true) bool isEnabled,
+    @Default(true) bool isEnabled,
     // There are two vars for brightness to discern
     // API responses from slider updates
-    @HiveField(6) @Default(255) int brightness,
+    @Default(255) int brightness,
     // the currently active device color
-    @HiveField(7) @Default(ColorConverter.defaultColor) @JsonKey() Color color,
+    @Default(ColorConverter.defaultColor) @JsonKey() Color color,
+    // group this wled device is part of
+    @Default('') String group,
   }) = _WledDevice;
 
   factory WledDevice.fromJson(Map<String, dynamic> json) =>

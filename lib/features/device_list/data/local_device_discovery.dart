@@ -29,4 +29,11 @@ class LocalDeviceDiscovery {
     final index = box.values.toList().indexWhere((e) => e.address == d.address);
     if (index != -1) box.deleteAt(index);
   }
+
+  void updateWledDevice(WledDevice d) {
+    final box = _hive.box<WledDevice>(Kasset.devicesBox);
+    final index = box.values.toList().indexWhere((e) => e.address == d.address);
+
+    if (index != -1) box.putAt(index, d);
+  }
 }

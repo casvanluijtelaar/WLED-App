@@ -9,4 +9,3 @@ class DeviceControlState with _$DeviceControlState {
     required String address,
   }) = Loaded;
 }
-

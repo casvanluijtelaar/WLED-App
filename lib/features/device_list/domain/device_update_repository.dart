@@ -1,20 +1,17 @@
 import 'package:injectable/injectable.dart';
+import 'package:wled/core/core.dart';
 
 import '../data/http_connection.dart';
 import '../data/xml_parser.dart';
 
-import 'device_update_repository.dart';
-import 'models/wled_device.dart';
-
-@Injectable(as: DeviceUpdateRepository)
-class DeviceUpdateRepositoryImpl implements DeviceUpdateRepository {
-  DeviceUpdateRepositoryImpl(this._parser, this._http);
+@singleton
+class DeviceUpdateRepository {
+  DeviceUpdateRepository(this._parser, this._http);
 
   final XmlParser _parser;
   final HttpConnection _http;
 
-  @override
-  Future<WledDevice> updateWledDevice(
+  Future<WledDevice> update(
     WledDevice device, [
     String? call,
   ]) async {

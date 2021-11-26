@@ -1,13 +1,15 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reorderable_grid/reorderable_grid.dart';
 import 'package:wled/core/core.dart';
-import 'package:wled/features/device_list/widgets/device_list_appbar.dart';
 
+import '../bloc/device_control_bloc.dart';
 import '../bloc/device_list_bloc.dart';
-import '../widgets/device_list_grid_view.dart';
+import '../domain/extensions.dart';
+import '../widgets/device_list_appbar.dart';
+import '../widgets/device_list_grid_delegate.dart';
 import '../widgets/device_list_item.dart';
 
 /// DeviceListView entry point
@@ -15,8 +17,15 @@ class DeviceListView extends StatelessWidget {
   const DeviceListView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => BlocProvider<DeviceListBloc>(
-        create: (_) => getIt<DeviceListBloc>()..add(const Update()),
+  Widget build(BuildContext context) => MultiBlocProvider(
+        providers: [
+          BlocProvider<DeviceListBloc>(
+            create: (_) => getIt<DeviceListBloc>()..add(const ListUpdate()),
+          ),
+          BlocProvider<DeviceControlBloc>(
+            create: (_) => getIt<DeviceControlBloc>(),
+          ),
+        ],
         child: const DeviceListBuilder(),
       );
 }
@@ -28,31 +37,48 @@ class DeviceListBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<DeviceListBloc>();
+    final controls = context.read<DeviceControlBloc>();
 
     return BlocBuilder<DeviceListBloc, DeviceListState>(
       builder: (context, state) => Scaffold(
-        appBar: const DeviceListAppbar(),
+        appBar: DeviceListAppbar(
+          // ignore: avoid_bool_literals_in_conditional_expressions
+          isEnabled: state is Found
+              ? state.devices.anyOn
+              : false,
+        ),
         body: RefreshIndicator(
-          onRefresh: () async => bloc.add(const Update()),
+          onRefresh: () async => bloc.add(const ListUpdate()),
           child: state is Found
-
-              /// if devices are found, display them in a dynamic grid
-              ? DeviceListGridview.extent(
-                  physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics(),
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Kpadding.medium,
                   ),
-                  mainAxisSpacing: Kpadding.medium,
-                  crossAxisSpacing: Kpadding.medium,
-                  padding: const EdgeInsets.all(Kpadding.medium),
-                  maxCrossAxisExtent: 600,
-                  childHeight: 108,
-                  children: state.devices
-                      .map((e) => DeviceListItem(device: e))
-                      .toList(),
-                )
+                  child: ReorderableGridView.builder(
+                    gridDelegate: const DeviceListSliverGridDelegate(
+                      mainAxisSpacing: Kpadding.medium,
+                      crossAxisSpacing: Kpadding.medium,
+                      maxCrossAxisExtent: 600,
+                      height: 108,
+                    ),
+                    onReorder: (o, n) => bloc.add(ListMove(o, n)),
+                    itemCount: state.devices.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final device = state.devices[index];
 
-              /// if there are no items, we still want the ability to pull-down-
-              /// to-refresh so we need to wrap the widgets in a scrollview
+                      return DeviceListItem(
+                        key: ValueKey(device),
+                        device: device,
+                        onDelete: () => controls.add(DeviceDelete(device)),
+                        onEdit: () => controls.add(DeviceEdit(device)),
+                        onSave: () => controls.add(DeviceSave(device)),
+                        onPower: (v) => controls.add(DevicePower(device)),
+                        onPressed: () => controls.add(DevicePressed(device)),
+                        onSlide: (v) => controls.add(DeviceSlider(device, v)),
+                      );
+                    },
+                  ),
+                )
               : SingleChildScrollView(
                   physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics(),
