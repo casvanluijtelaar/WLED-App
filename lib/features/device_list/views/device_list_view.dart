@@ -40,12 +40,12 @@ class DeviceListBuilder extends StatelessWidget {
     final controls = context.read<DeviceControlBloc>();
 
     return BlocBuilder<DeviceListBloc, DeviceListState>(
-      builder: (context, state) => Scaffold(
+        builder: (context, state) {
+
+      return Scaffold(
         appBar: DeviceListAppbar(
           // ignore: avoid_bool_literals_in_conditional_expressions
-          isEnabled: state is Found
-              ? state.devices.anyOn
-              : false,
+          isEnabled: state is Found ? state.devices.anyOn : false,
         ),
         body: RefreshIndicator(
           onRefresh: () async => bloc.add(const ListUpdate()),
@@ -96,7 +96,7 @@ class DeviceListBuilder extends StatelessWidget {
                   ),
                 ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

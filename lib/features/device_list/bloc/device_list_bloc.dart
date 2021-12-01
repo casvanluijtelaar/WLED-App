@@ -82,7 +82,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   /// when there are wled devices in the current state.
   Future<void> _onPeriodic(ListPeriodic _, Emitter emit) async {
     if (state is! Found) return;
-    final devices = (state as Found).devices;
+    final devices = List<WledDevice>.from((state as Found).devices);
 
     final futures = devices.map(_updateRepository.update);
     final results = await Future.wait(futures);
@@ -101,7 +101,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
 
   /// moves the from its old index to its new index
   Future<void> _onDeviceMove(ListMove event, Emitter emit) async {
-    final devices = (state as Found).devices;
+    final devices = List<WledDevice>.from((state as Found).devices);
     final device = devices.removeAt(event.oldIndex);
 
     devices.insert(event.newIndex, device);
@@ -112,7 +112,7 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   /// enabled all are consideered to be enabled, therefor all must fist be
   /// disabled before they can be enabled as a group
   Future<void> _onPower(ListPower event, Emitter emit) async {
-    final devices = (state as Found).devices;
+    final devices = List<WledDevice>.from((state as Found).devices);
     final command = 'T=${devices.anyOn ? 0 : 1}';
 
     final futures = devices.map((d) => _updateRepository.update(d, command));
@@ -125,13 +125,10 @@ class DeviceListBloc extends Bloc<DeviceListEvent, DeviceListState> {
   /// does not contain this device it adds it to the correct position. if it
   /// does contain the device it replaces the old device with the new one
   List<WledDevice> _addOrReplaceDeviceInState(List<WledDevice> newDevices) {
-    final devices = state is Found ? (state as Found).devices : <WledDevice>[];
+    final devices = <WledDevice>[];
+    if (state is Found) devices.addAll((state as Found).devices);
 
-    for (final device in newDevices) {
-      final index = devices.indexWhere((d) => d.address == device.address);
-      index == -1 ? devices.add(device) : devices[index] = device;
-    }
-
+    newDevices.forEach(devices.addOrReplace);
     return devices;
   }
 
