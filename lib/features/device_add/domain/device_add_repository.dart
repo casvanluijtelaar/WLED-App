@@ -2,7 +2,6 @@ import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:wled/core/core.dart';
-import 'package:wled/core/utils/consts.dart';
 
 @injectable
 class DeviceAddRepository {

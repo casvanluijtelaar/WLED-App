@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
 class DeviceListSliverGridDelegate extends SliverGridDelegate {
   /// Creates a delegate that makes grid layouts with tiles that have a maximum

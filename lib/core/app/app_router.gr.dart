@@ -9,6 +9,7 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i2;
+import 'package:flutter/foundation.dart' as _i5;
 import 'package:flutter/material.dart' as _i3;
 
 import '../../features/features.dart' as _i1;
@@ -61,7 +62,7 @@ class DeviceListRoute extends _i2.PageRouteInfo<void> {
 /// generated route for [_i1.DeviceControlView]
 class DeviceControlRoute extends _i2.PageRouteInfo<DeviceControlRouteArgs> {
   DeviceControlRoute(
-      {required String deviceAddress, required String deviceName, _i3.Key? key})
+      {required String deviceAddress, required String deviceName, _i5.Key? key})
       : super(name,
             path: 'controls',
             args: DeviceControlRouteArgs(
@@ -80,7 +81,7 @@ class DeviceControlRouteArgs {
 
   final String deviceName;
 
-  final _i3.Key? key;
+  final _i5.Key? key;
 
   @override
   String toString() {
@@ -90,7 +91,7 @@ class DeviceControlRouteArgs {
 
 /// generated route for [_i1.DeviceAddView]
 class DeviceAddRoute extends _i2.PageRouteInfo<DeviceAddRouteArgs> {
-  DeviceAddRoute({_i3.Key? key, _i4.WledDevice? editableDevice})
+  DeviceAddRoute({_i5.Key? key, _i4.WledDevice? editableDevice})
       : super(name,
             path: 'add',
             args: DeviceAddRouteArgs(key: key, editableDevice: editableDevice));
@@ -101,7 +102,7 @@ class DeviceAddRoute extends _i2.PageRouteInfo<DeviceAddRouteArgs> {
 class DeviceAddRouteArgs {
   const DeviceAddRouteArgs({this.key, this.editableDevice});
 
-  final _i3.Key? key;
+  final _i5.Key? key;
 
   final _i4.WledDevice? editableDevice;
 
