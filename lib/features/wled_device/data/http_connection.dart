@@ -1,22 +1,19 @@
 import 'package:http/http.dart' as http;
-import 'package:injectable/injectable.dart';
 
 class HttpConnectionException implements Exception {}
-
 class HttpStatusException implements Exception {}
 
 /// class wrapping all the HTTP interactions
-@lazySingleton
 class HttpConnection {
+  
   /// sends [data] to the provided [url], can throw
   /// [HttpConnectionException] or [HttpStatusException]
-  Future<String> sendApiCall(String url, [String data = '']) async {
-    var uri = '$url/win';
-    if (data.isNotEmpty) uri += '&$data';
-
+  Future<String> sendApiCall(String url, [String? data]) async {
     try {
-      const timeoutDelay = Duration(seconds: 4);
-      final result = await http.get(Uri.parse(uri)).timeout(timeoutDelay);
+
+      final result = await http
+          .post(Uri.parse('$url/json'), body: data)
+          .timeout(const Duration(seconds: 4));
 
       if (result.statusCode != 200) throw HttpStatusException();
 

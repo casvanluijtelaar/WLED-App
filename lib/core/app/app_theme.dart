@@ -64,9 +64,16 @@ abstract class AppTheme {
     fontWeight: FontWeight.w400,
   );
 
+  static const _bodyStyleWhite = TextStyle(
+    color: _titleColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
   static const _hintStyle = TextStyle(
     color: _subTitleColor,
-    fontSize: 14,
+    fontSize: 16,
+    height: 1.8,
     fontWeight: FontWeight.w400,
   );
 
@@ -110,11 +117,12 @@ abstract class AppTheme {
       unselectedIconTheme: _iconDisabledTheme,
       type: BottomNavigationBarType.fixed,
     ),
+    cardColor: _cardColor,
     cardTheme: const CardTheme(
       color: _cardColor,
       shadowColor: Colors.black,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       elevation: 0,
     ),
@@ -130,7 +138,7 @@ abstract class AppTheme {
       headline5: _titleStyle,
       headline6: _titleSmallStyle,
       bodyText1: _bodyStyle,
-      bodyText2: _bodyStyle,
+      bodyText2: _bodyStyleWhite,
       button: _buttonStyle,
     ),
     colorScheme: const ColorScheme.dark(
@@ -138,35 +146,51 @@ abstract class AppTheme {
       secondary: Colors.grey,
       background: _backgroundColor,
     ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: _titleColor,
+      elevation: 2,
+    ),
     progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: _titleColor,
     ),
     bottomSheetTheme: const BottomSheetThemeData(
       modalBackgroundColor: _backgroundColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      elevation: 2,
+    ),
+    dialogTheme: const DialogTheme(
+      backgroundColor: _backgroundColor,
+      alignment: Alignment.center,
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
       contentPadding: EdgeInsets.all(Kpadding.small),
       alignLabelWithHint: true,
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(color: Color(0xFFC62828)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderSide: BorderSide(color: _backgroundColor),
       ),
       focusedBorder: UnderlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(color: _cardColor),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderSide: BorderSide(color: _backgroundColor),
       ),
       border: UnderlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(color: _cardColor),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderSide: BorderSide(color: _backgroundColor),
       ),
       enabledBorder: UnderlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide(color: _cardColor),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderSide: BorderSide(color: _backgroundColor),
       ),
       fillColor: _cardColor,
       filled: true,
       hintStyle: _hintStyle,
-      focusColor: _backgroundColor,
+      focusColor: _cardColor,
     ),
   );
 }

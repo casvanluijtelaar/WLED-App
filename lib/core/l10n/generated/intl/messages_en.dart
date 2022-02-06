@@ -22,40 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "deviceAddIpErrorEmpty":
-            MessageLookupByLibrary.simpleMessage("Ip cannot be Empty"),
-        "deviceAddIpErrorInvalid":
-            MessageLookupByLibrary.simpleMessage("Ip is not valid"),
-        "deviceAddIpHint":
-            MessageLookupByLibrary.simpleMessage("192.168.0.191"),
-        "deviceAddIpTitle": MessageLookupByLibrary.simpleMessage("Ip address"),
-        "deviceAddNameErrorToLong": MessageLookupByLibrary.simpleMessage(
-            "Name is to long. Max 40 characters"),
-        "deviceAddNameHelper": MessageLookupByLibrary.simpleMessage(
-            "Optional. This name will overwrite the WLED device name"),
-        "deviceAddNameHint": MessageLookupByLibrary.simpleMessage("Bedroom"),
-        "deviceAddNameTitle":
-            MessageLookupByLibrary.simpleMessage("Custom name*"),
-        "deviceAddSubmit": MessageLookupByLibrary.simpleMessage("Save"),
-        "deviceAddTitle":
-            MessageLookupByLibrary.simpleMessage("Add new device"),
-        "deviceListAction":
-            MessageLookupByLibrary.simpleMessage("Add a new device"),
         "deviceListEmpty": MessageLookupByLibrary.simpleMessage(
-            "No devices found, add them manually"),
-        "deviceListLoading": MessageLookupByLibrary.simpleMessage(
-            "automatic discovery not supported on windows, add it manually"),
-        "deviceListOptionsDelete":
-            MessageLookupByLibrary.simpleMessage("Delete"),
-        "deviceListOptionsDeleteDisc": MessageLookupByLibrary.simpleMessage(
-            "Remove this device from memory"),
-        "deviceListOptionsEdit": MessageLookupByLibrary.simpleMessage("Edit"),
-        "deviceListOptionsEditDisc":
-            MessageLookupByLibrary.simpleMessage("Change device settings"),
-        "deviceListOptionsSave": MessageLookupByLibrary.simpleMessage("Save"),
-        "deviceListOptionsSaveDisc":
-            MessageLookupByLibrary.simpleMessage("Remember this device"),
-        "deviceListPowerOff": MessageLookupByLibrary.simpleMessage("off"),
-        "deviceListTitle": MessageLookupByLibrary.simpleMessage("Devices")
+            "No devices found, Lets add some"),
+        "deviceListPowerOff": MessageLookupByLibrary.simpleMessage("off")
       };
 }

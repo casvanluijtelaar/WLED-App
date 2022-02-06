@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.14)
 project(wled_app LANGUAGES CXX)
 
-set(BINARY_NAME "wled")
+set(BINARY_NAME "wled_app")
 
 cmake_policy(SET CMP0063 NEW)
 

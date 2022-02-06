@@ -1,24 +1,4 @@
 {
-    "deviceListTitle": "Devices",
-    "deviceListAction": "Add a new device",
     "deviceListPowerOff": "off",
-    "deviceListLoading": "automatic discovery not supported on windows, add it manually",
-    "deviceListOptionsSave": "Save",
-    "deviceListOptionsSaveDisc": "Remember this device",
-    "deviceListOptionsEdit": "Edit",
-    "deviceListOptionsEditDisc": "Change device settings",
-    "deviceListOptionsDelete": "Delete",
-    "deviceListOptionsDeleteDisc": "Remove this device from memory",
-    "deviceListEmpty": "No devices found, add them manually",
-
-    "deviceAddTitle": "Add new device",
-    "deviceAddIpTitle": "Ip address",
-    "deviceAddIpHint": "192.168.0.191",
-    "deviceAddIpErrorEmpty": "Ip cannot be Empty",
-    "deviceAddIpErrorInvalid": "Ip is not valid",
-    "deviceAddNameTitle": "Custom name*",
-    "deviceAddNameHint": "Bedroom",
-    "deviceAddNameErrorToLong": "Name is to long. Max 40 characters",
-    "deviceAddNameHelper": "Optional. This name will overwrite the WLED device name",
-    "deviceAddSubmit": "Save"
+    "deviceListEmpty": "No devices found, Lets add some"
 }

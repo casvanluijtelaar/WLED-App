@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:wled/core/core.dart';
+import 'package:wled/features/wled_device/wled_device.dart';
 
-import './device_list_options.dart';
 import './device_list_slider.dart';
 import './device_list_switch.dart';
 
@@ -35,11 +35,12 @@ class DeviceListItem extends StatelessWidget {
     /// the device also needs to be disabled when the device cant be reached
     /// ( because then we couldn't turn it on anyways )
     final isEnabled =
-        device.isEnabled && device.status == DeviceStatus.functional;
+        device.state.isEnabled && device.status == DeviceStatus.functional;
 
     /// background gradients for pure black or pure white don't work very well
     /// so clamp the background color within a nice color range
-    final color = device.color.clamp(0.15, 0.85);
+    final color = device.state.segments[device.state.mainSegment].colors.first
+        .clamp(0.15, 0.85);
 
     /// for functional, enabled devices show a nice gradient based on the
     /// active color, otherwise show the default background card color
@@ -86,12 +87,12 @@ class DeviceListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          device.name,
+                          device.info.name,
                           style: theme.textTheme.headline4!
                               .copyWith(color: textColor),
                         ),
                         Text(
-                          device.address,
+                          device.info.ipAddress,
                           style: theme.textTheme.subtitle1!
                               .copyWith(color: textColor),
                         )
@@ -112,17 +113,9 @@ class DeviceListItem extends StatelessWidget {
                   /// menu button that opens the options menu in a bottom sheet
                   const SizedBox(width: Kpadding.medium),
                   RoundIconButton(
-                    icon: FeatherIcons.moreVertical,
-                    onPressed: () => showModalBottomSheet<void>(
-                      context: context,
-                      builder: (_) => DeviceListOptions(
-                        device: device,
-                        onSave: onSave,
-                        onEdit: onEdit,
-                        onDelete: onDelete,
-                      ),
+                    icon: FeatherIcons.delete,
+                    onPressed: () {},
                     ),
-                  ),
                 ],
               ),
             ),
@@ -133,7 +126,7 @@ class DeviceListItem extends StatelessWidget {
             if (device.status == DeviceStatus.functional)
               DeviceListSlider(
                 color: color,
-                value: device.brightness.toDouble().clamp(0, 255),
+                value: device.state.brightness.toDouble().clamp(0, 255),
                 enabled: isEnabled,
                 onChanged: onSlide,
               )

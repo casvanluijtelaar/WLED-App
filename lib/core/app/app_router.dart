@@ -1,6 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-
-import 'package:wled/core/core.dart';
 import 'package:wled/features/features.dart';
 
 @MaterialAutoRouter(
@@ -14,10 +12,6 @@ import 'package:wled/features/features.dart';
     AutoRoute<void>(
       page: DeviceControlView,
       path: 'controls',
-    ),
-     AutoRoute<WledDevice>(
-      page: DeviceAddView,
-      path: 'add',
     ),
   ],
 )

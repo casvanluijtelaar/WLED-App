@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
-import 'package:wled/core/core.dart';
+import 'package:wled/features/features.dart';
 
 import '../data/local_device_discovery.dart';
 import '../data/mdns_device_discovery.dart';
-import 'device_update_repository.dart';
 
 @singleton
 class DeviceFetchRepository {
@@ -33,7 +32,7 @@ class DeviceFetchRepository {
     // first fetch the locally saved devices
     final localDevices = _local.getWledDevice();
     // update devices by fetching new data
-    final futures = localDevices.map(_update.update);
+    final futures = localDevices.map(_update.updateFromDevice);
     // yield the local devices first
     return Future.wait(futures);
   }
@@ -44,14 +43,14 @@ class DeviceFetchRepository {
     final remoteDevices = _remote.stream.asyncMap((mdns) async {
       // create a new WledDevice from mdns lookup
       final address = mdns.ip.address.address;
-      final device = WledDevice(address: address, name: mdns.srv.name);
+
       // attempt to fetch data for this WledDevice
-      return _update.update(device);
+      return _update.updateFromIp(address); 
       // only yield actual WledDevices by testing if the data fetch completed
       // succesfully
-    }).where((i) => i.status != DeviceStatus.unreachable);
+    }).where((i) => i != null && i.status != DeviceStatus.unreachable);
 
-    return remoteDevices.map((i) => [i]);
+    return remoteDevices.map((i) => [i!]);
   }
 
   void deleteLocal(WledDevice device) {

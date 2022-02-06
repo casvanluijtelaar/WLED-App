@@ -1,24 +1,4 @@
 {
-    "deviceListTitle": "Apparaten",
-    "deviceListAction": "Voeg een nieuw apparaat toe",
-    "deviceListPowerOff": "uit",
-    "deviceListLoading": "Zoeken naar WLED apparaten op dit netwerk",
-    "deviceListOptionsSave": "Opslaan",
-    "deviceListOptionsSaveDisc": "Herinner dit apparaat",
-    "deviceListOptionsEdit": "Bewerk",
-    "deviceListOptionsEditDisc": "Verander apparaat instellingen",
-    "deviceListOptionsDelete": "Verwijderen",
-    "deviceListOptionsDeleteDisc": "Verwijder dit apparaat van geheugen",
-    "deviceListEmpty": "Geen apparaten gevonden, voeg ze manueel toe",
-
-    "deviceAddTitle": "Voeg nieuw apparaat toe",
-    "deviceAddIpTitle": "Ip adres",
-    "deviceAddIpHint": "192.168.0.191",
-    "deviceAddIpErrorEmpty": "Ip kan niet leeg zijn",
-    "deviceAddIpErrorInvalid": "Ip is niet correct",
-    "deviceAddNameTitle": "Aangepaste naam*",
-    "deviceAddNameHint": "Woonkamer",
-    "deviceAddNameErrorToLong": "Naam is te lang. Max 40 karakters",
-    "deviceAddNameHelper": "Optioneel. Deze naam overschrijft het WLED apparaat's naam",
-    "deviceAddSubmit": "Opslaan"
+    "deviceListPowerOff": "Uit",
+    "deviceListEmpty": "Geen apparaten gevonden"
 }

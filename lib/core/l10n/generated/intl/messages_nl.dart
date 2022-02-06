@@ -22,41 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "deviceAddIpErrorEmpty":
-            MessageLookupByLibrary.simpleMessage("Ip kan niet leeg zijn"),
-        "deviceAddIpErrorInvalid":
-            MessageLookupByLibrary.simpleMessage("Ip is niet correct"),
-        "deviceAddIpHint":
-            MessageLookupByLibrary.simpleMessage("192.168.0.191"),
-        "deviceAddIpTitle": MessageLookupByLibrary.simpleMessage("Ip adres"),
-        "deviceAddNameErrorToLong": MessageLookupByLibrary.simpleMessage(
-            "Naam is te lang. Max 40 karakters"),
-        "deviceAddNameHelper": MessageLookupByLibrary.simpleMessage(
-            "Optioneel. Deze naam overschrijft het WLED apparaat\'s naam"),
-        "deviceAddNameHint": MessageLookupByLibrary.simpleMessage("Woonkamer"),
-        "deviceAddNameTitle":
-            MessageLookupByLibrary.simpleMessage("Aangepaste naam*"),
-        "deviceAddSubmit": MessageLookupByLibrary.simpleMessage("Opslaan"),
-        "deviceAddTitle":
-            MessageLookupByLibrary.simpleMessage("Voeg nieuw apparaat toe"),
-        "deviceListAction":
-            MessageLookupByLibrary.simpleMessage("Voeg een nieuw apparaat toe"),
-        "deviceListEmpty": MessageLookupByLibrary.simpleMessage(
-            "Geen apparaten gevonden, voeg ze manueel toe"),
-        "deviceListLoading": MessageLookupByLibrary.simpleMessage(
-            "Zoeken naar WLED apparaten op dit netwerk"),
-        "deviceListOptionsDelete":
-            MessageLookupByLibrary.simpleMessage("Verwijderen"),
-        "deviceListOptionsDeleteDisc": MessageLookupByLibrary.simpleMessage(
-            "Verwijder dit apparaat van geheugen"),
-        "deviceListOptionsEdit": MessageLookupByLibrary.simpleMessage("Bewerk"),
-        "deviceListOptionsEditDisc": MessageLookupByLibrary.simpleMessage(
-            "Verander apparaat instellingen"),
-        "deviceListOptionsSave":
-            MessageLookupByLibrary.simpleMessage("Opslaan"),
-        "deviceListOptionsSaveDisc":
-            MessageLookupByLibrary.simpleMessage("Herinner dit apparaat"),
-        "deviceListPowerOff": MessageLookupByLibrary.simpleMessage("uit"),
-        "deviceListTitle": MessageLookupByLibrary.simpleMessage("Apparaten")
+        "deviceListEmpty":
+            MessageLookupByLibrary.simpleMessage("Geen apparaten gevonden"),
+        "deviceListPowerOff": MessageLookupByLibrary.simpleMessage("Uit")
       };
 }

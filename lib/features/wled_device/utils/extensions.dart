@@ -1,4 +1,5 @@
-import 'package:wled/core/core.dart';
+
+import 'package:wled/features/wled_device/wled_device.dart';
 
 /// custom extensions specifically for working with [WledDevice] lists
 extension WledListExtension on List<WledDevice> {
@@ -7,7 +8,7 @@ extension WledListExtension on List<WledDevice> {
     if (device == null) return false;
 
     for (final e in this) {
-      if (e.address == device.address) return true;
+      if (e.info.ipAddress == device.info.ipAddress) return true;
     }
     return false;
   }
@@ -28,10 +29,10 @@ extension WledListExtension on List<WledDevice> {
 
   /// compares device against list, if it exists replace it, otherwise add it
   void addOrReplace(WledDevice d) {
-    final index = indexWhere((i) => i.address == d.address);
+    final index = indexWhere((i) => i.info.ipAddress == d.info.ipAddress);
     index == -1 ? add(d) : this[index] = d;
   }
 
   /// check if any of the device in the list are currently enabled
-  bool get anyOn => any((e) => e.isEnabled);
+  bool get anyOn => any((e) => e.state.isEnabled);
 }

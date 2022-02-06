@@ -59,6 +59,9 @@ extension ContextExtension on BuildContext {
   /// True if the shortestSide is smaller than 600p
   bool get isPhone => mediaQueryShortestSide < 600;
 
+  // true if screen is both smaller than 600p and a vertical orientation
+  bool get isPortraitPhone => isPhone && isPortrait;
+
   /// True if the shortestSide is largest than 600p
   bool get isSmallTablet => mediaQueryShortestSide >= 600;
 
